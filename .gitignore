@@ -51,3 +51,8 @@ ProjectSettings/ProjectVersion.txt
 *.swp
 *.swn
 *.swo
+
+#VSCode project settings
+.vscode/
+Assets/VSCode/
+Assets/VSCode.meta
