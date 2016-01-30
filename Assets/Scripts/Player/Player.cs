@@ -27,6 +27,7 @@ public class Player : MonoBehaviour {
 	public bool Controller;
 	public float speed = 10;
 	public float jumpSpeed = 300;
+	public float maxJumpSpeed = 10;
 	public float maxSpeed = 10;
 
     public float lastJumpTime = 0;
@@ -161,8 +162,17 @@ public class Player : MonoBehaviour {
 
         Vector3 v = transform.GetComponent<Rigidbody2D>().velocity;
         
-        if (v.magnitude > maxSpeed)
-            transform.GetComponent<Rigidbody2D>().velocity = v.normalized * maxSpeed;
+        if (Mathf.Abs(v.x) > maxSpeed){
+        	Vector2 temp = v;
+        	temp.x = Mathf.Sign(temp.x) * maxSpeed;
+        	velocity = temp;
+        }
+
+        if(Mathf.Abs(v.y) > maxJumpSpeed){
+        	Vector2 temp = v;
+        	temp.y = Mathf.Sign(temp.y) * maxJumpSpeed;
+        	velocity = temp;
+        }
     }
     
     public void Die(){
@@ -316,9 +326,10 @@ public class Player : MonoBehaviour {
        switch(level){
             case 0:
                 {
-                    speed = 1000;
-                    jumpSpeed = 23000;
-                    maxSpeed = 8;
+                    speed = 10000;
+                    jumpSpeed = 100000;
+                    maxSpeed = 2;
+                    maxJumpSpeed = 10;
 
                     health = 2;
                     maxHealth = 2;
@@ -338,9 +349,10 @@ public class Player : MonoBehaviour {
                 break;
             case 1:
                 {
-                    speed = 1000;
-                    jumpSpeed = 23000;
-                    maxSpeed = 8;
+                    speed = 10000;
+                    jumpSpeed = 100000;
+                    maxSpeed = 2;
+                    maxJumpSpeed = 10;
 
                     health = 4;
                     maxHealth = 4;
@@ -360,9 +372,11 @@ public class Player : MonoBehaviour {
                 break;
             case 2:
                 {
-                    speed = 1000;
-                    jumpSpeed = 23000;
-                    maxSpeed = 8;
+                    speed = 10000;
+                    jumpSpeed = 100000;
+                    maxSpeed = 2;
+                    maxJumpSpeed = 10;
+                    
                     health = 5;
                     maxHealth = 5;
                     regenHealth = .1f;
@@ -370,9 +384,10 @@ public class Player : MonoBehaviour {
                 break;
             case 3:
                 {
-                    speed = 1000;
-                    jumpSpeed = 23000;
-                    maxSpeed = 8;
+                    speed = 10000;
+                    jumpSpeed = 100000;
+                    maxSpeed = 2;
+                    maxJumpSpeed = 10;
 
                     health = 10;
                     maxHealth = 10;
