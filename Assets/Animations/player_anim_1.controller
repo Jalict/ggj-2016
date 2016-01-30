@@ -79,15 +79,18 @@ AnimatorStateTransition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: OnGround
-    m_EventTreshold: 0
   - m_ConditionMode: 4
     m_ConditionEvent: abs_velocity_x
     m_EventTreshold: 0.01
   - m_ConditionMode: 2
     m_ConditionEvent: IsSummoning
     m_EventTreshold: 0
+  - m_ConditionMode: 3
+    m_ConditionEvent: velocity_y
+    m_EventTreshold: -0.01
+  - m_ConditionMode: 4
+    m_ConditionEvent: velocity_y
+    m_EventTreshold: 0.01
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110296752}
   m_Solo: 0
@@ -109,14 +112,14 @@ AnimatorStateTransition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: OnGround
-    m_EventTreshold: 0
   - m_ConditionMode: 4
     m_ConditionEvent: velocity_y
-    m_EventTreshold: 0
+    m_EventTreshold: -0.01
   - m_ConditionMode: 2
     m_ConditionEvent: IsSummoning
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: OnGround
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110293862}
@@ -174,9 +177,9 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 3
     m_ConditionEvent: velocity_y
-    m_EventTreshold: 0
+    m_EventTreshold: 0.01
   - m_ConditionMode: 2
-    m_ConditionEvent: IsSummoning
+    m_ConditionEvent: OnGround
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110221968}

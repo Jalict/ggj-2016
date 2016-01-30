@@ -153,9 +153,9 @@ public class Player : MonoBehaviour {
 		animController.SetBool ("IsSummoning", doingRitual);
         
 
-        if(GetComponent<Rigidbody2D>().velocity.x < 0)
+        if(GetComponent<Rigidbody2D>().velocity.x < -0.01)
             transform.localScale = new Vector3(-1,1,1);        
-        else if(GetComponent<Rigidbody2D>().velocity.x > 0)
+        else if(GetComponent<Rigidbody2D>().velocity.x > 0.01)
             transform.localScale = new Vector3(1,1,1);
 
 
