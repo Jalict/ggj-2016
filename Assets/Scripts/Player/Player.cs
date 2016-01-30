@@ -23,8 +23,8 @@ public class Player : MonoBehaviour {
 	public float maxSpeed = 10;
 //Controller
 public int playerNum;
-PlayerIndex playerIndex;
-GamePadState state;
+private PlayerIndex playerIndex;
+private GamePadState state;
 
     public float health = 2;
     public float maxHealth = 2;
@@ -114,6 +114,7 @@ GamePadState state;
 		state = GamePad.GetState(playerIndex);
 			if ((int)Input.GetAxis("Xbox"+playerIndex+"_LeftTrigger") == 1)
 			{
+                Debug.Log(playerIndex);
 				if(leftTriggerAbility != null)
                     leftTriggerAbility.Cast();
             }
