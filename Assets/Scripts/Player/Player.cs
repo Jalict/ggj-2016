@@ -26,6 +26,8 @@ public class Player : MonoBehaviour {
     public float maxHealth = 2;
     public float regenHealth = .1f;
 
+	private Animator animController;
+
     bool doingRitual;
     bool atAltar;
     AltarSprite Altar;
@@ -40,6 +42,10 @@ public class Player : MonoBehaviour {
 		velocity = new Vector3(0,0,0);
         SetToLevel(level);
         altarWaitTime = 2.0f;
+	}
+
+	void Start() {
+		animController = GetComponent<Animator> ();
 	}
 
 	// Update is called once per frame
@@ -144,6 +150,8 @@ public class Player : MonoBehaviour {
 				}
 			}
 		}
+
+		animController.SetFloat ("vertical_x", GetComponent<Rigidbody2D> ().velocity.x);
 	}
     
     public void Die(){
