@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using XInputDotNetPure;
+
 
 public class FireAbility : IAbility {
 
