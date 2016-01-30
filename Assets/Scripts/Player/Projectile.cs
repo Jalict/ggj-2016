@@ -38,6 +38,8 @@ public class Projectile : MonoBehaviour {
                 if(shield.isActivated){ //TODO: make shield only work in the "shielded" direction
                     body.velocity = new Vector2(-body.velocity.x,body.velocity.y);
                     direction = new Vector2(-direction.x,direction.y);
+                    
+                    CameraShake.Instance.start(.1f, .1f);
 
                     return;
                 }

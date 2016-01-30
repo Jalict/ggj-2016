@@ -58,6 +58,8 @@ public class GameManager : MonoBehaviour {
         if(t == 0){
             //TODO: add logic to cleverly spawn the player
             player.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].position;
+            
+            CameraShake.Instance.start(.1f, .2f);
         }else{
             StartCoroutine(delayRespawn(player, t));
         }

@@ -15,6 +15,7 @@ public class FireAbility : IAbility {
     public override bool Cast(){
        if (lastCast + cooldown <= Time.time)
        {
+           
             lastCast = Time.time;
             GameObject obj = Object.Instantiate(projectile_prefab, transform.position, Quaternion.identity) as GameObject;
             Projectile projectile = obj.GetComponent<Projectile>();
@@ -22,6 +23,7 @@ public class FireAbility : IAbility {
             projectile.speed = projectileSpeed;
             projectile.sender = owner;
             projectile.damage = damage;
+            CameraShake.Instance.start(.1f, .2f);
 
             Physics2D.IgnoreCollision(obj.GetComponent<Collider2D>(), owner.GetComponent<Collider2D>());
 

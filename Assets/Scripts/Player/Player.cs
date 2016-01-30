@@ -147,6 +147,7 @@ public class Player : MonoBehaviour {
 	}
     
     public void Die(){
+        CameraShake.Instance.start(.5f, 1f);
         Respawn(3);
     }
     
@@ -162,6 +163,8 @@ public class Player : MonoBehaviour {
 		Debug.Log("YOU FAILED THE RITUAL");
 		//TODO - Graphic feedback
 		//TODO - Some drawback?
+        
+        CameraShake.Instance.start(.2f, .2f);
 		doingRitual = false;
 	}
 
@@ -170,6 +173,8 @@ public class Player : MonoBehaviour {
 		//TODO - Graphic feedback
 		//TODO - Transform
         SetToLevel(++level);
+        
+        CameraShake.Instance.start(.5f, .5f);
 		doingRitual = false;
 	}
 
@@ -227,7 +232,9 @@ public class Player : MonoBehaviour {
 						break;
 					}
 				}
-
+                if(!ritualFail)
+                    CameraShake.Instance.start(.1f, .1f * seqLength);
+                    
 				yield return null;
 			}
 			if(ritualFail){
@@ -268,6 +275,8 @@ public class Player : MonoBehaviour {
             Die();
             return true;
         }
+        
+        CameraShake.Instance.start(.2f, .5f);
 
         return false;
     }

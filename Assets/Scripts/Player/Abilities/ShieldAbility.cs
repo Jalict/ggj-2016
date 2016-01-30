@@ -14,6 +14,7 @@ public class ShieldAbility : IAbility {
        {
             isActivated = true;
             Debug.Log("Shield Up!");
+            CameraShake.Instance.start(.1f, .05f);
             StartCoroutine(stopShieldIn(activeTime));
             return true;
        }    
@@ -23,6 +24,7 @@ public class ShieldAbility : IAbility {
     IEnumerator stopShieldIn(float time){
         yield return new WaitForSeconds(time);
         lastCast = Time.time;
+        CameraShake.Instance.start(.05f, .05f);
         isActivated = false;
         Debug.Log("Shield Down!");
 
