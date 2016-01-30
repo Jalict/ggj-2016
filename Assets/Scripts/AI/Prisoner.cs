@@ -60,7 +60,6 @@ public class Prisoner : MonoBehaviour { //PURIPURI BLACK ANGEL STYLE!
 			
 			//If nothing has happened, check chainlength to distance to chainpoint
 			if(Vector3.Distance(transform.position, chainPoint) >= chainLength && !movingBackToChain){
-				Debug.Log("I am at the EDGE OF MY CHAIN");
 				movingBackToChain = true;
 				velocity *= -1;
 			}
@@ -72,12 +71,10 @@ public class Prisoner : MonoBehaviour { //PURIPURI BLACK ANGEL STYLE!
 			if(decisionTime < Time.time && !movingBackToChain){ //Count untill next roll
 				//Roll for chance of turning
 				if(CalculateChance(confusion)){
-					Debug.Log("I am CONFUSED");
 					velocity *= -1;
 				}
 				//Roll for chance of stopping (if stopping, then break)
 				if(CalculateChance(tired)){
-					Debug.Log("I am TIRED");
 					isMoving = false;
 					decisionTime = Time.time + decisionFrequency;
 					return;
@@ -91,7 +88,6 @@ public class Prisoner : MonoBehaviour { //PURIPURI BLACK ANGEL STYLE!
 			if(decisionTime < Time.time){ //Count untill next roll
 				//Roll for chance to start moving
 				if(CalculateChance(restless)){
-					Debug.Log("I am RESTLESS");
 					isMoving = true;
 				}
 
@@ -118,7 +114,7 @@ public class Prisoner : MonoBehaviour { //PURIPURI BLACK ANGEL STYLE!
 	public void Die(){
 		//play death thing here
 		//give blood to player
-		Object.Destroy(this);
+		Object.Destroy(this.gameObject);
 	}
 
 	public bool CalculateChance(float chance){

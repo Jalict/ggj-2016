@@ -54,10 +54,12 @@ public class Projectile : MonoBehaviour {
             if(player.OnHit(damage)){
                 sender.KilledPlayer(player);
             }
-
-
         }
-            
+
+        if(collider.gameObject.tag == "Prisoner"){
+            collider.GetComponent<Prisoner>().OnHit(damage);    
+        }
+        
         Destroy(this.gameObject);
     }
     

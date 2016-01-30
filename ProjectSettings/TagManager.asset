@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Altar
+  - Prisoner
   layers:
   - Default
   - TransparentFX
@@ -17,12 +18,10 @@ TagManager:
   - 
   - Ignore_Projectiles
   - Projectile
-  - 
+  - Prisoner
   - 
   - Ground
   - BloodSplatter
-  - 
-  - 
   - 
   - 
   - 
