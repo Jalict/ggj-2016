@@ -26,11 +26,11 @@ public class Projectile : MonoBehaviour {
         //TODO: remove projectile when out of bounds
     }
     
-    void OnTriggerEnter2D(Collision2D collision){
-        if(collision.gameObject.tag == "Player"){
+    void OnTriggerEnter2D(Collider2D collider){
+        if(collider.gameObject.tag == "Player"){
             //Check if shield is active
 
-            Player player = collision.gameObject.GetComponent<Player>();
+            Player player = collider.gameObject.GetComponent<Player>();
             
             if(player == sender) return;
 
@@ -61,10 +61,10 @@ public class Projectile : MonoBehaviour {
         Destroy(this.gameObject);
     }
     
-    void OnTriggerStawy2D(Collision2D collision){
+    void OnTriggerStawy2D(Collider2D collider){
         
     }
-    void OnTriggerExit2D(Collision2D collision){
+    void OnTriggerExit2D(Collider2D collider){
         
     }
 
