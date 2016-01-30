@@ -53,6 +53,8 @@ public class Player : MonoBehaviour {
         if (Controller)
         {
 
+   
+
             if (onGround)
             {
                 velocity.x = speed * Input.GetAxis("Xbox_LeftThumbStickBackForward");
@@ -64,8 +66,10 @@ public class Player : MonoBehaviour {
 
             if (Input.GetButtonDown("Xbox_AButton") && onGround)
             {
-                    velocity = Vector3.up * jumpSpeed;
+                    velocity.y = jumpSpeed;
                     Move();
+                    velocity = new Vector3(0,0,0);
+           
             }
         }
     }
