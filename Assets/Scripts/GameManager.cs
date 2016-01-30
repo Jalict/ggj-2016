@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]
 public class GameManager : MonoBehaviour {
@@ -7,6 +8,9 @@ public class GameManager : MonoBehaviour {
     private static GameManager instance;
 
     public Transform[] spawnPoints;
+
+    public Text timer;
+    private float timeLeft = 300;
 
     public static bool isActive { 
 		get { 
@@ -44,6 +48,9 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(timeLeft > 0)
+		timeLeft -= Time.deltaTime;
+		timer.text = "Time remaining: " + (int)timeLeft;
 	}
     
     
