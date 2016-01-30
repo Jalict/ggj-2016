@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
     private static GameManager instance;
 
     public Transform[] spawnPoints;
+	public GameObject spiritPrefab;
 
     public Text timer;
     private float timeLeft = 300;
@@ -52,13 +53,12 @@ public class GameManager : MonoBehaviour {
 		timeLeft -= Time.deltaTime;
 		timer.text = "Time remaining: " + (int)timeLeft;
 	}
-    
-    
+
     public void RespawnPlayer(Player player, float t = 0){
-        if(t == 0){
+        
+		if(t == 0){
             //TODO: add logic to cleverly spawn the player
-            player.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].position;
-            
+			          
             CameraShake.Instance.start(.1f, .2f);
         }else{
             StartCoroutine(delayRespawn(player, t));
@@ -67,7 +67,16 @@ public class GameManager : MonoBehaviour {
     
     IEnumerator delayRespawn(Player player, float t){
         player.gameObject.SetActive(false);
+
+		Vector3 spawnPosition = spawnPoints [Random.Range (0, spawnPoints.Length)].position;
+
+		GameObject obj = Instantiate(spiritPrefab, player.transform.position+Vector3.back, Quaternion.identity) as GameObject;
+		obj.GetComponent<MoveToSpawn> ().spawnPosition = spawnPosition;
+		obj.GetComponent<MoveToSpawn> ().spawnTime = t;
+
         yield return new WaitForSeconds(t);
+
+		player.transform.position = spawnPosition;
 
         RespawnPlayer(player);
         player.gameObject.SetActive(true);
