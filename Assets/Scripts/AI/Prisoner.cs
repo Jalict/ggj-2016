@@ -17,7 +17,7 @@ public class Prisoner : MonoBehaviour { //PURIPURI BLACK ANGEL STYLE!
 	public float restless; //how often will he begin moving
 	public float decisionFrequency; //how often will he roll for decisions
 
-	private decisionTime;
+	private float decisionTime;
 
 	bool isMoving;
 	bool isPanicking;
@@ -46,9 +46,9 @@ public class Prisoner : MonoBehaviour { //PURIPURI BLACK ANGEL STYLE!
 		if(!isMoving){
 			if(decisionTime < Time.time){ //Count untill next roll
 				//Roll for chance to start moving
-				if(){
+				/*if(){
 					isMoving = true;
-				}
+				}*/
 			}
 		}
 	}
