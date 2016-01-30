@@ -137,7 +137,6 @@ public class Player : MonoBehaviour {
 		//TODO - Transform
 	}
 
-
 	IEnumerator Ritual(int seqLength){
 		string[] keys = new string[4] {"Xbox_AButton", "Xbox_BButton", "Xbox_XButton", "Xbox_YButton"};
 		int randNum = Random.Range(0, keys.Length);
