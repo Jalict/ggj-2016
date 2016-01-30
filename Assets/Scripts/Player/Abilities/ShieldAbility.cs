@@ -3,22 +3,37 @@ using System.Collections;
 
 public class ShieldAbility : IAbility {
 
-    private float cooldown;
+    public float cooldown = 1;
+    public float activeTime = 1;
     private float lastCast = 0;
+
+    public bool isActivated = false;
     
-    public bool canCast = false;
-    
-    public ShieldAbility(float cooldown){
-        this.cooldown = cooldown;
+
+    public void Update(){
+        //test
+        if(Input.GetKey("s")){
+            this.Cast();
+        }
     }
     
     public override bool Cast(){
-       if (cooldown <= 0)
+       if (!isActivated && lastCast + cooldown <= Time.time)
        {
-           return true;
-       }
-       
+            isActivated = true;
+            Debug.Log("Shield Up!");
+            StartCoroutine(stopShieldIn(activeTime));
+            return true;
+       }    
        return false;
+    }
+    
+    IEnumerator stopShieldIn(float time){
+        yield return new WaitForSeconds(time);
+        lastCast = Time.time;
+        isActivated = false;
+        Debug.Log("Shield Down!");
+
     }
     
 }

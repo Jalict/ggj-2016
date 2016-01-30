@@ -23,8 +23,9 @@ public class FireAbility : IAbility {
             lastCast = Time.time;
             GameObject go = Object.Instantiate(projectile_prefab, transform.position, Quaternion.identity) as GameObject;
             Projectile projectile = go.GetComponent<Projectile>();
-            projectile.SetDirection((transform.localScale.x == 1 ? 1:-1) * Vector2.right);
-            projectile.SetSpeed(projectileSpeed);
+            projectile.direction = (transform.localScale.x == 1 ? 1:-1) * Vector2.right;
+            projectile.speed = projectileSpeed;
+            
 
 
             Physics2D.IgnoreCollision(go.GetComponent<Collider2D>(), GetComponent<Collider2D>());

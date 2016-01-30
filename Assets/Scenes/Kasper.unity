@@ -405,7 +405,7 @@ GameObject:
   - 114: {fileID: 237888785}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -436,6 +436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  jumpSpeed: 10
   maxSpeed: 20
 --- !u!50 &237888782
 Rigidbody2D:
@@ -491,7 +492,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 237888779}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.68, y: -0.66, z: 0}
+  m_LocalPosition: {x: 0.8, y: -1.63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -504,12 +505,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 237888779}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b39d2157db1be4dffb40913cd83f0624, type: 3}
+  m_Script: {fileID: 11500000, guid: c45e7086cd43943739edc6850ac9e8f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 1
-  projectileSpeed: 10000
-  projectile_prefab: {fileID: 122996, guid: f1169ca4a15904250913beaabc4fa9b5, type: 2}
+  activeTime: 1
+  isActivated: 0
 --- !u!1 &959631424
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,3 +645,45 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!1 &1486688831
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1486688833}
+  - 114: {fileID: 1486688832}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1486688832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1486688831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b39d2157db1be4dffb40913cd83f0624, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 1
+  projectileSpeed: 10000
+  projectile_prefab: {fileID: 122996, guid: f1169ca4a15904250913beaabc4fa9b5, type: 2}
+--- !u!4 &1486688833
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1486688831}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.67, y: -1.19, z: 1.7852045}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
