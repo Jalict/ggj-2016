@@ -165,14 +165,16 @@ public class Player : MonoBehaviour {
         if (Mathf.Abs(v.x) > maxSpeed){
         	Vector2 temp = v;
         	temp.x = Mathf.Sign(temp.x) * maxSpeed;
-        	velocity = temp;
+        	Debug.Log("Temp.x: " + temp.x + " v.x: " + v.x);
+        	v = temp;
+        	Debug.Log("V after: " + v.x + " V Magnitude: " + v.magnitude);
         }
 
-        if(Mathf.Abs(v.y) > maxJumpSpeed){
+        /*if (Mathf.Abs(v.y) > maxJumpSpeed){
         	Vector2 temp = v;
         	temp.y = Mathf.Sign(temp.y) * maxJumpSpeed;
-        	velocity = temp;
-        }
+        	v = temp;
+        }*/
     }
     
     public void Die(){
@@ -330,7 +332,7 @@ public class Player : MonoBehaviour {
                 {
                     speed = 10000;
                     jumpSpeed = 100000;
-                    maxSpeed = 2;
+                    maxSpeed = 5f;
                     maxJumpSpeed = 10;
 
                     health = 2;
@@ -353,7 +355,7 @@ public class Player : MonoBehaviour {
                 {
                     speed = 10000;
                     jumpSpeed = 100000;
-                    maxSpeed = 2;
+                    maxSpeed = 5f;
                     maxJumpSpeed = 10;
 
                     health = 4;
@@ -376,7 +378,7 @@ public class Player : MonoBehaviour {
                 {
                     speed = 10000;
                     jumpSpeed = 100000;
-                    maxSpeed = 2;
+                    maxSpeed = 5f;
                     maxJumpSpeed = 10;
                     
                     health = 5;
@@ -388,7 +390,7 @@ public class Player : MonoBehaviour {
                 {
                     speed = 10000;
                     jumpSpeed = 100000;
-                    maxSpeed = 2;
+                    maxSpeed = 5f;
                     maxJumpSpeed = 10;
 
                     health = 10;

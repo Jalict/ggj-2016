@@ -3480,7 +3480,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11466286, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
       propertyPath: playerNum
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5070286, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
       propertyPath: m_Mass
@@ -17700,7 +17700,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 433760, guid: eacd73dedd6184401bf469418067bf51, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eacd73dedd6184401bf469418067bf51, type: 2}
