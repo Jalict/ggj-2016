@@ -150,7 +150,7 @@ public class Player : MonoBehaviour {
 			}
 		}
 
-		animController.SetFloat ("vertical_x", GetComponent<Rigidbody2D> ().velocity.x);
+		animController.SetFloat ("velocity_x", GetComponent<Rigidbody2D> ().velocity.x);
 	}
     
     public void Die(){
