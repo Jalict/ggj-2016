@@ -34,7 +34,7 @@ public class Player : MonoBehaviour {
 
     //Controller
     public int playerNum;
-	private PlayerIndex playerIndex;
+    public PlayerIndex playerIndex; // DO NOT TOUCH
 	private GamePadState state;
 
     public float health = 2;
@@ -115,7 +115,6 @@ public class Player : MonoBehaviour {
 			// state = GamePad.GetState(playerIndex);
 			if ((int)Input.GetAxis("Xbox"+playerIndex+"_LeftTrigger") == 1)
 			{
-                Debug.Log(playerIndex);
 				if(leftTriggerAbility != null)
                     leftTriggerAbility.Cast();
             }
@@ -142,10 +141,7 @@ public class Player : MonoBehaviour {
 				}
 			}
 		}
-		Debug.DrawLine(transform.position, new Vector3(transform.position.x+(float)Input.GetAxis("Xbox" + playerIndex + "_Look_X"),transform.position.y-
-                                                               (float)Input.GetAxis("Xbox" + playerIndex + "_Look_Y"), 0), Color.red);
-        //Debug.Log((float)Input.GetAxis("Xbox" + playerIndex + "_Look_Y") + " , " + (float)Input.GetAxis("Xbox" + playerIndex + "_Look_X") + "," + 0);
-        
+		
 
 		animController.SetFloat ("velocity_x", GetComponent<Rigidbody2D>().velocity.x);
 
