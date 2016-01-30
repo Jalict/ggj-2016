@@ -7,6 +7,7 @@ public class Player : MonoBehaviour {
 	
 	Vector3 velocity;
 	bool onGround;
+    public bool Controller;
 	public float speed = 10;
 	public float jumpSpeed = 300;
 	public float maxSpeed = 10;
@@ -14,32 +15,60 @@ public class Player : MonoBehaviour {
 	void Start () {
 		velocity = new Vector3(0,0,0);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		if(Input.GetKey (KeyCode.LeftArrow) && onGround){
-			velocity = Vector3.left * speed;
-			
-			if(transform.GetComponent<Rigidbody2D>().velocity.magnitude < maxSpeed){
-				Move();
-			}
-		}
 
-		if (Input.GetKey (KeyCode.RightArrow) && onGround){
-			velocity = Vector3.right * speed;
+    // Update is called once per frame
+    void Update()
+    {
+        if (Controller == false)
+        {
+            if (Input.GetKey(KeyCode.LeftArrow) && onGround)
+            {
+                velocity = Vector3.left * speed;
 
-			if(transform.GetComponent<Rigidbody2D>().velocity.magnitude < maxSpeed){
-				Move();
-			}
-		}
+                if (transform.GetComponent<Rigidbody2D>().velocity.magnitude < maxSpeed)
+                {
+                    Move();
+                }
+            }
 
-		if(Input.GetKeyDown (KeyCode.UpArrow)){
-			if(onGround){
-				velocity = Vector3.up * jumpSpeed;
-				Move();
-			}
-		}
-	}
+            if (Input.GetKey(KeyCode.RightArrow) && onGround)
+            {
+                velocity = Vector3.right * speed;
+
+                if (transform.GetComponent<Rigidbody2D>().velocity.magnitude < maxSpeed)
+                {
+                    Move();
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                if (onGround)
+                {
+                    velocity = Vector3.up * jumpSpeed;
+                    Move();
+                }
+            }
+        }
+        if (Controller)
+        {
+
+            if (onGround)
+            {
+                velocity.x = speed * Input.GetAxis("Xbox_LeftThumbStickBackForward");
+                if (transform.GetComponent<Rigidbody2D>().velocity.magnitude < maxSpeed)
+                {
+                    Move();
+                }
+            }
+
+            if (Input.GetButtonDown("Xbox_AButton") && onGround)
+            {
+                    velocity = Vector3.up * jumpSpeed;
+                    Move();
+            }
+        }
+    }
 
 
 	public void Move(){
