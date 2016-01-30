@@ -14,6 +14,11 @@ public class ScreenWrap : MonoBehaviour {
 
         Camera main = Camera.main;
 
+        above.gameObject.SetActive(true);
+        below.gameObject.SetActive(true);
+        right.gameObject.SetActive(true);
+        left.gameObject.SetActive(true);
+
         above.orthographicSize = main.orthographicSize;
         below.orthographicSize = main.orthographicSize;
         right.orthographicSize = main.orthographicSize;
