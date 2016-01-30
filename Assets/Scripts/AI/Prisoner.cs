@@ -27,11 +27,14 @@ public class Prisoner : MonoBehaviour { //PURIPURI BLACK ANGEL STYLE!
 	bool movingBackToChain;
 	bool isPanicking;
 
+    private Animator animator;
+
 
     private Rigidbody2D body;
 
 	// Use this for initialization
 	void Start () {
+        animator = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
 
 /*    moveSpeed = 100;
@@ -56,19 +59,21 @@ public class Prisoner : MonoBehaviour { //PURIPURI BLACK ANGEL STYLE!
 
 	public void MakeDecision(){
 		if(isMoving){
-			Move();
-			
-			//If nothing has happened, check chainlength to distance to chainpoint
-			if(Vector3.Distance(transform.position, chainPoint) >= chainLength && !movingBackToChain){
+
+            //If nothing has happened, check chainlength to distance to chainpoint
+            if(Vector3.Distance(transform.position, chainPoint) >= chainLength && !movingBackToChain){
 				movingBackToChain = true;
 				velocity *= -1;
-			}
+                
+            }
 
 			if(movingBackToChain && Vector3.Distance(transform.position, chainPoint) < chainLength-1){
 				movingBackToChain = false;
 			}
-			
-			if(decisionTime < Time.time && !movingBackToChain){ //Count untill next roll
+
+            Debug.Log(Vector3.Distance(transform.position, chainPoint));
+
+            if(decisionTime < Time.time && !movingBackToChain){ //Count untill next roll
 				//Roll for chance of turning
 				if(CalculateChance(confusion)){
 					velocity *= -1;
@@ -82,6 +87,9 @@ public class Prisoner : MonoBehaviour { //PURIPURI BLACK ANGEL STYLE!
 
 				decisionTime = Time.time + decisionFrequency; //Reset decision count
 			}
+            
+            
+			Move();
 		}
 
 		if(!isMoving){
@@ -94,8 +102,15 @@ public class Prisoner : MonoBehaviour { //PURIPURI BLACK ANGEL STYLE!
 				decisionTime = Time.time + decisionFrequency; //Reset decision count
 			}
 		}
-	}
 
+        animator.SetFloat("abs_vel_x",Mathf.Abs(body.velocity.x));
+        
+        if(body.velocity.x < 0.1f)
+            transform.localScale = new Vector3(-1, 1, 1);
+        else
+            transform.localScale = new Vector3(1, 1, 1);
+    }
+ 
 	///<summary>When Player gets damaged</summary>
     ///<param>damage</param>
     ///<return>whether or not the player died from the hit</return>
@@ -118,9 +133,9 @@ public class Prisoner : MonoBehaviour { //PURIPURI BLACK ANGEL STYLE!
 	}
 
 	public bool CalculateChance(float chance){
-		float random = Random.Range(0, 10);
-		random /= 10;
-		if(chance < random)
+		float random = Random.Range(0f, 1f);
+
+		if(chance > random)
 			return true;
 		else
 			return false;
