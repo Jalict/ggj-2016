@@ -31,6 +31,8 @@ public class Projectile : MonoBehaviour {
             //Check if shield is active
 
             Player player = collision.gameObject.GetComponent<Player>();
+            
+            if(player == sender) return;
 
             if(player.GetComponent<ShieldAbility>() != null){
                 ShieldAbility shield = player.GetComponent<ShieldAbility>();

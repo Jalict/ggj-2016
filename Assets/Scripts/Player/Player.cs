@@ -27,10 +27,11 @@ public class Player : MonoBehaviour {
 	public float speed = 10;
 	public float jumpSpeed = 300;
 	public float maxSpeed = 10;
-//Controller
-public int playerNum;
-private PlayerIndex playerIndex;
-private GamePadState state;
+	
+	//Controller
+	public int playerNum;
+	private PlayerIndex playerIndex;
+	private GamePadState state;
 
     public float health = 2;
     public float maxHealth = 2;
@@ -46,7 +47,7 @@ private GamePadState state;
 
 	// Use this for initialization
 	void Start () {
-	playerIndex = (PlayerIndex)playerNum;
+		playerIndex = (PlayerIndex)playerNum;
         fireAbility = GetComponent<FireAbility>();
         shieldAbility = GetComponent<ShieldAbility>();
 
@@ -119,7 +120,7 @@ private GamePadState state;
 
 		if (Controller && !doingRitual)
 		{
-		state = GamePad.GetState(playerIndex);
+			state = GamePad.GetState(playerIndex);
 			if ((int)Input.GetAxis("Xbox"+playerIndex+"_LeftTrigger") == 1)
 			{
                 Debug.Log(playerIndex);
@@ -132,12 +133,12 @@ private GamePadState state;
                     rightTriggerAbility.Cast();
 			}
 				
-				velocity.x = speed * Input.GetAxis("Xbox"+playerIndex+"_X_Axis_Left");
-				if (transform.GetComponent<Rigidbody2D>().velocity.magnitude < maxSpeed)
-				{
-					Move();
-				}
+			velocity.x = speed * Input.GetAxis("Xbox"+playerIndex+"_X_Axis_Left");
+			if (transform.GetComponent<Rigidbody2D>().velocity.magnitude < maxSpeed)
+			{
+				Move();
 			}
+		
 
 			if (Input.GetButtonDown("Xbox"+playerIndex+"_AButton") && OnGround())
 			{
@@ -155,13 +156,13 @@ private GamePadState state;
 
 			if(atAltar){
 				if(altarTimeStamp < Time.time){
-					if(Input.GetButtonDown("Xbox_AButton"))
+					if(Input.GetButtonDown("Xbox"+playerIndex+"_AButton"))
 						StartCoroutine(Ritual(4));
 				}
 			}
 		}
 
-		animController.SetFloat ("velocity_x", GetComponent<Rigidbody2D> ().velocity.x);
+		animController.SetFloat ("velocity_x", GetComponent<Rigidbody2D>().velocity.x);
 	}
     
     public void Die(){
@@ -199,7 +200,7 @@ private GamePadState state;
 	IEnumerator Ritual(int seqLength){
 		doingRitual = true;
 		
-		string[] keys = new string[4] {"Xbox_AButton", "Xbox_XButton", "Xbox_YButton", "Xbox_BButton"};
+		string[] keys = new string[4] {"Xbox"+playerIndex+"_AButton", "Xbox"+playerIndex+"_XButton", "Xbox"+playerIndex+"_YButton", "Xbox"+playerIndex+"_BButton"};
 		int randNum = Random.Range(0, keys.Length);
 
 		bool ritualFail = false;

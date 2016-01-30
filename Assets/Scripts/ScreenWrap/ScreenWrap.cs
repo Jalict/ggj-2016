@@ -29,4 +29,5 @@ public class ScreenWrap : MonoBehaviour {
     public static Vector2 GetSize(){
         return new Vector2((Camera.main.orthographicSize * 2 * (Camera.main.aspect)), Camera.main.orthographicSize * 2);
     }
+
 }

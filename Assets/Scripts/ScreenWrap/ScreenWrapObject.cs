@@ -11,10 +11,10 @@ public class ScreenWrapObject : MonoBehaviour {
 
     public ColliderType colliderType = ColliderType.Circle;
 
-    private Collider2D above;
-    private Collider2D below;
-    private Collider2D right;
-    private Collider2D left;
+    public Collider2D above;
+    public Collider2D below;
+    public Collider2D right;
+    public Collider2D left;
 
     private Vector2 viewSize;
 

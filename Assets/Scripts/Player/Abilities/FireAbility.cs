@@ -25,7 +25,6 @@ public class FireAbility : IAbility {
             projectile.damage = damage;
             CameraShake.Instance.start(.1f, .2f);
 
-            Physics2D.IgnoreCollision(obj.GetComponent<Collider2D>(), owner.GetComponent<Collider2D>());
 
             return true;
        }    
