@@ -7,6 +7,9 @@ public class Projectile : MonoBehaviour {
     public float speed;
     public float maxSpeed = 10000;
 
+    public float damage = 1;
+    public Player sender;
+
     private Rigidbody2D body;
 
 //Setters
@@ -26,9 +29,11 @@ public class Projectile : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D collision){
         if(collision.gameObject.tag == "Player"){
             //Check if shield is active
-            
-            if(collision.gameObject.GetComponent<ShieldAbility>() != null){
-                ShieldAbility shield = collision.gameObject.GetComponent<ShieldAbility>();
+
+            Player player = collision.gameObject.GetComponent<Player>();
+
+            if(player.GetComponent<ShieldAbility>() != null){
+                ShieldAbility shield = player.GetComponent<ShieldAbility>();
                 
                 if(shield.isActivated){ //TODO: make shield only work in the "shielded" direction
                     body.velocity = new Vector2(-body.velocity.x,body.velocity.y);
@@ -37,11 +42,17 @@ public class Projectile : MonoBehaviour {
                     return;
                 }
             }
-            
+
+            if(player.OnHit(damage)){
+                sender.KilledPlayer(player);
+            }
+
+
         }
             
         Destroy(this.gameObject);
     }
+    
     void OnCollisionStawy2D(Collision2D collision){
         
     }

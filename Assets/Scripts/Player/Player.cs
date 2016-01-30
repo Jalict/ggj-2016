@@ -13,22 +13,32 @@ public class Player : MonoBehaviour {
 	public float speed = 10;
 	public float jumpSpeed = 300;
 	public float maxSpeed = 10;
-	// Use this for initialization
-	void Start () {
+
+
+    public float health = 2;
+    public float maxHealth = 2;
+    public float regenHealth = .1f;
+
+    // Use this for initialization
+    void Start () {
 		velocity = new Vector3(0,0,0);
-	}
+    }
 
 	// Update is called once per frame
 	void Update()
 	{
-		if (Controller == false)
+        health += regenHealth * Time.deltaTime;
+        if(health > maxHealth) 
+            health = maxHealth;
+
+        if (Controller == false)
 		{
-			if (Input.GetKeyDown(KeyCode.X))
+			if (Input.GetKey(KeyCode.X))
 			{
 				if(leftTriggerAbility != null)
                     leftTriggerAbility.Cast();
             }
-            if (Input.GetKeyDown(KeyCode.C))
+            if (Input.GetKey(KeyCode.C))
 			{
                 if(rightTriggerAbility != null)
                     rightTriggerAbility.Cast();
@@ -97,7 +107,16 @@ public class Player : MonoBehaviour {
 		}
 	}
     
+    public void Die(){
+        Respawn(3);
+    }
+    
+    public void KilledPlayer(Player player){
+        
+    }
+    
     public void Respawn(float time = 0){
+        health = maxHealth;
         GameManager.Instance.RespawnPlayer(this,time);
     }
 
@@ -117,4 +136,17 @@ public class Player : MonoBehaviour {
 
 		return false;
 	}
+    
+    ///<summary>When Player gets damaged</summary>
+    ///<param>damage</param>
+    ///<return>whether or not the player died from the hit</return>
+    public bool OnHit(float damage){
+        health -= damage;
+        if(health <= 0){
+            Die();
+            return true;
+        }
+
+        return false;
+    }
 }
