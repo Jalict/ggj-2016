@@ -10,16 +10,21 @@ public class FireAbility : IAbility {
 
     public float projectileSpeed = 10000;
     
+    private PlayerIndex playerIndexRef;
+    private Player playerRef;
+    
     public GameObject projectile_prefab;
     
     public override bool Cast(){
        if (lastCast + cooldown <= Time.time)
        {
-           
+            playerRef = GetComponent<Player>();
+            playerIndexRef = playerRef.playerIndex;
             lastCast = Time.time;
             GameObject obj = Object.Instantiate(projectile_prefab, transform.position, Quaternion.identity) as GameObject;
             Projectile projectile = obj.GetComponent<Projectile>();
-            projectile.direction = (Mathf.Sign(owner.GetComponent<Rigidbody2D>().velocity.x) >= 0 ? 1:-1) * Vector2.right; //TODO: when sprite flipping is implemented this needs to be checked
+            GameObject obj = Object.Instantiate(projectile_prefab, transform.position+new Vector3((float)Input.GetAxis("Xbox" + playerIndexRef + "_Look_X"),
+                -(float)Input.GetAxis("Xbox" + playerIndexRef + "_Look_Y")), Quaternion.identity) as GameObject;
             projectile.speed = projectileSpeed;
             projectile.sender = owner;
             projectile.damage = damage;
