@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using XInputDotNetPure;
 
 [RequireComponent(typeof (Rigidbody2D))]
 
@@ -20,7 +21,10 @@ public class Player : MonoBehaviour {
 	public float speed = 10;
 	public float jumpSpeed = 300;
 	public float maxSpeed = 10;
-
+//Controller
+public int playerNum;
+PlayerIndex playerIndex;
+GamePadState state;
 
     public float health = 2;
     public float maxHealth = 2;
@@ -36,6 +40,7 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+	playerIndex = (PlayerIndex)playerNum;
         fireAbility = GetComponent<FireAbility>();
         shieldAbility = GetComponent<ShieldAbility>();
 
@@ -106,12 +111,13 @@ public class Player : MonoBehaviour {
 
 		if (Controller && !doingRitual)
 		{
-			if ((int)Input.GetAxis("Xbox_LeftTrigger") == 1)
+		state = GamePad.GetState(playerIndex);
+			if ((int)Input.GetAxis("Xbox"+playerIndex+"_LeftTrigger") == 1)
 			{
 				if(leftTriggerAbility != null)
                     leftTriggerAbility.Cast();
             }
-            if ((int)Input.GetAxis("Xbox_RightTrigger") == 1)
+            if ((int)Input.GetAxis("Xbox"+playerIndex+"_RightTrigger") == 1)
 			{
                 if(rightTriggerAbility != null)
                     rightTriggerAbility.Cast();
@@ -121,14 +127,14 @@ public class Player : MonoBehaviour {
 
 			if (OnGround())
 			{
-				velocity.x = speed * Input.GetAxis("Xbox_LeftThumbStickBackForward");
+				velocity.x = speed * Input.GetAxis("Xbox"+playerIndex+"_X_Axis_Left");
 				if (transform.GetComponent<Rigidbody2D>().velocity.magnitude < maxSpeed)
 				{
 					Move();
 				}
 			}
 
-			if (Input.GetButtonDown("Xbox_AButton") && OnGround())
+			if (Input.GetButtonDown("Xbox"+playerIndex+"_AButton") && OnGround())
 			{
 				if(atAltar && altarTimeStamp > Time.time){
 					velocity.y = jumpSpeed;
