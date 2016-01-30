@@ -26,7 +26,7 @@ MonoBehaviour:
     TileList:
     - Sprite: {fileID: 21300000, guid: 8c987966e2b3e4dadb60deca202ca4db, type: 3}
       Collision: 1
-      PhysicsMaterial: {fileID: 0}
+      PhysicsMaterial: {fileID: 6200000, guid: 77842986e92d72044b012117b22a9e4b, type: 2}
       IsTrigger: 0
       Rotation: 0
       FlipHorizontally: 0
@@ -35,7 +35,7 @@ MonoBehaviour:
       Tag: Ground
     - Sprite: {fileID: 21300002, guid: 8c987966e2b3e4dadb60deca202ca4db, type: 3}
       Collision: 1
-      PhysicsMaterial: {fileID: 0}
+      PhysicsMaterial: {fileID: 6200000, guid: 77842986e92d72044b012117b22a9e4b, type: 2}
       IsTrigger: 0
       Rotation: 0
       FlipHorizontally: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
       Tag: Ground
     - Sprite: {fileID: 21300004, guid: 8c987966e2b3e4dadb60deca202ca4db, type: 3}
       Collision: 1
-      PhysicsMaterial: {fileID: 0}
+      PhysicsMaterial: {fileID: 6200000, guid: 77842986e92d72044b012117b22a9e4b, type: 2}
       IsTrigger: 0
       Rotation: 0
       FlipHorizontally: 0
@@ -62,7 +62,7 @@ MonoBehaviour:
       Tag: Untagged
     - Sprite: {fileID: 21300008, guid: 8c987966e2b3e4dadb60deca202ca4db, type: 3}
       Collision: 1
-      PhysicsMaterial: {fileID: 0}
+      PhysicsMaterial: {fileID: 6200000, guid: 77842986e92d72044b012117b22a9e4b, type: 2}
       IsTrigger: 0
       Rotation: 0
       FlipHorizontally: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
       Tag: Ground
     - Sprite: {fileID: 21300010, guid: 8c987966e2b3e4dadb60deca202ca4db, type: 3}
       Collision: 1
-      PhysicsMaterial: {fileID: 0}
+      PhysicsMaterial: {fileID: 6200000, guid: 77842986e92d72044b012117b22a9e4b, type: 2}
       IsTrigger: 0
       Rotation: 0
       FlipHorizontally: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
       Tag: Untagged
     - Sprite: {fileID: 21300016, guid: 8c987966e2b3e4dadb60deca202ca4db, type: 3}
       Collision: 1
-      PhysicsMaterial: {fileID: 0}
+      PhysicsMaterial: {fileID: 6200000, guid: 77842986e92d72044b012117b22a9e4b, type: 2}
       IsTrigger: 0
       Rotation: 0
       FlipHorizontally: 0

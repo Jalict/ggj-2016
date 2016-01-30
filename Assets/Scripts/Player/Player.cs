@@ -5,6 +5,12 @@ using XInputDotNetPure;
 [RequireComponent(typeof (Rigidbody2D))]
 
 public class Player : MonoBehaviour {
+	//raypoint positions
+	public GameObject rayPoint1;
+	public GameObject rayPoint2;
+
+	public bool onGround;
+
 
     //active abilities
     private IAbility leftTriggerAbility;
@@ -56,6 +62,8 @@ private GamePadState state;
 	void Update()
 	{
         health += regenHealth * Time.deltaTime;
+
+        onGround = OnGround();
         if(health > maxHealth) 
             health = maxHealth;
 
@@ -72,9 +80,9 @@ private GamePadState state;
                     rightTriggerAbility.Cast();
 			}
             
-			if (Input.GetKey(KeyCode.LeftArrow) && OnGround())
+			if (Input.GetKey(KeyCode.LeftArrow))
 			{
-				velocity = Vector3.left * speed;
+				velocity = Vector3.left * speed ;
 
 				if (transform.GetComponent<Rigidbody2D>().velocity.magnitude < maxSpeed)
 				{
@@ -82,9 +90,9 @@ private GamePadState state;
 				}
 			}
 
-			if (Input.GetKey(KeyCode.RightArrow) && OnGround())
+			if (Input.GetKey(KeyCode.RightArrow))
 			{
-				velocity = Vector3.right * speed;
+				velocity = Vector3.right * speed ;
 
 				if (transform.GetComponent<Rigidbody2D>().velocity.magnitude < maxSpeed)
 				{
@@ -96,7 +104,7 @@ private GamePadState state;
 			{
 				if (OnGround())
 				{
-					velocity = Vector3.up * jumpSpeed;
+					velocity = Vector3.up * jumpSpeed ;
 					Move();
 				}
 			}
@@ -123,11 +131,7 @@ private GamePadState state;
                 if(rightTriggerAbility != null)
                     rightTriggerAbility.Cast();
 			}
-			
-
-
-			if (OnGround())
-			{
+				
 				velocity.x = speed * Input.GetAxis("Xbox"+playerIndex+"_X_Axis_Left");
 				if (transform.GetComponent<Rigidbody2D>().velocity.magnitude < maxSpeed)
 				{
@@ -264,15 +268,21 @@ private GamePadState state;
 	}
 
 	public void Move(){
-		transform.GetComponent<Rigidbody2D>().AddForce(velocity, ForceMode2D.Force);
+		transform.GetComponent<Rigidbody2D>().AddForce(velocity * Time.deltaTime, ForceMode2D.Force);
 	}
 
 
 	public bool OnGround()
 	{
 		//TODO
-		RaycastHit2D hit = Physics2D.Raycast(transform.position + ((Vector3.down / 2) * 1.05f), Vector3.down, 0.2f);
+		RaycastHit2D hit = Physics2D.Raycast(rayPoint1.transform.position, Vector3.down, 0.2f);
 		if (hit.collider != null && hit.collider.gameObject.CompareTag("Ground"))
+		{
+			return true;
+		}
+
+		RaycastHit2D hit2 = Physics2D.Raycast(rayPoint2.transform.position, Vector3.down, 0.2f);
+		if (hit2.collider != null && hit2.collider.gameObject.CompareTag("Ground"))
 		{
 			return true;
 		}
@@ -301,9 +311,9 @@ private GamePadState state;
        switch(level){
             case 0:
                 {
-                    speed = 10;
-                    jumpSpeed = 300;
-                    maxSpeed = 10;
+                    speed = 1000;
+                    jumpSpeed = 23000;
+                    maxSpeed = 8;
 
                     health = 2;
                     maxHealth = 2;
@@ -323,9 +333,9 @@ private GamePadState state;
                 break;
             case 1:
                 {
-                    speed = 8;
-                    jumpSpeed = 400;
-                    maxSpeed = 15;
+                     speed = 1000;
+                    jumpSpeed = 23000;
+                    maxSpeed = 8;
 
                     health = 4;
                     maxHealth = 4;
@@ -345,10 +355,9 @@ private GamePadState state;
                 break;
             case 2:
                 {
-                    speed = 8;
-                    jumpSpeed = 300;
-                    maxSpeed = 17;
-
+                    speed = 1000;
+                    jumpSpeed = 23000;
+                    maxSpeed = 8;
                     health = 5;
                     maxHealth = 5;
                     regenHealth = .1f;
@@ -356,9 +365,9 @@ private GamePadState state;
                 break;
             case 3:
                 {
-                    speed = 20;
-                    jumpSpeed = 300;
-                    maxSpeed = 20;
+                    speed = 1000;
+                    jumpSpeed = 23000;
+                    maxSpeed = 8;
 
                     health = 10;
                     maxHealth = 10;
@@ -386,9 +395,11 @@ private GamePadState state;
 
     void OnTriggerExit2D(Collider2D col){
     	if(col.gameObject.CompareTag("Altar")){
-    		atAltar = false;
-    		Altar.spriteRend.enabled = false;
-    		Altar = null;
+	    		atAltar = false;
+    		if(Altar != null){
+	    		Altar.spriteRend.enabled = false;
+	    		Altar = null;
+    		}
     	}
     }
 }
