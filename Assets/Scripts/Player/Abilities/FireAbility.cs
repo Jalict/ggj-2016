@@ -21,10 +21,10 @@ public class FireAbility : IAbility {
             playerRef = GetComponent<Player>();
             playerIndexRef = playerRef.playerIndex;
             lastCast = Time.time;
-            GameObject obj = Object.Instantiate(projectile_prefab, transform.position, Quaternion.identity) as GameObject;
-            Projectile projectile = obj.GetComponent<Projectile>();
-            GameObject obj = Object.Instantiate(projectile_prefab, transform.position+new Vector3((float)Input.GetAxis("Xbox" + playerIndexRef + "_Look_X"),
+             GameObject obj = Object.Instantiate(projectile_prefab, transform.position+new Vector3((float)Input.GetAxis("Xbox" + playerIndexRef + "_Look_X"),
                 -(float)Input.GetAxis("Xbox" + playerIndexRef + "_Look_Y")), Quaternion.identity) as GameObject;
+            Projectile projectile = obj.GetComponent<Projectile>();
+            projetile.direction = new Vector2((float)Input.GetAxis("Xbox" + playerIndexRef + "_Look_X"), -(float)Input.GetAxis("Xbox" + playerIndexRef + "_Look_Y"));
             projectile.speed = projectileSpeed;
             projectile.sender = owner;
             projectile.damage = damage;
