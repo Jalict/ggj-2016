@@ -10,14 +10,15 @@ GameObject:
   - 4: {fileID: 482984}
   - 33: {fileID: 3361986}
   - 23: {fileID: 2347308}
-  - 61: {fileID: 6154812}
   - 50: {fileID: 5070286}
   - 114: {fileID: 11466286}
   - 114: {fileID: 11418844}
   - 114: {fileID: 11437366}
+  - 114: {fileID: 11431500}
+  - 58: {fileID: 5814298}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +30,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 109012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 10.56, y: -0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,9 +84,9 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!61 &6154812
-BoxCollider2D:
+  m_Constraints: 4
+--- !u!58 &5814298
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -97,7 +98,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Radius: 0.5
 --- !u!114 &11418844
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,9 +110,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39d2157db1be4dffb40913cd83f0624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 0}
   cooldown: 1
+  damage: 1
   projectileSpeed: 10000
   projectile_prefab: {fileID: 122996, guid: f1169ca4a15904250913beaabc4fa9b5, type: 2}
+--- !u!114 &11431500
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 109012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 383580b550b1347bf808c51e8a10d8ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderType: 0
 --- !u!114 &11437366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c45e7086cd43943739edc6850ac9e8f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 0}
   cooldown: 1
   activeTime: 1
   isActivated: 0
@@ -137,19 +153,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca88633042adfa54dbc02cfe256ddf44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftTriggerAbility: {fileID: 11437366}
-  rightTriggerAbility: {fileID: 11418844}
+  level: 0
   Controller: 0
   speed: 10
   jumpSpeed: 10
   maxSpeed: 10
+  health: 10
+  maxHealth: 10
+  regenHealth: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 109012}

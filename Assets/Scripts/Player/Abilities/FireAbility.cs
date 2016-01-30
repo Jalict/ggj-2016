@@ -11,7 +11,7 @@ public class FireAbility : IAbility {
     public float projectileSpeed = 10000;
     
     public GameObject projectile_prefab;
-
+    
     public override bool Cast(){
        if (lastCast + cooldown <= Time.time)
        {

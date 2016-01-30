@@ -5,8 +5,13 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-    public IAbility leftTriggerAbility;
-    public IAbility rightTriggerAbility;
+    //active abilities
+    private IAbility leftTriggerAbility;
+    private IAbility rightTriggerAbility;
+
+    //referneces to palyer abilities
+    private FireAbility fireAbility;
+    private ShieldAbility shieldAbility;
 
     public int level = 0;
 
@@ -28,6 +33,9 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        fireAbility = GetComponent<FireAbility>();
+        shieldAbility = GetComponent<ShieldAbility>();
+
 		velocity = new Vector3(0,0,0);
         SetToLevel(level);
         altarWaitTime = 2.0f;
@@ -269,7 +277,16 @@ public class Player : MonoBehaviour {
                     maxHealth = 2;
                     regenHealth = .1f;
 
-                 
+                    fireAbility.cooldown = 1;
+                    fireAbility.damage = 1;
+                    fireAbility.projectileSpeed = 10000;
+
+                    rightTriggerAbility = fireAbility;
+
+                    shieldAbility.cooldown = 1;
+                    shieldAbility.activeTime = 1;
+
+                    leftTriggerAbility = shieldAbility;
                 }
                 break;
             case 1:
@@ -282,6 +299,16 @@ public class Player : MonoBehaviour {
                     maxHealth = 4;
                     regenHealth = 0f;
 
+                    fireAbility.cooldown = 1;
+                    fireAbility.damage = 2;
+                    fireAbility.projectileSpeed = 10000;
+
+                    rightTriggerAbility = fireAbility;
+
+                    shieldAbility.cooldown = .5f;
+                    shieldAbility.activeTime = .5f;
+
+                    leftTriggerAbility = shieldAbility;
                 }
                 break;
             case 2:
