@@ -12,6 +12,7 @@ public class Player : MonoBehaviour {
 	public bool onGround;
 
 
+    public GameObject bloodSpatterPrefab;
     //active abilities
     private IAbility leftTriggerAbility;
     private IAbility rightTriggerAbility;
@@ -160,6 +161,8 @@ public class Player : MonoBehaviour {
     public void Die(){
         CameraShake.Instance.start(.5f, 1f);
         Respawn(3);
+        
+        Instantiate(bloodSpatterPrefab, transform.position, bloodSpatterPrefab.transform.rotation);
     }
     
     public void KilledPlayer(Player player){

@@ -167,6 +167,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderType: 0
+  main: {fileID: 0}
+  above: {fileID: 0}
+  below: {fileID: 0}
+  right: {fileID: 0}
+  left: {fileID: 0}
 --- !u!114 &11437366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -195,11 +200,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rayPoint1: {fileID: 0}
   rayPoint2: {fileID: 0}
+  onGround: 0
+  bloodSpatterPrefab: {fileID: 185500, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
   level: 0
   Controller: 1
   speed: 10
   jumpSpeed: 300
   maxSpeed: 10
+  lastJumpTime: 0
+  jumpCooldown: 0.5
+  playerNum: 0
   health: 10
   maxHealth: 10
   regenHealth: 0
@@ -244,6 +254,10 @@ Prefab:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: bloodSpatterPrefab
+      value: 
+      objectReference: {fileID: 185500, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 109012}
