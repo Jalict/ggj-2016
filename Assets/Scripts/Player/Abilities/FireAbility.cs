@@ -6,7 +6,7 @@ public class FireAbility : IAbility {
     public float cooldown = 1;
     private float lastCast = 0;
     
-    public float projectileSpeed = 10;
+    public float projectileSpeed = 10000;
     
     public GameObject projectile_prefab;
     
@@ -21,13 +21,16 @@ public class FireAbility : IAbility {
        if (lastCast + cooldown <= Time.time)
        {
             lastCast = Time.time;
-            GameObject go = Object.Instantiate(projectile_prefab, Vector2.zero, Quaternion.identity) as GameObject;
+            GameObject go = Object.Instantiate(projectile_prefab, transform.position, Quaternion.identity) as GameObject;
             Projectile projectile = go.GetComponent<Projectile>();
-            projectile.SetDirection(Vector2.right);
+            projectile.SetDirection((transform.localScale.x == 1 ? 1:-1) * Vector2.right);
             projectile.SetSpeed(projectileSpeed);
 
+
+            Physics2D.IgnoreCollision(go.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+
             return true;
-       }
+       }    
        return false;
     }
     
