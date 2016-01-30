@@ -6785,6 +6785,10 @@ Prefab:
       propertyPath: bloodSpatterPrefab
       value: 
       objectReference: {fileID: 185500, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
+    - target: {fileID: 11466286, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
+      propertyPath: Controller
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
   m_IsPrefabParent: 0
@@ -8559,92 +8563,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Collision: 1
---- !u!1001 &1250221791
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 473086, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 14.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 473086, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 4.27
-      objectReference: {fileID: 0}
-    - target: {fileID: 473086, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 3.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 473086, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 473086, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 473086, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 473086, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 473086, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 19875116, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
-      propertyPath: CollisionModule.m_Dampen.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19875116, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
-      propertyPath: CollisionModule.m_Bounce.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 19875116, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
-      propertyPath: CollisionModule.collidesWith.m_Bits
-      value: 1024
-      objectReference: {fileID: 0}
-    - target: {fileID: 19875116, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
-      propertyPath: CollisionModule.collidesWithDynamic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19875116, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
-      propertyPath: CollisionModule.quality
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 19875116, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
-      propertyPath: InitialModule.rotation3D
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 19875116, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
-      propertyPath: moveWithTransform
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19875116, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
-      propertyPath: CollisionModule.type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19875116, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
-      propertyPath: InitialModule.startSpeed.minCurve.m_Curve.Array.data[1].value
-      value: 0.6665774
-      objectReference: {fileID: 0}
-    - target: {fileID: 19875116, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
-      propertyPath: InitialModule.gravityModifier
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19875116, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
-      propertyPath: CollisionModule.collisionMode
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1275450135
 GameObject:
   m_ObjectHideFlags: 0
