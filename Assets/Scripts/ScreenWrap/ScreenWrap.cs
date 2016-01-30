@@ -12,6 +12,13 @@ public class ScreenWrap : MonoBehaviour {
     void Start () {
         Vector2 viewSize = GetSize();
 
+        Camera main = Camera.main;
+
+        above.orthographicSize = main.orthographicSize;
+        below.orthographicSize = main.orthographicSize;
+        right.orthographicSize = main.orthographicSize;
+        left.orthographicSize = main.orthographicSize;
+
         below.transform.localPosition = new Vector2(0, viewSize.y);
         above.transform.localPosition = new Vector2(0, -viewSize.y);
         
@@ -20,6 +27,6 @@ public class ScreenWrap : MonoBehaviour {
     }
     
     public static Vector2 GetSize(){
-        return new Vector2((Camera.main.orthographicSize * 2 * (16f / 9)), Camera.main.orthographicSize * 2);
+        return new Vector2((Camera.main.orthographicSize * 2 * (Camera.main.aspect)), Camera.main.orthographicSize * 2);
     }
 }
