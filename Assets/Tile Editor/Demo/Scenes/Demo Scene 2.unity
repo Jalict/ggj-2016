@@ -2185,9 +2185,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  Layer: {}
+  Layer:
+    serializedVersion: 2
+    m_Bits: 0
   _alpha: 255
-  _sortingLayer: 44656661756c74
+  _sortingLayer: Default
   _physcisLayer: 0
 --- !u!1 &198039675
 GameObject:
@@ -5299,6 +5301,7 @@ MonoBehaviour:
   PreviewSize: 39.375
   SelectedLayerIndex: 0
   ShowEdit: 1
+  ShowLayer: 0
 --- !u!1 &675441368
 GameObject:
   m_ObjectHideFlags: 0
@@ -8196,9 +8199,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  Layer: {}
+  Layer:
+    serializedVersion: 2
+    m_Bits: 0
   _alpha: 255
-  _sortingLayer: 44656661756c74
+  _sortingLayer: Default
   _physcisLayer: 0
 --- !u!1 &1004320807
 GameObject:
@@ -14807,9 +14812,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  Layer: {}
+  Layer:
+    serializedVersion: 2
+    m_Bits: 0
   _alpha: 255
-  _sortingLayer: 44656661756c74
+  _sortingLayer: Default
   _physcisLayer: 0
 --- !u!1 &1821160372
 GameObject:
@@ -16795,9 +16802,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  Layer: {}
+  Layer:
+    serializedVersion: 2
+    m_Bits: 0
   _alpha: 255
-  _sortingLayer: 44656661756c74
+  _sortingLayer: Default
   _physcisLayer: 0
 --- !u!1 &2061459467
 GameObject:

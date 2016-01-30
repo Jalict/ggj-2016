@@ -19572,9 +19572,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  Layer: {}
+  Layer:
+    serializedVersion: 2
+    m_Bits: 0
   _alpha: 255
-  _sortingLayer: 44656661756c74
+  _sortingLayer: Default
   _physcisLayer: 0
 --- !u!1 &419889813
 GameObject:
@@ -29930,9 +29932,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  Layer: {}
+  Layer:
+    serializedVersion: 2
+    m_Bits: 0
   _alpha: 255
-  _sortingLayer: 44656661756c74
+  _sortingLayer: Default
   _physcisLayer: 0
 --- !u!1 &610396964
 GameObject:
@@ -87174,9 +87178,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  Layer: {}
+  Layer:
+    serializedVersion: 2
+    m_Bits: 0
   _alpha: 255
-  _sortingLayer: 44656661756c74
+  _sortingLayer: Default
   _physcisLayer: 0
 --- !u!1 &2084878101
 GameObject:

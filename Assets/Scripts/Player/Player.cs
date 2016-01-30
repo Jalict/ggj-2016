@@ -1,13 +1,12 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 [RequireComponent(typeof (Rigidbody2D))]
 
 public class Player : MonoBehaviour {
-	
-	Vector3 velocity;
-	bool onGround;
-    public bool Controller;
+
+	private Vector3 velocity;
+	public bool Controller;
 	public float speed = 10;
 	public float jumpSpeed = 300;
 	public float maxSpeed = 10;
@@ -16,83 +15,84 @@ public class Player : MonoBehaviour {
 		velocity = new Vector3(0,0,0);
 	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Controller == false)
-        {
-            if (Input.GetKey(KeyCode.LeftArrow) && onGround)
-            {
-                velocity = Vector3.left * speed;
+	// Update is called once per frame
+	void Update()
+	{
+		if (Controller == false)
+		{
+			if (Input.GetKey(KeyCode.LeftArrow) && OnGround())
+			{
+				velocity = Vector3.left * speed;
 
-                if (transform.GetComponent<Rigidbody2D>().velocity.magnitude < maxSpeed)
-                {
-                    Move();
-                }
-            }
+				if (transform.GetComponent<Rigidbody2D>().velocity.magnitude < maxSpeed)
+				{
+					Move();
+				}
+			}
 
-            if (Input.GetKey(KeyCode.RightArrow) && onGround)
-            {
-                velocity = Vector3.right * speed;
+			if (Input.GetKey(KeyCode.RightArrow) && OnGround())
+			{
+				velocity = Vector3.right * speed;
 
-                if (transform.GetComponent<Rigidbody2D>().velocity.magnitude < maxSpeed)
-                {
-                    Move();
-                }
-            }
+				if (transform.GetComponent<Rigidbody2D>().velocity.magnitude < maxSpeed)
+				{
+					Move();
+				}
+			}
 
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                if (onGround)
-                {
-                    velocity = Vector3.up * jumpSpeed;
-                    Move();
-                }
-            }
-        }
-        if (Controller)
-        {
-            if ((int)Input.GetAxis("Xbox_LeftTrigger") == 1)
-            {
-                speed = 20;
-            }
-            else
-                speed = 10;
-   
+			if (Input.GetKeyDown(KeyCode.UpArrow))
+			{
+				if (OnGround())
+				{
+					velocity = Vector3.up * jumpSpeed;
+					Move();
+				}
+			}
+		}
+		if (Controller)
+		{
+			if ((int)Input.GetAxis("Xbox_LeftTrigger") == 1)
+			{
+				speed = 20;
+			}
+			else
+			speed = 10;
 
-            if (onGround)
-            {
-                velocity.x = speed * Input.GetAxis("Xbox_LeftThumbStickBackForward");
-                if (transform.GetComponent<Rigidbody2D>().velocity.magnitude < maxSpeed)
-                {
-                    Move();
-                }
-            }
 
-            if (Input.GetButtonDown("Xbox_AButton") && onGround)
-            {
-                    velocity.y = jumpSpeed;
-                    Move();
-                    velocity = new Vector3(0,0,0);
-           
-            }
-        }
-    }
+			if (OnGround())
+			{
+				velocity.x = speed * Input.GetAxis("Xbox_LeftThumbStickBackForward");
+				if (transform.GetComponent<Rigidbody2D>().velocity.magnitude < maxSpeed)
+				{
+					Move();
+				}
+			}
+
+			if (Input.GetButtonDown("Xbox_AButton") && OnGround())
+			{
+				velocity.y = jumpSpeed;
+				Move();
+				velocity = new Vector3(0,0,0);
+
+			}
+		}
+	}
 
 
 	public void Move(){
 		transform.GetComponent<Rigidbody2D>().AddForce(velocity, ForceMode2D.Force);
 	}
 
-	void OnCollisionEnter2D(Collision2D collision){
-		if(collision.gameObject.tag == "Ground"){
-			onGround = true;
-		}
-	}
 
-	void OnCollisionExit2D(Collision2D collision){
-		if(collision.gameObject.tag == "Ground"){
-			onGround = false;
+	public bool OnGround()
+	{
+		//TODO
+		RaycastHit2D hit = Physics2D.Raycast(transform.position + ((Vector3.down / 2) * 1.05f), Vector3.down, 0.2f);
+		if (hit.collider != null && hit.collider.gameObject.CompareTag("Ground"))
+		{
+			return true;
 		}
+
+		return false;
 	}
 }
