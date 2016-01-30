@@ -52,7 +52,12 @@ public class Player : MonoBehaviour {
         }
         if (Controller)
         {
-
+            if ((int)Input.GetAxis("Xbox_LeftTrigger") == 1)
+            {
+                speed = 20;
+            }
+            else
+                speed = 10;
    
 
             if (onGround)
