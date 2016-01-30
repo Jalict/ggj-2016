@@ -161,6 +161,11 @@ public class Player : MonoBehaviour {
 				}
 			}
 		}
+		Debug.DrawLine(transform.position, new Vector3(transform.position.x+(float)Input.GetAxis("Xbox" + playerIndex + "_Look_X"),transform.position.y-
+                                                               (float)Input.GetAxis("Xbox" + playerIndex + "_Look_Y"), 0), Color.red);
+            Debug.Log((float)Input.GetAxis("Xbox" + playerIndex + "_Look_Y") + " , " +
+                                                               (float)Input.GetAxis("Xbox" + playerIndex + "_Look_X") + "," + 0);
+        
 
 		animController.SetFloat ("velocity_x", GetComponent<Rigidbody2D>().velocity.x);
 	}
