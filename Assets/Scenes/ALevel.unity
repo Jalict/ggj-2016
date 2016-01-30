@@ -671,6 +671,10 @@ Prefab:
       propertyPath: m_Name
       value: AltarTrigger (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 198698, guid: 7067aba7b1da930498e577b98d3d31b3, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7067aba7b1da930498e577b98d3d31b3, type: 2}
   m_IsPrefabParent: 0
@@ -7343,6 +7347,10 @@ Prefab:
       propertyPath: m_Name
       value: AltarTrigger (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 198698, guid: 7067aba7b1da930498e577b98d3d31b3, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7067aba7b1da930498e577b98d3d31b3, type: 2}
   m_IsPrefabParent: 0
@@ -9024,6 +9032,10 @@ Prefab:
       propertyPath: m_Name
       value: AltarTrigger (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 198698, guid: 7067aba7b1da930498e577b98d3d31b3, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7067aba7b1da930498e577b98d3d31b3, type: 2}
   m_IsPrefabParent: 0
@@ -10448,6 +10460,10 @@ Prefab:
     - target: {fileID: 198698, guid: 7067aba7b1da930498e577b98d3d31b3, type: 2}
       propertyPath: m_Name
       value: AltarTrigger (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 198698, guid: 7067aba7b1da930498e577b98d3d31b3, type: 2}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7067aba7b1da930498e577b98d3d31b3, type: 2}
