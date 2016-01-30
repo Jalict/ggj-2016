@@ -35,13 +35,17 @@ public class Projectile : MonoBehaviour {
             if(player.GetComponent<ShieldAbility>() != null){
                 ShieldAbility shield = player.GetComponent<ShieldAbility>();
                 
-                if(shield.isActivated){ //TODO: make shield only work in the "shielded" direction
-                    body.velocity = new Vector2(-body.velocity.x,body.velocity.y);
-                    direction = new Vector2(-direction.x,direction.y);
-                    
-                    CameraShake.Instance.start(.1f, .1f);
+                if(shield.isActivated){
+                    bool playerFacingRight = Mathf.Sign(player.GetComponent<Rigidbody2D>().velocity.x) >= 0;
+                    bool projectileFacingRight = Mathf.Sign(body.velocity.x) >= 0;
+                    if(playerFacingRight != projectileFacingRight){ 
+                        body.velocity = new Vector2(-body.velocity.x,body.velocity.y);
+                        direction = new Vector2(-direction.x,direction.y);
+                        
+                        CameraShake.Instance.start(.1f, .1f);
 
-                    return;
+                        return;
+                    }
                 }
             }
 

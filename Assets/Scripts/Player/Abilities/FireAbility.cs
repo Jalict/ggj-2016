@@ -19,7 +19,7 @@ public class FireAbility : IAbility {
             lastCast = Time.time;
             GameObject obj = Object.Instantiate(projectile_prefab, transform.position, Quaternion.identity) as GameObject;
             Projectile projectile = obj.GetComponent<Projectile>();
-            projectile.direction = (transform.localScale.x == 1 ? 1:-1) * Vector2.right; //TODO: when sprite flipping is implemented this needs to be checked
+            projectile.direction = (Mathf.Sign(owner.GetComponent<Rigidbody2D>().velocity.x) >= 0 ? 1:-1) * Vector2.right; //TODO: when sprite flipping is implemented this needs to be checked
             projectile.speed = projectileSpeed;
             projectile.sender = owner;
             projectile.damage = damage;
