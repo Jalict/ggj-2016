@@ -28,6 +28,7 @@ public class Player : MonoBehaviour {
 
     bool doingRitual;
     bool atAltar;
+    AltarSprite Altar;
     float altarTimeStamp;
     float altarWaitTime;
 
@@ -124,10 +125,16 @@ public class Player : MonoBehaviour {
 
 			if (Input.GetButtonDown("Xbox_AButton") && OnGround())
 			{
-				velocity.y = jumpSpeed;
-				Move();
-				velocity = new Vector3(0,0,0);
-
+				if(atAltar && altarTimeStamp > Time.time){
+					velocity.y = jumpSpeed;
+					Move();
+					velocity = new Vector3(0,0,0);
+				}
+				if(!atAltar){
+					velocity.y = jumpSpeed;
+					Move();
+					velocity = new Vector3(0,0,0);
+				}
 			}
 
 			if(atAltar){
@@ -169,12 +176,14 @@ public class Player : MonoBehaviour {
 	IEnumerator Ritual(int seqLength){
 		doingRitual = true;
 		
-		string[] keys = new string[4] {"Xbox_AButton", "Xbox_BButton", "Xbox_XButton", "Xbox_YButton"};
+		string[] keys = new string[4] {"Xbox_AButton", "Xbox_XButton", "Xbox_YButton", "Xbox_BButton"};
 		int randNum = Random.Range(0, keys.Length);
-		
+
 		bool ritualFail = false;
 
 		for(int i = 0; i < seqLength; i++){
+			if(Altar != null)
+				Altar.ChangeSprite(randNum);
 			Debug.Log(keys[randNum]);
 			yield return new WaitForSeconds(0.001f);
 			//TODO - Graphic feedback for button press
@@ -344,12 +353,19 @@ public class Player : MonoBehaviour {
 		altarTimeStamp = altarWaitTime+Time.time;
     	if(col.gameObject.CompareTag("Altar")){
     		atAltar = true;
+
+    		if(Altar == null){
+    			Altar = col.gameObject.GetComponent<AltarSprite>();
+    			Altar.spriteRend.enabled = true;
+    		}
     	}
     }
 
     void OnTriggerExit2D(Collider2D col){
     	if(col.gameObject.CompareTag("Altar")){
     		atAltar = false;
+    		Altar.spriteRend.enabled = false;
+    		Altar = null;
     	}
     }
 }
