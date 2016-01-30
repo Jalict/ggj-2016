@@ -47,6 +47,12 @@ public class ScreenWrapObject : MonoBehaviour {
         
         right.offset = new Vector2(viewSize.x,0);        
         left.offset = new Vector2(-viewSize.x,0);
+        
+    
+        above.isTrigger = main.isTrigger;
+        below.isTrigger = main.isTrigger;
+        right.isTrigger = main.isTrigger;
+        left.isTrigger  = main.isTrigger;
 
     }
     
