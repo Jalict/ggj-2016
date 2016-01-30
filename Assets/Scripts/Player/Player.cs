@@ -148,8 +148,15 @@ public class Player : MonoBehaviour {
         Move();
         
 		animController.SetFloat ("abs_velocity_x", Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
+		animController.SetFloat ("velocity_y", GetComponent<Rigidbody2D>().velocity.y);
+		animController.SetBool ("OnGround", onGround);
+		animController.SetBool ("IsSummoning", doingRitual);
+        
 
-        transform.localScale = new Vector3((GetComponent<Rigidbody2D>().velocity.x > 0 ? 1 : -1),1,1);
+        if(GetComponent<Rigidbody2D>().velocity.x < 0)
+            transform.localScale = new Vector3(-1,1,1);        
+        else if(GetComponent<Rigidbody2D>().velocity.x > 0)
+            transform.localScale = new Vector3(1,1,1);
 
 
         Vector3 v = transform.GetComponent<Rigidbody2D>().velocity;
