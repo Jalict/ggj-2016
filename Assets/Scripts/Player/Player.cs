@@ -183,6 +183,8 @@ public class Player : MonoBehaviour {
     }
     
     public void KilledPlayer(Player player){
+    }  
+    public void KilledPrisoner(Prisoner prisoner){
     }
     
     public void Respawn(float time = 0){
