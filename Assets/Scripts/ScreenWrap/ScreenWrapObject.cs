@@ -16,6 +16,8 @@ public class ScreenWrapObject : MonoBehaviour {
     private Collider2D right;
     private Collider2D left;
 
+    private Vector2 viewSize;
+
     // Use this for initialization
     void Start () {
         if (colliderType == ColliderType.Circle)
@@ -30,7 +32,7 @@ public class ScreenWrapObject : MonoBehaviour {
             right = gameObject.AddComponent<BoxCollider2D>();
             left = gameObject.AddComponent<BoxCollider2D>();
         }
-        Vector2 viewSize = ScreenWrap.GetSize();
+        viewSize = ScreenWrap.GetSize();
         
         below.offset = new Vector2(0, viewSize.y);
         above.offset = new Vector2(0, -viewSize.y);
@@ -38,5 +40,30 @@ public class ScreenWrapObject : MonoBehaviour {
         right.offset = new Vector2(viewSize.x,0);        
         left.offset = new Vector2(-viewSize.x,0);
 
+    }
+    
+    void Update(){
+        Vector2 newPos = transform.position;
+        if(transform.position.x < -viewSize.x/2)  
+            newPos.Set(
+                viewSize.x / 2 - Mathf.Abs(transform.position.x - viewSize.x / 2) % viewSize.x,
+                transform.position.y);        
+        else if(transform.position.x > viewSize.x/2)
+            newPos.Set(
+                -viewSize.x / 2 + (transform.position.x + viewSize.x / 2) % viewSize.x,
+                transform.position.y);      
+            
+        if(transform.position.y < -viewSize.y/2)
+            newPos.Set(
+                transform.position.x,
+                viewSize.y / 2 - Mathf.Abs(transform.position.y - viewSize.y / 2) % viewSize.y);         
+        else if(transform.position.y > viewSize.y/2)
+            newPos.Set(
+                transform.position.x,
+                -viewSize.y / 2 + (transform.position.y + viewSize.y / 2) % viewSize.y);
+            
+        
+        
+        transform.position = newPos;
     }
 }
