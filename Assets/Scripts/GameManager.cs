@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class GameManager : MonoBehaviour {
     
     private static GameManager instance;
@@ -30,6 +31,9 @@ public class GameManager : MonoBehaviour {
 			}
 			return instance;
 		}
+	}
+
+	void Start() {
 	}
 
 	// Use this for initialization
