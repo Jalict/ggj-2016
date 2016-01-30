@@ -6,8 +6,9 @@ using System.Collections;
 public class Player : MonoBehaviour {
 	
 	Vector3 velocity;
-	public float speed;
-	public float maxSpeed;
+	public float speed = 10;
+	public float jumpSpeed = 10;
+	public float maxSpeed = 10;
 	// Use this for initialization
 	void Start () {
 		velocity = new Vector3(0,0,0);
@@ -29,6 +30,10 @@ public class Player : MonoBehaviour {
 			if(transform.GetComponent<Rigidbody2D>().velocity.magnitude < maxSpeed){
 				Move();
 			}
+		}
+
+		if(Input.GetKey (KeyCode.UpArrow)){
+			velocity += Vector3.up * jumpSpeed;
 		}
 	}
 
