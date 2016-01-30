@@ -167,18 +167,7 @@ public class Player : MonoBehaviour {
                     maxHealth = 2;
                     regenHealth = .1f;
 
-                    FireAbility fireAbility = new FireAbility(this);
-                    fireAbility.cooldown = 1;
-                    fireAbility.damage = 1;
-                    fireAbility.projectileSpeed = 1;
-
-                    rightTriggerAbility = fireAbility;
-
-                    ShieldAbility shieldAbility = new ShieldAbility(this);
-                    shieldAbility.cooldown = 1;
-                    shieldAbility.activeTime = 1;
-
-                    leftTriggerAbility = shieldAbility;
+                 
                 }
                 break;
             case 1:
@@ -191,18 +180,6 @@ public class Player : MonoBehaviour {
                     maxHealth = 4;
                     regenHealth = 0f;
 
-                    FireAbility fireAbility = new FireAbility(this);
-                    fireAbility.cooldown = 1;
-                    fireAbility.damage = 2;
-                    fireAbility.projectileSpeed = .5f;
-
-                    rightTriggerAbility = fireAbility;
-
-                    ShieldAbility shieldAbility = new ShieldAbility(this);
-                    shieldAbility.cooldown = .5f;
-                    shieldAbility.activeTime = .5f;
-
-                    leftTriggerAbility = shieldAbility;
                 }
                 break;
             case 2:
