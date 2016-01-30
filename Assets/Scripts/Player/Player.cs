@@ -302,7 +302,9 @@ public class Player : MonoBehaviour {
             Die();
             return true;
         }
-        
+
+        animController.SetTrigger("IsHit");
+
         CameraShake.Instance.start(.2f, .5f);
 
         return false;
