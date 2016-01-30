@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
 
     public int level = 0;
 
-    private Vector3 velocity;
+	private Vector3 velocity;
 	public bool Controller;
 	public float speed = 10;
 	public float jumpSpeed = 300;
@@ -21,11 +21,17 @@ public class Player : MonoBehaviour {
     public float maxHealth = 2;
     public float regenHealth = .1f;
 
-    // Use this for initialization
-    void Start () {
+    bool doingRitual;
+    bool atAltar;
+    float altarTimeStamp;
+    float altarWaitTime;
+
+	// Use this for initialization
+	void Start () {
 		velocity = new Vector3(0,0,0);
         SetToLevel(level);
-    }
+        altarWaitTime = 2.0f;
+	}
 
 	// Update is called once per frame
 	void Update()
@@ -34,7 +40,7 @@ public class Player : MonoBehaviour {
         if(health > maxHealth) 
             health = maxHealth;
 
-        if (Controller == false)
+		if (!Controller && !doingRitual)
 		{
 			if (Input.GetKey(KeyCode.X))
 			{
@@ -47,7 +53,7 @@ public class Player : MonoBehaviour {
                     rightTriggerAbility.Cast();
 			}
             
-            if (Input.GetKey(KeyCode.LeftArrow) && OnGround())
+			if (Input.GetKey(KeyCode.LeftArrow) && OnGround())
 			{
 				velocity = Vector3.left * speed;
 
@@ -75,8 +81,16 @@ public class Player : MonoBehaviour {
 					Move();
 				}
 			}
+
+			if(atAltar){
+				if(altarTimeStamp < Time.time){
+					if(Input.GetKeyDown(KeyCode.A))
+						StartCoroutine(Ritual(4));
+				}
+			}
 		}
-		if (Controller)
+
+		if (Controller && !doingRitual)
 		{
 			if ((int)Input.GetAxis("Xbox_LeftTrigger") == 1)
 			{
@@ -107,6 +121,13 @@ public class Player : MonoBehaviour {
 				velocity = new Vector3(0,0,0);
 
 			}
+
+			if(atAltar){
+				if(altarTimeStamp < Time.time){
+					if(Input.GetButtonDown("Xbox_AButton"))
+						StartCoroutine(Ritual(4));
+				}
+			}
 		}
 	}
     
@@ -115,13 +136,94 @@ public class Player : MonoBehaviour {
     }
     
     public void KilledPlayer(Player player){
-        SetToLevel(++level);
     }
     
     public void Respawn(float time = 0){
         health = maxHealth;
         GameManager.Instance.RespawnPlayer(this,time);
-    }
+	}
+
+	public void RitualFail(){
+		Debug.Log("YOU FAILED THE RITUAL");
+		//TODO - Graphic feedback
+		//TODO - Some drawback?
+		doingRitual = false;
+	}
+
+	public void RitualSuccess(){
+		Debug.Log("YOU SUCCEEDED THE RITUAL");
+		//TODO - Graphic feedback
+		//TODO - Transform
+        SetToLevel(++level);
+		doingRitual = false;
+	}
+
+	IEnumerator Ritual(int seqLength){
+		doingRitual = true;
+		
+		string[] keys = new string[4] {"Xbox_AButton", "Xbox_BButton", "Xbox_XButton", "Xbox_YButton"};
+		int randNum = Random.Range(0, keys.Length);
+		
+		bool ritualFail = false;
+
+		for(int i = 0; i < seqLength; i++){
+			Debug.Log(keys[randNum]);
+			yield return new WaitForSeconds(0.001f);
+			//TODO - Graphic feedback for button press
+			while(true){
+				if(Input.GetButtonDown(keys[0])){
+					if(randNum == 0)
+						break;
+					else{
+						RitualFail();
+						ritualFail = true;
+						break;
+					}
+				}
+
+				if(Input.GetButtonDown(keys[1])){
+					if(randNum == 1)
+						break;
+					else{
+						RitualFail();
+						ritualFail = true;
+						break;
+					}
+				}
+			
+				if(Input.GetButtonDown(keys[2])){
+					if(randNum == 2)
+						break;
+					else{
+						RitualFail();
+						ritualFail = true;
+						break;
+					}
+				}
+
+				if(Input.GetButtonDown(keys[3])){
+					if(randNum == 3)
+						break;
+					else{
+						RitualFail();
+						ritualFail = true;
+						break;
+					}
+				}
+
+				yield return null;
+			}
+			if(ritualFail){
+				break;
+			}
+
+			randNum = Random.Range(0, keys.Length);
+		}
+
+		if(!ritualFail){
+			RitualSuccess();
+		}
+	}
 
 	public void Move(){
 		transform.GetComponent<Rigidbody2D>().AddForce(velocity, ForceMode2D.Force);
@@ -209,5 +311,18 @@ public class Player : MonoBehaviour {
                 break;
         }
         this.level = level;
+    }
+
+    void OnTriggerEnter2D(Collider2D col){
+		altarTimeStamp = altarWaitTime+Time.time;
+    	if(col.gameObject.CompareTag("Altar")){
+    		atAltar = true;
+    	}
+    }
+
+    void OnTriggerExit2D(Collider2D col){
+    	if(col.gameObject.CompareTag("Altar")){
+    		atAltar = false;
+    	}
     }
 }
