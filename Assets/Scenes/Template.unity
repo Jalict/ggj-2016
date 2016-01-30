@@ -308,6 +308,14 @@ Prefab:
       propertyPath: speed
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 11466286, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
+      propertyPath: playerNum
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11466286, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
+      propertyPath: Controller
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6154812, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
     - {fileID: 2347308, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
