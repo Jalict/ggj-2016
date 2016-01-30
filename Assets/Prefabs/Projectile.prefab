@@ -12,6 +12,7 @@ GameObject:
   - 114: {fileID: 11450160}
   - 58: {fileID: 5838602}
   - 50: {fileID: 5012982}
+  - 114: {fileID: 11476808}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -78,6 +79,23 @@ MonoBehaviour:
   maxSpeed: 10000
   damage: 1
   sender: {fileID: 0}
+--- !u!114 &11476808
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 122996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 383580b550b1347bf808c51e8a10d8ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderType: 0
+  main: {fileID: 0}
+  above: {fileID: 0}
+  below: {fileID: 0}
+  right: {fileID: 0}
+  left: {fileID: 0}
 --- !u!212 &21216860
 SpriteRenderer:
   m_ObjectHideFlags: 1

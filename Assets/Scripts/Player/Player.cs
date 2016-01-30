@@ -27,9 +27,12 @@ public class Player : MonoBehaviour {
 	public float speed = 10;
 	public float jumpSpeed = 300;
 	public float maxSpeed = 10;
-	
-	//Controller
-	public int playerNum;
+
+    public float lastJumpTime = 0;
+    public float jumpCooldown = 0.5f;
+
+    //Controller
+    public int playerNum;
 	private PlayerIndex playerIndex;
 	private GamePadState state;
 
@@ -62,6 +65,7 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
+        velocity = Vector3.zero;
         health += regenHealth * Time.deltaTime;
 
         onGround = OnGround();
@@ -83,31 +87,18 @@ public class Player : MonoBehaviour {
             
 			if (Input.GetKey(KeyCode.LeftArrow))
 			{
-				velocity = Vector3.left * speed ;
-
-				if (transform.GetComponent<Rigidbody2D>().velocity.magnitude < maxSpeed)
-				{
-					Move();
-				}
+				velocity += Vector3.left * speed ;
 			}
 
 			if (Input.GetKey(KeyCode.RightArrow))
 			{
-				velocity = Vector3.right * speed ;
-
-				if (transform.GetComponent<Rigidbody2D>().velocity.magnitude < maxSpeed)
-				{
-					Move();
-				}
+				velocity += Vector3.right * speed ;
 			}
 
-			if (Input.GetKeyDown(KeyCode.UpArrow))
+			if (Input.GetKey(KeyCode.UpArrow) && lastJumpTime + jumpCooldown < Time.time && OnGround())
 			{
-				if (OnGround())
-				{
-					velocity = Vector3.up * jumpSpeed ;
-					Move();
-				}
+                velocity += Vector3.up * jumpSpeed ;
+                lastJumpTime = Time.time;
 			}
 
 			if(atAltar){
@@ -120,7 +111,7 @@ public class Player : MonoBehaviour {
 
 		if (Controller && !doingRitual)
 		{
-			state = GamePad.GetState(playerIndex);
+			// state = GamePad.GetState(playerIndex);
 			if ((int)Input.GetAxis("Xbox"+playerIndex+"_LeftTrigger") == 1)
 			{
                 Debug.Log(playerIndex);
@@ -133,25 +124,14 @@ public class Player : MonoBehaviour {
                     rightTriggerAbility.Cast();
 			}
 				
-			velocity.x = speed * Input.GetAxis("Xbox"+playerIndex+"_X_Axis_Left");
-			if (transform.GetComponent<Rigidbody2D>().velocity.magnitude < maxSpeed)
-			{
-				Move();
-			}
-		
+			velocity.x += speed * Input.GetAxis("Xbox"+playerIndex+"_X_Axis_Left");
 
-			if (Input.GetButtonDown("Xbox"+playerIndex+"_AButton") && OnGround())
+			if (Input.GetButton("Xbox"+playerIndex+"_AButton") && lastJumpTime + jumpCooldown < Time.time && OnGround())
 			{
-				if(atAltar && altarTimeStamp > Time.time){
-					velocity.y = jumpSpeed;
-					Move();
-					velocity = new Vector3(0,0,0);
-				}
-				if(!atAltar){
-					velocity.y = jumpSpeed;
-					Move();
-					velocity = new Vector3(0,0,0);
-				}
+				if((atAltar && altarTimeStamp > Time.time) || !atAltar){
+					velocity.y += jumpSpeed;
+                    lastJumpTime = Time.time;
+                }
 			}
 
 			if(atAltar){
@@ -163,12 +143,19 @@ public class Player : MonoBehaviour {
 		}
 		Debug.DrawLine(transform.position, new Vector3(transform.position.x+(float)Input.GetAxis("Xbox" + playerIndex + "_Look_X"),transform.position.y-
                                                                (float)Input.GetAxis("Xbox" + playerIndex + "_Look_Y"), 0), Color.red);
-            Debug.Log((float)Input.GetAxis("Xbox" + playerIndex + "_Look_Y") + " , " +
-                                                               (float)Input.GetAxis("Xbox" + playerIndex + "_Look_X") + "," + 0);
+        //Debug.Log((float)Input.GetAxis("Xbox" + playerIndex + "_Look_Y") + " , " + (float)Input.GetAxis("Xbox" + playerIndex + "_Look_X") + "," + 0);
         
 
 		animController.SetFloat ("velocity_x", GetComponent<Rigidbody2D>().velocity.x);
-	}
+
+            
+        Move();
+
+        Vector3 v = transform.GetComponent<Rigidbody2D>().velocity;
+        
+        if (v.magnitude > maxSpeed)
+            transform.GetComponent<Rigidbody2D>().velocity = v.normalized * maxSpeed;
+    }
     
     public void Die(){
         CameraShake.Instance.start(.5f, 1f);
@@ -339,7 +326,7 @@ public class Player : MonoBehaviour {
                 break;
             case 1:
                 {
-                     speed = 1000;
+                    speed = 1000;
                     jumpSpeed = 23000;
                     maxSpeed = 8;
 
