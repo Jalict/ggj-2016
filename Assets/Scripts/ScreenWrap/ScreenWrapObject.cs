@@ -11,15 +11,23 @@ public class ScreenWrapObject : MonoBehaviour {
 
     public ColliderType colliderType = ColliderType.Circle;
 
+    [HideInInspector]
+    public Collider2D main;
+    [HideInInspector]
     public Collider2D above;
+    [HideInInspector]
     public Collider2D below;
+    [HideInInspector]
     public Collider2D right;
+    [HideInInspector]
     public Collider2D left;
 
     private Vector2 viewSize;
 
     // Use this for initialization
     void Start () {
+        main = GetComponent<Collider2D>();
+        
         if (colliderType == ColliderType.Circle)
         {
             above = gameObject.AddComponent<CircleCollider2D>();
@@ -64,4 +72,7 @@ public class ScreenWrapObject : MonoBehaviour {
             
         transform.position = newPos;
     }
+    
+    
+    
 }

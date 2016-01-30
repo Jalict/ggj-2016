@@ -29,5 +29,17 @@ public class ScreenWrap : MonoBehaviour {
     public static Vector2 GetSize(){
         return new Vector2((Camera.main.orthographicSize * 2 * (Camera.main.aspect)), Camera.main.orthographicSize * 2);
     }
-
+    
+    public static void IgnoreCollisions(GameObject g1, GameObject g2){
+        Collider2D[] c1 = g1.GetComponents<Collider2D>();
+        Collider2D[] c2 = g2.GetComponents<Collider2D>();
+        
+        for (int i = 0; i < c1.Length; i++)
+        {
+            for (int j = 0; j < c2.Length; j++)
+            {
+                Physics2D.IgnoreCollision(c1[i], c2[j]);
+            }
+        }
+    }
 }

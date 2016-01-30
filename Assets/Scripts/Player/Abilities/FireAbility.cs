@@ -25,6 +25,7 @@ public class FireAbility : IAbility {
             projectile.damage = damage;
             CameraShake.Instance.start(.1f, .2f);
 
+            ScreenWrap.IgnoreCollisions(gameObject, obj);
 
             return true;
        }    
