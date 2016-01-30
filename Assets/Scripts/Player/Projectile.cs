@@ -33,10 +33,14 @@ public class Projectile : MonoBehaviour {
                 if(shield.isActivated){ //TODO: make shield only work in the "shielded" direction
                     body.velocity = new Vector2(-body.velocity.x,body.velocity.y);
                     direction = new Vector2(-direction.x,direction.y);
+
+                    return;
                 }
             }
-        }else
-            Destroy(this.gameObject);
+            
+        }
+            
+        Destroy(this.gameObject);
     }
     void OnCollisionStawy2D(Collision2D collision){
         
