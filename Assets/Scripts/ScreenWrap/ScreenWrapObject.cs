@@ -62,8 +62,6 @@ public class ScreenWrapObject : MonoBehaviour {
                 transform.position.x,
                 -viewSize.y / 2 + (transform.position.y + viewSize.y / 2) % viewSize.y);
             
-        
-        
         transform.position = newPos;
     }
 }

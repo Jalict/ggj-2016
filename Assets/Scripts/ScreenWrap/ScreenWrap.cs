@@ -9,7 +9,7 @@ public class ScreenWrap : MonoBehaviour {
     public Camera left;
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         Vector2 viewSize = GetSize();
 
         Camera main = Camera.main;

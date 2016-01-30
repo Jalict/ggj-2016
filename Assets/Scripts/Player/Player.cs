@@ -247,7 +247,7 @@ private GamePadState state;
 					}
 				}
                 if(!ritualFail)
-                    CameraShake.Instance.start(.1f, .1f * seqLength);
+                    CameraShake.Instance.start(.05f, .05f * seqLength);
                     
 				yield return null;
 			}
