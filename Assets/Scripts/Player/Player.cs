@@ -5,7 +5,10 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-	private Vector3 velocity;
+    public IAbility leftTriggerAbility;
+    public IAbility rightTriggerAbility;
+
+    private Vector3 velocity;
 	public bool Controller;
 	public float speed = 10;
 	public float jumpSpeed = 300;
@@ -20,7 +23,18 @@ public class Player : MonoBehaviour {
 	{
 		if (Controller == false)
 		{
-			if (Input.GetKey(KeyCode.LeftArrow) && OnGround())
+			if (Input.GetKeyDown(KeyCode.X))
+			{
+				if(leftTriggerAbility != null)
+                    leftTriggerAbility.Cast();
+            }
+            if (Input.GetKeyDown(KeyCode.C))
+			{
+                if(rightTriggerAbility != null)
+                    rightTriggerAbility.Cast();
+			}
+            
+            if (Input.GetKey(KeyCode.LeftArrow) && OnGround())
 			{
 				velocity = Vector3.left * speed;
 
@@ -53,10 +67,15 @@ public class Player : MonoBehaviour {
 		{
 			if ((int)Input.GetAxis("Xbox_LeftTrigger") == 1)
 			{
-				speed = 20;
+				if(leftTriggerAbility != null)
+                    leftTriggerAbility.Cast();
+            }
+            if ((int)Input.GetAxis("Xbox_RightTrigger") == 1)
+			{
+                if(rightTriggerAbility != null)
+                    rightTriggerAbility.Cast();
 			}
-			else
-			speed = 10;
+			
 
 
 			if (OnGround())

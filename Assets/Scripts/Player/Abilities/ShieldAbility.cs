@@ -9,14 +9,6 @@ public class ShieldAbility : IAbility {
 
     public bool isActivated = false;
     
-
-    public void Update(){
-        //test
-        if(Input.GetKey("s")){
-            this.Cast();
-        }
-    }
-    
     public override bool Cast(){
        if (!isActivated && lastCast + cooldown <= Time.time)
        {
