@@ -42,9 +42,8 @@ public class Player : MonoBehaviour {
 		velocity = new Vector3(0,0,0);
         SetToLevel(level);
         altarWaitTime = 2.0f;
-	}
 
-	void Start() {
+
 		animController = GetComponent<Animator> ();
 	}
 
