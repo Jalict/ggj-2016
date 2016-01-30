@@ -77,7 +77,10 @@ public class Player : MonoBehaviour {
 			}
 		}
 	}
-
+    
+    public void Respawn(float time = 0){
+        GameManager.Instance.RespawnPlayer(this,time);
+    }
 
 	public void Move(){
 		transform.GetComponent<Rigidbody2D>().AddForce(velocity, ForceMode2D.Force);
