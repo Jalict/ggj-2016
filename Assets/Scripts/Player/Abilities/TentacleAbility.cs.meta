@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: 6852c83ab7c58d448a832bd305844b78
-timeCreated: 1454223414
+timeCreated: 1454240578
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - owner: {instanceID: 0}
+  - tentaclePrefab: {fileID: 175228, guid: 1861fe417f03bee4ab3377ec2db8e0a3, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

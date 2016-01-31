@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
     public GameObject groundCrumblePrefab;
 
     public bool onGround;
+    private bool isShooting = false;
 
 
     public GameObject bloodSpatterPrefab;
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour {
     //references to player abilities
     private FireAbility fireAbility;
     private ShieldAbility shieldAbility;
+    private TentacleAbility tentacleAbility;
 
     public int level = 0;
 
@@ -63,6 +65,7 @@ public class Player : MonoBehaviour {
 
     //Blood For Ritual
     public int Blood = 0;
+    public int BloodGoal = 100;
     bool doingRitual;
     bool atAltar;
     AltarSprite Altar;
@@ -74,7 +77,8 @@ public class Player : MonoBehaviour {
     public Material[] playerMaterials;
 
     void Awake(){
-        
+        gameObject.GetComponent<SpriteRenderer>().material = playerMaterials[playerNum % 4];
+		footSteps.startColor = playerMaterials [playerNum].color * 0.75f;
         
     }
 
@@ -82,6 +86,7 @@ public class Player : MonoBehaviour {
 		playerIndex = (PlayerIndex)playerNum;
         fireAbility = GetComponent<FireAbility>();
         shieldAbility = GetComponent<ShieldAbility>();
+        tentacleAbility = GetComponent<TentacleAbility>();
 		animController = GetComponent<Animator> ();
 
         body = GetComponent<Rigidbody2D>();
@@ -91,8 +96,6 @@ public class Player : MonoBehaviour {
         altarWaitTime = 2.0f;
 
         fireAbility.spellAnimationControllers = spellAnimationControllers[playerNum % 4];
-
-        gameObject.GetComponent<SpriteRenderer>().material = playerMaterials[playerNum % 4];
     }
 
 	// Update is called once per frame
@@ -118,12 +121,12 @@ public class Player : MonoBehaviour {
                     rightTriggerAbility.Cast();
 			}
             
-			if (Input.GetKey(KeyCode.LeftArrow))
+			if (Input.GetKey(KeyCode.LeftArrow) && !MidAirCollideCheck())
 			{
 				velocity += Vector3.left * speed ;
 			}
 
-			if (Input.GetKey(KeyCode.RightArrow))
+			if (Input.GetKey(KeyCode.RightArrow) && !MidAirCollideCheck())
 			{
 				velocity += Vector3.right * speed ;
 			}
@@ -153,25 +156,27 @@ public class Player : MonoBehaviour {
             }
             if ((int)Input.GetAxis("Xbox"+playerIndex+"_RightTrigger") == 1)
 			{
-                if(rightTriggerAbility != null)
-                    rightTriggerAbility.Cast();
+				isShooting = true;
+                
 			}
+	if(isShooting && (int)Input.GetAxis("Xbox"+playerIndex + "_RightTrigger") ==0){
+		if(rightTriggerAbility != null)
+                    rightTriggerAbility.Cast();
+                isShooting = false;
+	}
 
-			if(Mathf.Abs(Input.GetAxis("Xbox"+playerIndex+"_X_Axis_Left")) > 0.25f && !MidAirCollideCheck())				
+			if(Mathf.Abs(Input.GetAxis("Xbox"+playerIndex+"_X_Axis_Left")) > 0.25f && !MidAirCollideCheck() && !isShooting)				
 				velocity.x = speed * Input.GetAxis("Xbox"+playerIndex+"_X_Axis_Left");
 
 			if (Input.GetButton("Xbox"+playerIndex+"_AButton") && lastJumpTime + jumpCooldown < Time.time && OnGround())
 			{
-				if((atAltar && altarTimeStamp > Time.time) || !atAltar){
 					velocity = Vector2.up * jumpSpeed;
-
-                    lastJumpTime = Time.time;
-                }
+					lastJumpTime = Time.time;
 			}
 
-			if(atAltar){
+			if(atAltar && this.Blood >= BloodGoal && this.level ==0){
 				if(altarTimeStamp < Time.time){
-					if(Input.GetButtonDown("Xbox"+playerIndex+"_AButton"))
+					if(Input.GetButtonDown("Xbox"+playerIndex+"_YButton"))
 						StartCoroutine(Ritual(4));
 				}
 			}
@@ -188,22 +193,6 @@ public class Player : MonoBehaviour {
 		animController.SetBool ("IsSummoning", doingRitual);
         
         Vector3 v = body.velocity;
-  
-        RaycastHit2D[] hits = Physics2D.RaycastAll(overheadPoint.transform.position, Vector3.left, 2f);
-        if (!onGround && v.y > .2f && level == 1 && hits.Length != 0)
-        {
-            for (int i = 0; i < hits.Length; i++)
-            {
-                RaycastHit2D hit = hits[i];
-                if (hit.collider.gameObject.CompareTag("Ground"))
-                {
-                    body.velocity = new Vector2(body.velocity.x, 0);
-                    Instantiate(groundCrumblePrefab, hit.collider.transform.position, groundCrumblePrefab.transform.rotation);
-                    Destroy(hit.collider.gameObject);
-                }
-
-            }
-        }
         
 
         if(body.velocity.x < -0.01){
@@ -248,11 +237,19 @@ public class Player : MonoBehaviour {
     
     public void KilledPlayer(Player player){
     	this.Blood +=10;
-    	if(this.Blood > 100)
+    	if(this.Blood > 100){
     	this.Blood = 100;
+    	if(this.level == 0)
+    		GamePad.SetVibration(playerIndex,0.2f,0);
+    	}
     }  
     public void KilledPrisoner(Prisoner prisoner){
-        SetToLevel(1);
+        this.Blood += 100;
+        	if(this.Blood > 100){
+    	this.Blood = 100;
+    	if(this.level == 0)
+    		GamePad.SetVibration(playerIndex,0.2f,0);
+    	}
     }
     
     public void Respawn(float time = 0){
@@ -268,19 +265,21 @@ public class Player : MonoBehaviour {
 		GamePad.SetVibration(playerIndex, vibration, vibration);
         
         CameraShake.Instance.start(.2f, .2f);
-		doingRitual = false;
+        Altar.ChangeSprite(2);
+        doingRitual = false;
 	}
 
 	public void RitualSuccess(){
 		Debug.Log("YOU SUCCEEDED THE RITUAL");
 		//TODO - Graphic feedback
 		//TODO - Transform
+        
         SetToLevel(++level);
         vibration = 0;
 		GamePad.SetVibration(playerIndex, vibration, vibration);
         
         this.Blood = 0;
-        
+        Altar.ChangeSprite(2);
         CameraShake.Instance.start(.5f, .5f);
 		doingRitual = false;
 	}
@@ -375,19 +374,19 @@ public class Player : MonoBehaviour {
 	public bool MidAirCollideCheck(){
 		if(!OnGround()){
             
-			RaycastHit2D hit = Physics2D.Raycast(sideRayPoint1.transform.position, Vector3.left, 1.5f);
+			RaycastHit2D hit = Physics2D.Raycast(sideRayPoint1.transform.position, Vector3.left, 2f);
 			if (hit.collider != null && hit.collider.gameObject.CompareTag("Ground"))
 			{
 				return true;
 			}
 
-			RaycastHit2D hit2 = Physics2D.Raycast(sideRayPoint2.transform.position, Vector3.left, 1.5f);
+			RaycastHit2D hit2 = Physics2D.Raycast(sideRayPoint2.transform.position, Vector3.left, 2f);
 			if (hit2.collider != null && hit2.collider.gameObject.CompareTag("Ground"))
 			{
 				return true;
 			}
 
-			RaycastHit2D hit3 = Physics2D.Raycast(sideRayPoint3.transform.position, Vector3.left, 1.5f);
+			RaycastHit2D hit3 = Physics2D.Raycast(sideRayPoint3.transform.position, Vector3.left, 2f);
 			if (hit3.collider != null && hit3.collider.gameObject.CompareTag("Ground"))
 			{
 				return true;
@@ -459,6 +458,13 @@ public class Player : MonoBehaviour {
                     leftTriggerAbility = shieldAbility;
 
                     animController.runtimeAnimatorController = animationControllers[0];
+                    
+                    rayPoint1.transform.position = new Vector2(transform.position.x + 0.34f, transform.position.y + -0.938f);
+					rayPoint2.transform.position = new Vector2(transform.position.x + -0.365f, transform.position.y + -0.938f);
+
+					sideRayPoint1.transform.position = new Vector2(transform.position.x + .65f, transform.position.y + -0.84f);
+					sideRayPoint2.transform.position = new Vector2(transform.position.x + .65f, transform.position.y + 0);
+					sideRayPoint3.transform.position = new Vector2(transform.position.x + .65f, transform.position.y + 0.68f);
 
                     ScreenWrapObject wrapObj = GetComponent<ScreenWrapObject>();
                     wrapObj.SetColliderSize(new Vector2(1.00962f, 1.58734f));
@@ -478,11 +484,13 @@ public class Player : MonoBehaviour {
                     maxHealth = 4;
                     regenHealth = 0f;
 
-                    fireAbility.cooldown = 1;
-                    fireAbility.damage = 2;
-                    fireAbility.projectileSpeed = 2000;
+                    tentacleAbility.cooldown = 1;
+                    tentacleAbility.damage = 2;
+                    tentacleAbility.width = 1;
+                    tentacleAbility.height = 1;
+                    tentacleAbility.attackSpeed = 1.5f;
 
-                    rightTriggerAbility = fireAbility;
+//                    rightTriggerAbility = tentacleAbility;
 
                     shieldAbility.cooldown = .5f;
                     shieldAbility.activeTime = .5f;
@@ -491,16 +499,16 @@ public class Player : MonoBehaviour {
                     animController.runtimeAnimatorController = animationControllers[1];
 
                     //resetting raypoint positions
-                    rayPoint1.transform.position = new Vector2(transform.position.x + 0.82f, transform.position.y + -1.75f);
-					rayPoint2.transform.position = new Vector2(transform.position.x + -0.56f, transform.position.y + -1.75f);
+                    rayPoint1.transform.position = new Vector2(transform.position.x -0.223f, transform.position.y + -1.162f);
+					rayPoint2.transform.position = new Vector2(transform.position.x + 0.477f, transform.position.y + -1.126f);
 
-					sideRayPoint1.transform.position = new Vector2(transform.position.x + -1.83f, transform.position.y + -1.4f);
-					sideRayPoint2.transform.position = new Vector2(transform.position.x + -1.83f, transform.position.y + 0);
-					sideRayPoint3.transform.position = new Vector2(transform.position.x + -1.83f, transform.position.y + 1.56f);
+					sideRayPoint2.transform.position = new Vector2(transform.position.x + 0.993f, transform.position.y + 0);
+					sideRayPoint3.transform.position = new Vector2(transform.position.x + 0.993f, transform.position.y + 0.741f);
+					sideRayPoint1.transform.position = new Vector2(transform.position.x + 0.993f, transform.position.y -0.741f);
 
                     ScreenWrapObject wrapObj = GetComponent<ScreenWrapObject>();
                     wrapObj.SetColliderOffset(new Vector2(0f,0f));
-                    wrapObj.SetColliderSize(new Vector2(2.8f, 3f));
+                    wrapObj.SetColliderSize(new Vector2(1.5f, 2f));
                     wrapObj.InitializeCollliders();
 
                 }
@@ -546,6 +554,7 @@ public class Player : MonoBehaviour {
     		if(Altar == null){
     			Altar = col.gameObject.GetComponent<Altar>().altarSprite;
     			Altar.spriteRend.enabled = true;
+                Altar.ChangeSprite(2);
     		}
     	}
     }

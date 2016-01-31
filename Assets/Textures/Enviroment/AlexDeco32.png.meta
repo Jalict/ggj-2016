@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a9847d7b1f3d44bb897b06954e4226fa
-timeCreated: 1454233589
+timeCreated: 1454244052
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -81,15 +81,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 2, y: 6}
-        - {x: -4, y: 6}
-        - {x: -16, y: 0}
-        - {x: -16, y: -8}
+      - - {x: -1, y: 4}
+        - {x: -4, y: 3}
+        - {x: -16, y: -3}
+        - {x: -16, y: -9}
         - {x: -13, y: -16}
-        - {x: 10, y: -16}
-        - {x: 14, y: -15}
-        - {x: 16, y: -5}
-        - {x: 16, y: -2}
+        - {x: 15, y: -16}
+        - {x: 16, y: -11}
+        - {x: 16, y: -4}
     - name: AlexDeco32_2
       rect:
         serializedVersion: 2
