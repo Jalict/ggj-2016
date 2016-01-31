@@ -23,6 +23,8 @@ public class Player : MonoBehaviour {
 
 
     public GameObject bloodSpatterPrefab;
+    public GameObject altarParticlePrefab;
+    public GameObject altarParticleSuccessPrefab;
     //active abilities
     private IAbility leftTriggerAbility;
     private IAbility rightTriggerAbility;
@@ -261,11 +263,10 @@ public class Player : MonoBehaviour {
 
 	public void RitualFail(){
 		Debug.Log("YOU FAILED THE RITUAL");
-		//TODO - Graphic feedback
-		//TODO - Some drawback?
-		vibration = 0;
-		GamePad.SetVibration(playerIndex, vibration, vibration);
-        
+        Instantiate(altarParticlePrefab, transform.position, altarParticlePrefab.transform.rotation);
+        int rng = Random.Range(-3000, 3000);
+		GamePad.SetVibration(playerIndex, 0.2f, 0);
+        body.AddForce(new Vector2(rng, 500));
         CameraShake.Instance.start(.2f, .2f);
         Altar.ChangeSprite(2);
         doingRitual = false;
@@ -273,22 +274,21 @@ public class Player : MonoBehaviour {
 
 	public void RitualSuccess(){
 		Debug.Log("YOU SUCCEEDED THE RITUAL");
-		//TODO - Graphic feedback
-		//TODO - Transform
         
         SetToLevel(++level);
-        vibration = 0;
-		GamePad.SetVibration(playerIndex, vibration, vibration);
+		GamePad.SetVibration(playerIndex, 0, 0);
         
         this.Blood = 0;
         Altar.ChangeSprite(2);
         CameraShake.Instance.start(.5f, .5f);
-		doingRitual = false;
+        Instantiate(altarParticleSuccessPrefab, transform.position, altarParticlePrefab.transform.rotation);
+        doingRitual = false;
 	}
 
 	IEnumerator Ritual(int seqLength){
 		doingRitual = true;
-		GamePad.SetVibration(playerIndex,0.2f,0.2f);
+        vibration = 0.2f;
+		GamePad.SetVibration(playerIndex,vibration,vibration);
 		string[] keys = new string[4] {"Xbox"+playerIndex+"_AButton", "Xbox"+playerIndex+"_XButton", "Xbox"+playerIndex+"_YButton", "Xbox"+playerIndex+"_BButton"};
 		int randNum = Random.Range(0, keys.Length);
 
@@ -358,6 +358,7 @@ public class Player : MonoBehaviour {
 				yield return null;
 			}
 			if(ritualFail){
+                vibration = 0;
 				break;
 			}
 
