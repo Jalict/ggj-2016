@@ -8,7 +8,6 @@ public class Projectile : MonoBehaviour {
 
     public Vector2 direction;
     public float speed;
-    public float maxSpeed = 10000;
 
     public float damage = 1;
     public Player sender;
@@ -29,10 +28,6 @@ public class Projectile : MonoBehaviour {
     }
     
     void Update(){
-        /*if(body.velocity.magnitude > maxSpeed)
-            body.velocity = body.velocity.normalized * maxSpeed;
-*/
-        //TODO: remove projectile when out of bounds
     }
 
     public void Shoot(){
