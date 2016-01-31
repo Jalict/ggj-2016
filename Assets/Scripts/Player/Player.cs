@@ -27,6 +27,7 @@ public class Player : MonoBehaviour {
     //references to player abilities
     private FireAbility fireAbility;
     private ShieldAbility shieldAbility;
+    private TentacleAbility tentacleAbility;
 
     public int level = 0;
 
@@ -82,6 +83,7 @@ public class Player : MonoBehaviour {
 		playerIndex = (PlayerIndex)playerNum;
         fireAbility = GetComponent<FireAbility>();
         shieldAbility = GetComponent<ShieldAbility>();
+        tentacleAbility = GetComponent<TentacleAbility>();
 		animController = GetComponent<Animator> ();
 
         body = GetComponent<Rigidbody2D>();
@@ -476,11 +478,13 @@ public class Player : MonoBehaviour {
                     maxHealth = 4;
                     regenHealth = 0f;
 
-                    fireAbility.cooldown = 1;
-                    fireAbility.damage = 2;
-                    fireAbility.projectileSpeed = 2000;
+                    tentacleAbility.cooldown = 1;
+                    tentacleAbility.damage = 2;
+                    tentacleAbility.width = 1;
+                    tentacleAbility.height = 1;
+                    tentacleAbility.attackSpeed = 1.5f;
 
-                    rightTriggerAbility = fireAbility;
+                    rightTriggerAbility = tentacleAbility;
 
                     shieldAbility.cooldown = .5f;
                     shieldAbility.activeTime = .5f;
@@ -489,8 +493,8 @@ public class Player : MonoBehaviour {
                     animController.runtimeAnimatorController = animationControllers[1];
 
                     //resetting raypoint positions
-                    rayPoint1.transform.position = new Vector2(transform.position.x + 0.82f, transform.position.y + -1.75f);
-					rayPoint2.transform.position = new Vector2(transform.position.x + -0.56f, transform.position.y + -1.75f);
+                    rayPoint1.transform.position = new Vector2(transform.position.x + 1.22f, transform.position.y + -1.75f);
+					rayPoint2.transform.position = new Vector2(transform.position.x + -1.26f, transform.position.y + -1.75f);
 
 					sideRayPoint1.transform.position = new Vector2(transform.position.x + -1.83f, transform.position.y + -1.4f);
 					sideRayPoint2.transform.position = new Vector2(transform.position.x + -1.83f, transform.position.y + 0);
