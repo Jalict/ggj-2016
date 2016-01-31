@@ -5,8 +5,6 @@ using XInputDotNetPure;
 [RequireComponent(typeof (Rigidbody2D))]
 
 public class Player : MonoBehaviour {
-	public AudioClip[] monsterSound;
-
 	//raypoint positions
 	public GameObject rayPoint1;
 	public GameObject rayPoint2;
@@ -23,8 +21,6 @@ public class Player : MonoBehaviour {
 
 
     public GameObject bloodSpatterPrefab;
-    public GameObject altarParticlePrefab;
-    public GameObject altarParticleSuccessPrefab;
     //active abilities
     private IAbility leftTriggerAbility;
     private IAbility rightTriggerAbility;
@@ -80,6 +76,12 @@ public class Player : MonoBehaviour {
 
     public Material[] playerMaterials;
 
+    void Awake(){
+        gameObject.GetComponent<SpriteRenderer>().material = playerMaterials[playerNum % 4];
+		footSteps.startColor = playerMaterials [playerNum].color * 0.75f;
+        
+    }
+
     void Start () {
 		playerIndex = (PlayerIndex)playerNum;
         fireAbility = GetComponent<FireAbility>();
@@ -94,8 +96,6 @@ public class Player : MonoBehaviour {
         altarWaitTime = 2.0f;
 
         fireAbility.spellAnimationControllers = spellAnimationControllers[playerNum % 4];
-        gameObject.GetComponent<SpriteRenderer>().material = playerMaterials[playerNum % 4];
-		footSteps.startColor = playerMaterials [playerNum].color * 0.75f;
     }
 
 	// Update is called once per frame
@@ -138,12 +138,10 @@ public class Player : MonoBehaviour {
                 lastJumpTime = Time.time;
 			}
 
-			if(atAltar){
-				if(altarTimeStamp < Time.time){
-					if(Input.GetKeyDown(KeyCode.A))
-						StartCoroutine(Ritual(4));
-				}
-			}
+			if(!doingRitual && atAltar){
+                if(Input.GetKeyDown(KeyCode.A))
+                    StartCoroutine(Ritual(4));
+            }
 		}
 
 		if (Controller && !doingRitual)
@@ -159,7 +157,7 @@ public class Player : MonoBehaviour {
 				isShooting = true;
                 
 			}
-	if(isShooting && (int)Input.GetAxis("Xbox"+playerIndex + "_RightTrigger") == 0 && rightTriggerAbility.CanCast()){
+	if(isShooting && (int)Input.GetAxis("Xbox"+playerIndex + "_RightTrigger") ==0){
 		if(rightTriggerAbility != null)
                     rightTriggerAbility.Cast();
                 isShooting = false;
@@ -174,11 +172,10 @@ public class Player : MonoBehaviour {
 					lastJumpTime = Time.time;
 			}
 
-			if(atAltar && this.Blood >= BloodGoal && this.level ==0){
-				if(altarTimeStamp < Time.time){
-					if(Input.GetButtonDown("Xbox"+playerIndex+"_YButton"))
-						StartCoroutine(Ritual(4));
-				}
+			if(!doingRitual && atAltar && this.Blood >= BloodGoal && this.level ==0){
+                if(Input.GetButtonDown("Xbox"+playerIndex+"_YButton"))
+                    StartCoroutine(Ritual(4));
+				
 			}
 		}
 		Debug.DrawLine(transform.position, new Vector3(transform.position.x+(float)Input.GetAxis("Xbox" + playerIndex + "_Look_X"),transform.position.y-
@@ -259,34 +256,49 @@ public class Player : MonoBehaviour {
 
 	public void RitualFail(){
 		Debug.Log("YOU FAILED THE RITUAL");
-        Instantiate(altarParticlePrefab, transform.position, altarParticlePrefab.transform.rotation);
-        int rng = Random.Range(-3000, 3000);
-		GamePad.SetVibration(playerIndex, 0.2f, 0);
-        body.AddForce(new Vector2(rng, 500));
+		//TODO - Graphic feedback
+		//TODO - Some drawback?
+		vibration = 0;
+        
+        if(Controller)
+		  GamePad.SetVibration(playerIndex, vibration, vibration);
+        
         CameraShake.Instance.start(.2f, .2f);
         Altar.ChangeSprite(2);
         doingRitual = false;
+		animController.SetBool ("IsSummoning", doingRitual);
+        
 	}
 
 	public void RitualSuccess(){
 		Debug.Log("YOU SUCCEEDED THE RITUAL");
+		//TODO - Graphic feedback
+		//TODO - Transform
         
         SetToLevel(++level);
-		GamePad.SetVibration(playerIndex, 0, 0);
+        vibration = 0;
+        
+        if(Controller)
+		  GamePad.SetVibration(playerIndex, vibration, vibration);
         
         this.Blood = 0;
         Altar.ChangeSprite(2);
         CameraShake.Instance.start(.5f, .5f);
-        Instantiate(altarParticleSuccessPrefab, transform.position, altarParticlePrefab.transform.rotation);
-        doingRitual = false;
+		doingRitual = false;
+		animController.SetBool ("IsSummoning", doingRitual);
+        
 	}
 
 	IEnumerator Ritual(int seqLength){
 		doingRitual = true;
-        vibration = 0.2f;
-		GamePad.SetVibration(playerIndex,vibration,vibration);
-		string[] keys = new string[4] {"Xbox"+playerIndex+"_AButton", "Xbox"+playerIndex+"_XButton", "Xbox"+playerIndex+"_YButton", "Xbox"+playerIndex+"_BButton"};
-		int randNum = Random.Range(0, keys.Length);
+        string[] keys;
+        if(Controller){
+		GamePad.SetVibration(playerIndex,0.2f,0.2f);
+            keys = new string[4] {"Xbox"+playerIndex+"_AButton", "Xbox"+playerIndex+"_XButton", "Xbox"+playerIndex+"_YButton", "Xbox"+playerIndex+"_BButton"};
+        }else
+            keys = new string[4] {"k", "j", "i", "l"};
+		
+        int randNum = Random.Range(0, keys.Length);
 
 		bool ritualFail = false;
 
@@ -300,7 +312,8 @@ public class Player : MonoBehaviour {
 				if(Input.GetButtonDown(keys[0])){
 					if(randNum == 0){
 						vibration += 0.2f;
-						GamePad.SetVibration(playerIndex, vibration, vibration);
+						if(Controller)
+                            GamePad.SetVibration(playerIndex, vibration, vibration);
 						break;
 					}
 					else{
@@ -313,7 +326,8 @@ public class Player : MonoBehaviour {
 				if(Input.GetButtonDown(keys[1])){
 					if(randNum == 1){
 						vibration += 0.2f;
-						GamePad.SetVibration(playerIndex, vibration, vibration);
+						if(Controller)
+                            GamePad.SetVibration(playerIndex, vibration, vibration);
 						break;
 					}
 					else{
@@ -326,7 +340,8 @@ public class Player : MonoBehaviour {
 				if(Input.GetButtonDown(keys[2])){
 					if(randNum == 2){
 						vibration += 0.2f;
-						GamePad.SetVibration(playerIndex, vibration, vibration);
+						if(Controller)
+                            GamePad.SetVibration(playerIndex, vibration, vibration);
 						break;
 					}
 					else{
@@ -339,7 +354,8 @@ public class Player : MonoBehaviour {
 				if(Input.GetButtonDown(keys[3])){
 					if(randNum == 3){
 						vibration += 0.2f;
-						GamePad.SetVibration(playerIndex, vibration, vibration);
+						if(Controller)
+                            GamePad.SetVibration(playerIndex, vibration, vibration);
 						break;
 					}
 					else{
@@ -354,7 +370,6 @@ public class Player : MonoBehaviour {
 				yield return null;
 			}
 			if(ritualFail){
-                vibration = 0;
 				break;
 			}
 
@@ -510,8 +525,6 @@ public class Player : MonoBehaviour {
                     wrapObj.SetColliderSize(new Vector2(1.5f, 2f));
                     wrapObj.InitializeCollliders();
 
-				GetComponent<AudioSource>().clip = monsterSound[Random.Range(0, monsterSound.Length)];
-				GetComponent<AudioSource> ().Play ();
                 }
                 break;
             case 2:
