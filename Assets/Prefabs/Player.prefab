@@ -203,7 +203,7 @@ MonoBehaviour:
   rayPoint2: {fileID: 165516}
   onGround: 0
   bloodSpatterPrefab: {fileID: 185500, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
-  level: 0
+  level: 1
   Controller: 0
   speed: 10
   jumpSpeed: 300
@@ -217,6 +217,9 @@ MonoBehaviour:
   health: 10
   maxHealth: 10
   regenHealth: 0
+  animationControllers:
+  - {fileID: 9100000, guid: ec29fb525ef0c4abdb65740549bf6d96, type: 2}
+  - {fileID: 9100000, guid: f2f91e9b904ec41509ff1743065b09f7, type: 2}
   spellAnimationControllers:
   - {fileID: 9100000, guid: 55eacd19d55b14ecf9a728bc481bde77, type: 2}
   - {fileID: 9100000, guid: ad11ec21a50a246fa83d69a3f7a737a7, type: 2}
@@ -271,6 +274,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: playerMaterials.Array.size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: animationControllers.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: spellAnimationControllers.Array.size
@@ -388,6 +395,14 @@ Prefab:
       propertyPath: playerMaterials.Array.data[3]
       value: 
       objectReference: {fileID: 2100000, guid: 4cd284ed7a22946b48cd0fcb44840b94, type: 2}
+    - target: {fileID: 0}
+      propertyPath: animationControllers.Array.data[0]
+      value: 
+      objectReference: {fileID: 9100000, guid: ec29fb525ef0c4abdb65740549bf6d96, type: 2}
+    - target: {fileID: 0}
+      propertyPath: animationControllers.Array.data[1]
+      value: 
+      objectReference: {fileID: 9100000, guid: f2f91e9b904ec41509ff1743065b09f7, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 109012}

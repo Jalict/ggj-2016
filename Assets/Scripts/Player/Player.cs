@@ -45,8 +45,9 @@ public class Player : MonoBehaviour {
     public float health = 2;
     public float maxHealth = 2;
     public float regenHealth = .1f;
-
 	private Animator animController;
+
+    public RuntimeAnimatorController[] animationControllers;
     public RuntimeAnimatorController[] spellAnimationControllers;
 
     bool doingRitual;
@@ -68,6 +69,7 @@ public class Player : MonoBehaviour {
 		playerIndex = (PlayerIndex)playerNum;
         fireAbility = GetComponent<FireAbility>();
         shieldAbility = GetComponent<ShieldAbility>();
+		animController = GetComponent<Animator> ();
 
         body = GetComponent<Rigidbody2D>();
 
@@ -75,7 +77,6 @@ public class Player : MonoBehaviour {
         SetToLevel(level);
         altarWaitTime = 2.0f;
 
-		animController = GetComponent<Animator> ();
 
 
 
@@ -377,6 +378,9 @@ public class Player : MonoBehaviour {
                     shieldAbility.activeTime = 1;
 
                     leftTriggerAbility = shieldAbility;
+
+                    animController.runtimeAnimatorController = animationControllers[0];
+
                 }
                 break;
             case 1:
@@ -401,6 +405,8 @@ public class Player : MonoBehaviour {
                     shieldAbility.activeTime = .5f;
 
                     leftTriggerAbility = shieldAbility;
+                    animController.runtimeAnimatorController = animationControllers[1];
+                    
                 }
                 break;
             case 2:
