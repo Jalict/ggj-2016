@@ -114,7 +114,6 @@ public class Prisoner : MonoBehaviour { //PURIPURI BLACK ANGEL STYLE!
     ///<param>damage</param>
     ///<return>whether or not the player died from the hit</return>
     public bool OnHit(float damage){
-		audSource.PlayOneShot (prisonerHurt [Random.Range (0, prisonerHurt.Length)]);
 
         health -= damage;
         if(health <= 0){
@@ -133,7 +132,11 @@ public class Prisoner : MonoBehaviour { //PURIPURI BLACK ANGEL STYLE!
         //play death thing here
         //give blood to player
         spawner.PrisonerDied();
-		Instantiate (bloodsplatPrefab, transform.position, Quaternion.identity);
+		GameObject obj = Instantiate (bloodsplatPrefab, transform.position, Quaternion.identity) as GameObject;
+		AudioSource newAud = obj.AddComponent<AudioSource> () as AudioSource;
+		newAud.clip = prisonerHurt [Random.Range (0, prisonerHurt.Length)];
+		newAud.volume = 0.3f;
+		newAud.Play ();
         Object.Destroy(this.gameObject);
 	}
 
