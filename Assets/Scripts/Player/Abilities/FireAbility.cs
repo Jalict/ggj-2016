@@ -11,7 +11,7 @@ public class FireAbility : IAbility {
 
     public float damage = 1;
 
-    public float projectileSpeed = 10000;
+    public float projectileSpeed = 1;
     
     private PlayerIndex playerIndexRef;
     private Player playerRef;
@@ -38,6 +38,7 @@ public class FireAbility : IAbility {
             obj.GetComponent<Animator>().runtimeAnimatorController = spellAnimationControllers;
 
             CameraShake.Instance.start(.1f, .2f);
+            projectile.Shoot();
 
             ScreenWrap.IgnoreCollisions(gameObject, obj);
 

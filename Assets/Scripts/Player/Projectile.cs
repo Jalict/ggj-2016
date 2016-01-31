@@ -29,11 +29,15 @@ public class Projectile : MonoBehaviour {
     }
     
     void Update(){
-        body.AddForce(direction * speed * Time.deltaTime);
-        if(body.velocity.magnitude > maxSpeed)
+        /*if(body.velocity.magnitude > maxSpeed)
             body.velocity = body.velocity.normalized * maxSpeed;
-
+*/
         //TODO: remove projectile when out of bounds
+    }
+
+    public void Shoot(){
+        body = GetComponent<Rigidbody2D>();
+        body.AddForce(direction.normalized * speed * Time.deltaTime, ForceMode2D.Impulse);
     }
     
     void OnTriggerEnter2D(Collider2D collider){

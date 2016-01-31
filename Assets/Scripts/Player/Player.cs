@@ -362,7 +362,7 @@ public class Player : MonoBehaviour {
 
                     fireAbility.cooldown = 1;
                     fireAbility.damage = 1;
-                    fireAbility.projectileSpeed = 10000;
+                    fireAbility.projectileSpeed = 2000;
 
                     rightTriggerAbility = fireAbility;
 
@@ -386,7 +386,7 @@ public class Player : MonoBehaviour {
 
                     fireAbility.cooldown = 1;
                     fireAbility.damage = 2;
-                    fireAbility.projectileSpeed = 10000;
+                    fireAbility.projectileSpeed = 2000;
 
                     rightTriggerAbility = fireAbility;
 
