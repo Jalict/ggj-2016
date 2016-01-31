@@ -13,7 +13,10 @@ public class Player : MonoBehaviour {
 	public GameObject sideRayPoint2;
 	public GameObject sideRayPoint3;
 
-	public bool onGround;
+    public GameObject overheadPoint;
+    public GameObject groundCrumblePrefab;
+
+    public bool onGround;
 
 
     public GameObject bloodSpatterPrefab;
@@ -174,14 +177,30 @@ public class Player : MonoBehaviour {
         //Debug.Log((float)Input.GetAxis("Xbox" + playerIndex + "_Look_Y") + " , " + (float)Input.GetAxis("Xbox" + playerIndex + "_Look_X") + "," + 0);
 
         Move();
-        
+      
 		animController.SetFloat ("abs_velocity_x", Mathf.Abs(body.velocity.x));
 		animController.SetFloat ("velocity_y", body.velocity.y);
 		animController.SetBool ("OnGround", onGround);
 		animController.SetBool ("IsSummoning", doingRitual);
         
         Vector3 v = body.velocity;
+  
+        RaycastHit2D[] hits = Physics2D.RaycastAll(overheadPoint.transform.position, Vector3.left, .8f);
+        if (!onGround && v.y > .2f && level == 1 && hits.Length != 0)
+        {
+            for (int i = 0; i < hits.Length; i++)
+            {
+                RaycastHit2D hit = hits[i];
+                if (hit.collider.gameObject.CompareTag("Ground"))
+                {
+                    body.velocity = new Vector2(body.velocity.x, 0);
+                    Instantiate(groundCrumblePrefab, hit.collider.transform.position, groundCrumblePrefab.transform.rotation);
+                    Destroy(hit.collider.gameObject);
+                }
 
+            }
+        }
+        
 
         if(body.velocity.x < -0.01){
         	Vector3 temp = transform.localScale;
@@ -351,6 +370,7 @@ public class Player : MonoBehaviour {
 
 	public bool MidAirCollideCheck(){
 		if(!OnGround()){
+            
 			RaycastHit2D hit = Physics2D.Raycast(sideRayPoint1.transform.position, Vector3.left, 1.5f);
 			if (hit.collider != null && hit.collider.gameObject.CompareTag("Ground"))
 			{
