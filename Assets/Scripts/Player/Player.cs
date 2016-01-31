@@ -185,7 +185,7 @@ public class Player : MonoBehaviour {
         
         Vector3 v = body.velocity;
   
-        RaycastHit2D[] hits = Physics2D.RaycastAll(overheadPoint.transform.position, Vector3.left, .8f);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(overheadPoint.transform.position, Vector3.left, 2f);
         if (!onGround && v.y > .2f && level == 1 && hits.Length != 0)
         {
             for (int i = 0; i < hits.Length; i++)

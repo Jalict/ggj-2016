@@ -12,6 +12,7 @@ GameObject:
   - 199: {fileID: 19953912}
   - 198: {fileID: 19874084}
   - 114: {fileID: 11450748}
+  - 114: {fileID: 11430262}
   m_Layer: 13
   m_Name: GroundCrumble
   m_TagString: Untagged
@@ -40,7 +41,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1c8dfa3ac8bd44d948c52785442c087c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 19859c3e81f4f48838b6064d62656706, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -105,6 +106,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &11430262
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 101552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a7b97e8893c24fa292bc94152e41535, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 19859c3e81f4f48838b6064d62656706, type: 3}
+  - {fileID: 8300000, guid: 3a696e6a999d746f3869b6d3fa789434, type: 3}
+  - {fileID: 8300000, guid: 800c5cdff35dd43eeb0b195c4b0f1e6b, type: 3}
 --- !u!114 &11450748
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1665,6 +1681,10 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: clips.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: secondsUntilDelete
       value: 1
       objectReference: {fileID: 0}
@@ -1672,6 +1692,22 @@ Prefab:
       propertyPath: m_Name
       value: GroundCrumble
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 19859c3e81f4f48838b6064d62656706, type: 3}
+    - target: {fileID: 0}
+      propertyPath: clips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 19859c3e81f4f48838b6064d62656706, type: 3}
+    - target: {fileID: 0}
+      propertyPath: clips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3a696e6a999d746f3869b6d3fa789434, type: 3}
+    - target: {fileID: 0}
+      propertyPath: clips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 800c5cdff35dd43eeb0b195c4b0f1e6b, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 101552}
