@@ -121,12 +121,12 @@ public class Player : MonoBehaviour {
                     rightTriggerAbility.Cast();
 			}
             
-			if (Input.GetKey(KeyCode.LeftArrow))
+			if (Input.GetKey(KeyCode.LeftArrow) && !MidAirCollideCheck())
 			{
 				velocity += Vector3.left * speed ;
 			}
 
-			if (Input.GetKey(KeyCode.RightArrow))
+			if (Input.GetKey(KeyCode.RightArrow) && !MidAirCollideCheck())
 			{
 				velocity += Vector3.right * speed ;
 			}
@@ -193,22 +193,6 @@ public class Player : MonoBehaviour {
 		animController.SetBool ("IsSummoning", doingRitual);
         
         Vector3 v = body.velocity;
-  
-        RaycastHit2D[] hits = Physics2D.RaycastAll(overheadPoint.transform.position, Vector3.left, 2f);
-        if (!onGround && v.y > .2f && level == 1 && hits.Length != 0)
-        {
-            for (int i = 0; i < hits.Length; i++)
-            {
-                RaycastHit2D hit = hits[i];
-                if (hit.collider.gameObject.CompareTag("Ground"))
-                {
-                    body.velocity = new Vector2(body.velocity.x, 0);
-                    Instantiate(groundCrumblePrefab, hit.collider.transform.position, groundCrumblePrefab.transform.rotation);
-                    Destroy(hit.collider.gameObject);
-                }
-
-            }
-        }
         
 
         if(body.velocity.x < -0.01){
@@ -390,19 +374,19 @@ public class Player : MonoBehaviour {
 	public bool MidAirCollideCheck(){
 		if(!OnGround()){
             
-			RaycastHit2D hit = Physics2D.Raycast(sideRayPoint1.transform.position, Vector3.left, 1.5f);
+			RaycastHit2D hit = Physics2D.Raycast(sideRayPoint1.transform.position, Vector3.left, 2f);
 			if (hit.collider != null && hit.collider.gameObject.CompareTag("Ground"))
 			{
 				return true;
 			}
 
-			RaycastHit2D hit2 = Physics2D.Raycast(sideRayPoint2.transform.position, Vector3.left, 1.5f);
+			RaycastHit2D hit2 = Physics2D.Raycast(sideRayPoint2.transform.position, Vector3.left, 2f);
 			if (hit2.collider != null && hit2.collider.gameObject.CompareTag("Ground"))
 			{
 				return true;
 			}
 
-			RaycastHit2D hit3 = Physics2D.Raycast(sideRayPoint3.transform.position, Vector3.left, 1.5f);
+			RaycastHit2D hit3 = Physics2D.Raycast(sideRayPoint3.transform.position, Vector3.left, 2f);
 			if (hit3.collider != null && hit3.collider.gameObject.CompareTag("Ground"))
 			{
 				return true;
@@ -474,6 +458,13 @@ public class Player : MonoBehaviour {
                     leftTriggerAbility = shieldAbility;
 
                     animController.runtimeAnimatorController = animationControllers[0];
+                    
+                    rayPoint1.transform.position = new Vector2(transform.position.x + 0.34f, transform.position.y + -0.938f);
+					rayPoint2.transform.position = new Vector2(transform.position.x + -0.365f, transform.position.y + -0.938f);
+
+					sideRayPoint1.transform.position = new Vector2(transform.position.x + .65f, transform.position.y + -0.84f);
+					sideRayPoint2.transform.position = new Vector2(transform.position.x + .65f, transform.position.y + 0);
+					sideRayPoint3.transform.position = new Vector2(transform.position.x + .65f, transform.position.y + 0.68f);
 
                     ScreenWrapObject wrapObj = GetComponent<ScreenWrapObject>();
                     wrapObj.SetColliderSize(new Vector2(1.00962f, 1.58734f));
