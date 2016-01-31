@@ -167,7 +167,7 @@ public class Player : MonoBehaviour {
 			if(Mathf.Abs(Input.GetAxis("Xbox"+playerIndex+"_X_Axis_Left")) > 0.25f && !MidAirCollideCheck() && !isShooting)				
 				velocity.x = speed * Input.GetAxis("Xbox"+playerIndex+"_X_Axis_Left");
 
-			if (Input.GetButton("Xbox"+playerIndex+"_YButton") && lastJumpTime + jumpCooldown < Time.time && OnGround())
+			if (Input.GetButton("Xbox"+playerIndex+"_AButton") && lastJumpTime + jumpCooldown < Time.time && OnGround())
 			{
 					velocity = Vector2.up * jumpSpeed;
 					lastJumpTime = Time.time;
@@ -175,7 +175,7 @@ public class Player : MonoBehaviour {
 
 			if(atAltar && this.Blood >= BloodGoal && this.level ==0){
 				if(altarTimeStamp < Time.time){
-					if(Input.GetButtonDown("Xbox"+playerIndex+"_AButton"))
+					if(Input.GetButtonDown("Xbox"+playerIndex+"_YButton"))
 						StartCoroutine(Ritual(4));
 				}
 			}
