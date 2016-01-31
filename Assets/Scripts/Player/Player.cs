@@ -17,7 +17,7 @@ public class Player : MonoBehaviour {
     private IAbility leftTriggerAbility;
     private IAbility rightTriggerAbility;
 
-    //referneces to palyer abilities
+    //references to player abilities
     private FireAbility fireAbility;
     private ShieldAbility shieldAbility;
 
@@ -33,6 +33,9 @@ public class Player : MonoBehaviour {
 
     public float lastJumpTime = 0;
     public float jumpCooldown = 0.5f;
+
+	private float transferedJumpSpeed;
+	private bool hasSavedJumpSpeed;
 
     //Controller
     public int playerNum;
@@ -51,11 +54,15 @@ public class Player : MonoBehaviour {
     float altarTimeStamp;
     float altarWaitTime;
 
+    private Rigidbody2D body;
+
 	// Use this for initialization
 	void Start () {
 		playerIndex = (PlayerIndex)playerNum;
         fireAbility = GetComponent<FireAbility>();
         shieldAbility = GetComponent<ShieldAbility>();
+
+        body = GetComponent<Rigidbody2D>();
 
 		velocity = new Vector3(0,0,0);
         SetToLevel(level);
@@ -100,7 +107,8 @@ public class Player : MonoBehaviour {
 
 			if (Input.GetKey(KeyCode.UpArrow) && lastJumpTime + jumpCooldown < Time.time && OnGround())
 			{
-                velocity += Vector3.up * jumpSpeed ;
+
+                velocity = Vector3.up * jumpSpeed ;
                 lastJumpTime = Time.time;
 			}
 
@@ -125,13 +133,15 @@ public class Player : MonoBehaviour {
                 if(rightTriggerAbility != null)
                     rightTriggerAbility.Cast();
 			}
-				
-			velocity.x += speed * Input.GetAxis("Xbox"+playerIndex+"_X_Axis_Left");
+
+			if(Mathf.Abs(Input.GetAxis("Xbox"+playerIndex+"_X_Axis_Left")) > 0.25f)				
+				velocity.x = speed * Input.GetAxis("Xbox"+playerIndex+"_X_Axis_Left");
 
 			if (Input.GetButton("Xbox"+playerIndex+"_AButton") && lastJumpTime + jumpCooldown < Time.time && OnGround())
 			{
 				if((atAltar && altarTimeStamp > Time.time) || !atAltar){
-					velocity.y += jumpSpeed;
+					velocity = Vector2.up * jumpSpeed;
+
                     lastJumpTime = Time.time;
                 }
 			}
@@ -149,39 +159,38 @@ public class Player : MonoBehaviour {
 
         Move();
         
-		animController.SetFloat ("abs_velocity_x", Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
-		animController.SetFloat ("velocity_y", GetComponent<Rigidbody2D>().velocity.y);
+		animController.SetFloat ("abs_velocity_x", Mathf.Abs(body.velocity.x));
+		animController.SetFloat ("velocity_y", body.velocity.y);
 		animController.SetBool ("OnGround", onGround);
 		animController.SetBool ("IsSummoning", doingRitual);
         
+        Vector3 v = body.velocity;
 
-        if(GetComponent<Rigidbody2D>().velocity.x < -0.01)
+
+        if(body.velocity.x < -0.01)
             transform.localScale = new Vector3(-1,1,1);        
-        else if(GetComponent<Rigidbody2D>().velocity.x > 0.01)
+        else if(body.velocity.x > 0.01)
             transform.localScale = new Vector3(1,1,1);
 
-
-        Vector3 v = transform.GetComponent<Rigidbody2D>().velocity;
-        
         if (Mathf.Abs(v.x) > maxSpeed && onGround){
         	Vector2 temp = v;
         	temp.x = Mathf.Sign(temp.x) * maxSpeed;
         	v = temp;
-        	transform.GetComponent<Rigidbody2D>().velocity = v;
+        	body.velocity = v;
         }
 
         if (Mathf.Abs(v.x) > maxAirSpeed && !onGround){
 			Vector2 temp = v;
         	temp.x = Mathf.Sign(temp.x) * maxAirSpeed;
         	v = temp;
-        	transform.GetComponent<Rigidbody2D>().velocity = v;
+        	body.velocity = v;
         }
-        
+
         if (Mathf.Abs(v.y) > maxJumpSpeed){
         	Vector2 temp = v;
         	temp.y = Mathf.Sign(temp.y) * maxJumpSpeed;
         	v = temp;
-        	transform.GetComponent<Rigidbody2D>().velocity = v;
+        	body.velocity = v;
         }
     }
     
@@ -293,7 +302,7 @@ public class Player : MonoBehaviour {
 	}
 
 	public void Move(){
-		transform.GetComponent<Rigidbody2D>().AddForce(velocity * Time.deltaTime, ForceMode2D.Force);
+		body.AddForce(velocity * Time.deltaTime, ForceMode2D.Force);
 	}
 
 
@@ -338,7 +347,7 @@ public class Player : MonoBehaviour {
        switch(level){
             case 0:
                 {
-                    speed = 7000;
+                    speed = 6000;
                     jumpSpeed = 80000;
                     maxSpeed = 12f;
                     maxAirSpeed = 8f;
@@ -362,7 +371,7 @@ public class Player : MonoBehaviour {
                 break;
             case 1:
                 {
-                    speed = 7000;
+                    speed = 6000;
                     jumpSpeed = 80000;
                     maxSpeed = 12f;
                     maxAirSpeed = 8f;
@@ -386,7 +395,7 @@ public class Player : MonoBehaviour {
                 break;
             case 2:
                 {
-                    speed = 7000;
+                    speed = 6000;
                     jumpSpeed = 80000;
                     maxSpeed = 12f;
                     maxAirSpeed = 8f;
@@ -399,7 +408,7 @@ public class Player : MonoBehaviour {
                 break;
             case 3:
                 {
-                    speed = 7000;
+                    speed = 6000;
                     jumpSpeed = 80000;
                     maxSpeed = 12f;
                     maxAirSpeed = 8f;
