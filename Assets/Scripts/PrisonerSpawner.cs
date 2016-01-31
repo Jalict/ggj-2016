@@ -27,9 +27,7 @@ public class PrisonerSpawner : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	   if(numPrisoners < maxPrisoners && nextSpawn < Time.time){
-    	   for (int i = 0; i < numSpawnedPerSpawn; i++)
-                if(numPrisoners < maxPrisoners)
-                    SpawnPrisoner();
+            StartCoroutine(SpawnRound());
         }
 	}
     
@@ -57,5 +55,15 @@ public class PrisonerSpawner : MonoBehaviour {
         p.decisionFrequency = Random.Range(2, 5);
 
         nextSpawn = Time.time + spawnInterval;
+    }
+    
+    IEnumerator SpawnRound(){
+        for (int i = 0; i < numSpawnedPerSpawn; i++)
+        {
+            if (numPrisoners < maxPrisoners)
+                SpawnPrisoner();
+            yield return null;
+        }
+
     }
 }
