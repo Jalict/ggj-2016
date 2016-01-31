@@ -65,7 +65,7 @@ public class Player : MonoBehaviour {
 
     //Blood For Ritual
     public int Blood = 0;
-    public int BloodGoal = 100;
+    public int BloodGoal = 40;
     bool doingRitual;
     bool atAltar;
     AltarSprite Altar;
@@ -75,12 +75,6 @@ public class Player : MonoBehaviour {
     private Rigidbody2D body;
 
     public Material[] playerMaterials;
-
-    void Awake(){
-        gameObject.GetComponent<SpriteRenderer>().material = playerMaterials[playerNum % 4];
-		footSteps.startColor = playerMaterials [playerNum].color * 0.75f;
-        
-    }
 
     void Start () {
 		playerIndex = (PlayerIndex)playerNum;
@@ -95,7 +89,10 @@ public class Player : MonoBehaviour {
         SetToLevel(level);
         altarWaitTime = 2.0f;
 
-        fireAbility.spellAnimationControllers = spellAnimationControllers[playerNum % 4];
+        fireAbility.spellAnimationControllers = spellAnimationControllers[playerNum % 4]; 
+        gameObject.GetComponent<SpriteRenderer>().material = playerMaterials[playerNum % 4];
+		footSteps.startColor = playerMaterials [playerNum].color * 0.75f;
+        
     }
 
 	// Update is called once per frame

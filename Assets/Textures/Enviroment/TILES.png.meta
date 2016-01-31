@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 4425620635f2a4acab7ab0cd7f872501
-timeCreated: 1454244051
+timeCreated: 1454247115
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -33,7 +33,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: 0.25
+    heightScale: .25
     normalMapFilter: 0
   isReadable: 1
   grayScaleToAlpha: 0
@@ -58,7 +58,7 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 16
   alphaIsTransparency: 1
@@ -76,7 +76,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: TILES_1
       rect:
         serializedVersion: 2
@@ -87,7 +86,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: TILES_2
       rect:
         serializedVersion: 2
@@ -98,7 +96,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: TILES_3
       rect:
         serializedVersion: 2
@@ -109,7 +106,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: TILES_4
       rect:
         serializedVersion: 2
@@ -120,7 +116,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: TILES_5
       rect:
         serializedVersion: 2
@@ -131,7 +126,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: TILES_6
       rect:
         serializedVersion: 2
@@ -142,7 +136,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: TILES_7
       rect:
         serializedVersion: 2
@@ -153,7 +146,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: TILES_8
       rect:
         serializedVersion: 2
@@ -164,7 +156,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: TILES_9
       rect:
         serializedVersion: 2
@@ -175,7 +166,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: TILES_10
       rect:
         serializedVersion: 2
@@ -186,7 +176,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: TILES_11
       rect:
         serializedVersion: 2
@@ -197,7 +186,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: TILES_12
       rect:
         serializedVersion: 2
@@ -208,7 +196,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: TILES_13
       rect:
         serializedVersion: 2
@@ -219,7 +206,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: TILES_14
       rect:
         serializedVersion: 2
@@ -230,7 +216,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: TILES_15
       rect:
         serializedVersion: 2
@@ -241,8 +226,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 
