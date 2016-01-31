@@ -163,7 +163,7 @@ public class Player : MonoBehaviour {
 				isShooting = true;
                 
 			}
-	if(isShooting && (int)Input.GetAxis("Xbox"+playerIndex + "_RightTrigger") ==0){
+	if(isShooting && (int)Input.GetAxis("Xbox"+playerIndex + "_RightTrigger") == 0 && rightTriggerAbility.CanCast()){
 		if(rightTriggerAbility != null)
                     rightTriggerAbility.Cast();
                 isShooting = false;

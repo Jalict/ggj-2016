@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
-using UnityEditor.Animations;
 using System.Collections;
-using XInputDotNetPure;
 
 public class TentacleAbility : IAbility {
 
@@ -18,9 +16,6 @@ public class TentacleAbility : IAbility {
 
     public float projectileSpeed = 1;
     
-    private PlayerIndex playerIndexRef;
-    private Player playerRef;
-
 
 	public override bool Cast(){
         if (lastCast + cooldown <= Time.time)
@@ -33,9 +28,6 @@ public class TentacleAbility : IAbility {
             tentacle.attackSpeed = attackSpeed;
             g.transform.parent = owner.transform;
 
-
-            playerRef = GetComponent<Player>();
-            playerIndexRef = playerRef.playerIndex;
             lastCast = Time.time;
 
             Object.Destroy(g, duration);
@@ -44,4 +36,8 @@ public class TentacleAbility : IAbility {
         }
         return false;
 	}
+    
+    public override bool CanCast(){
+        return lastCast + cooldown <= Time.time;
+    }
 }

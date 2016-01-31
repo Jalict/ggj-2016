@@ -11,5 +11,6 @@ public abstract class IAbility : MonoBehaviour {
     }
     
     public abstract bool Cast();
+    public abstract bool CanCast();
     
 }

@@ -172,7 +172,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 199adb88774dc43f1b8fb42cf5fa1dfa, type: 3}
   - {fileID: 8300000, guid: 656f5842fa744464ead2dec8e3a09780, type: 3}
   - {fileID: 8300000, guid: 9100b697a43c74044a0d34f958b56b70, type: 3}
-  bloodsplatPrefab: {fileID: 185500, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
+  bloodsplatPrefab: {fileID: 133804, guid: 1dc2beb1a544f5f4482fa8dcf08acb3e, type: 2}
   spawner: {fileID: 0}
   chainEnd: {fileID: 0}
   chainLength: 4
@@ -241,6 +241,10 @@ Prefab:
       propertyPath: spreadCustomCurve.m_RotationOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: bloodsplatPrefab
+      value: 
+      objectReference: {fileID: 133804, guid: 1dc2beb1a544f5f4482fa8dcf08acb3e, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 137752}

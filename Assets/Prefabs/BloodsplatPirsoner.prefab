@@ -1,42 +1,42 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &185500
+--- !u!1 &133804
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 473086}
-  - 82: {fileID: 8260604}
-  - 199: {fileID: 19978074}
-  - 198: {fileID: 19875116}
-  - 114: {fileID: 11411336}
+  - 4: {fileID: 457308}
+  - 82: {fileID: 8207560}
+  - 199: {fileID: 19907324}
+  - 198: {fileID: 19897550}
+  - 114: {fileID: 11442584}
   m_Layer: 13
-  m_Name: Bloodsplat
+  m_Name: BloodsplatPirsoner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &473086
+--- !u!4 &457308
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 185500}
+  m_GameObject: {fileID: 133804}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.05, y: 4.27, z: 3.11}
+  m_LocalPosition: {x: 13.17, y: -2.23, z: 3.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!82 &8260604
+--- !u!82 &8207560
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 185500}
+  m_GameObject: {fileID: 133804}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -105,24 +105,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &11411336
+--- !u!114 &11442584
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 185500}
+  m_GameObject: {fileID: 133804}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f77b141018a9648c3aecf7b95a6d00f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   secondsUntilDelete: 5
---- !u!198 &19875116
+--- !u!198 &19897550
 ParticleSystem:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 185500}
+  m_GameObject: {fileID: 133804}
   serializedVersion: 2
   lengthInSec: 1
   startDelay:
@@ -370,7 +370,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     startRotationX:
-      scalar: -1.5707963
+      scalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -476,7 +476,7 @@ ParticleSystem:
       minMaxState: 0
     randomizeRotationDirection: 0
     gravityModifier: 1
-    maxNumParticles: 90
+    maxNumParticles: 10
     rotation3D: 0
   ShapeModule:
     serializedVersion: 2
@@ -1601,12 +1601,12 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 1024
+      m_Bits: 4096
     maxCollisionShapes: 256
-    quality: 0
+    quality: 2
     voxelSize: 0.5
     collisionMessages: 0
-    collidesWithDynamic: 1
+    collidesWithDynamic: 0
     interiorCollisions: 1
   SubModule:
     enabled: 0
@@ -1616,12 +1616,12 @@ ParticleSystem:
     subEmitterCollision1: {fileID: 0}
     subEmitterDeath: {fileID: 0}
     subEmitterDeath1: {fileID: 0}
---- !u!199 &19978074
+--- !u!199 &19907324
 ParticleSystemRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 185500}
+  m_GameObject: {fileID: 133804}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 0
@@ -1665,14 +1665,22 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
-      propertyPath: m_Layer
-      value: 13
+      propertyPath: InitialModule.maxNumParticles
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
-      propertyPath: spreadCustomCurve.m_RotationOrder
+      propertyPath: CollisionModule.quality
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 4096
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: CollisionModule.collidesWithDynamic
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 185500}
+  m_RootGameObject: {fileID: 133804}
   m_IsPrefabParent: 1

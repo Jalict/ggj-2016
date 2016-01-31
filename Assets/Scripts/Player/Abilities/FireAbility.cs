@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor.Animations;
 using System.Collections;
 using XInputDotNetPure;
 
@@ -45,6 +44,10 @@ public class FireAbility : IAbility {
             return true;
        }    
        return false;
+    }
+
+    public override bool CanCast(){
+        return lastCast + cooldown <= Time.time;
     }
     
 }

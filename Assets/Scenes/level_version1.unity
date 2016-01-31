@@ -8162,30 +8162,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 482984, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 109012, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
       propertyPath: m_Name
       value: Player (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 5070286, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
-      propertyPath: m_GravityScale
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5070286, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
-      propertyPath: m_Mass
-      value: .800000012
-      objectReference: {fileID: 0}
-    - target: {fileID: 11431500, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 11466286, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
-      propertyPath: Controller
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11466286, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
-      propertyPath: level
+      propertyPath: playerNum
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -24476,7 +24460,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 2097838, guid: ec094bd654ac5450486758c4809f1f12, type: 2}
       propertyPath: orthographic size
-      value: 11.1999998
+      value: 11.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003514, guid: ec094bd654ac5450486758c4809f1f12, type: 2}
+      propertyPath: m_OcclusionCulling
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033638, guid: ec094bd654ac5450486758c4809f1f12, type: 2}
+      propertyPath: m_OcclusionCulling
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074496, guid: ec094bd654ac5450486758c4809f1f12, type: 2}
+      propertyPath: m_OcclusionCulling
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2077994, guid: ec094bd654ac5450486758c4809f1f12, type: 2}
+      propertyPath: m_OcclusionCulling
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2097838, guid: ec094bd654ac5450486758c4809f1f12, type: 2}
+      propertyPath: m_OcclusionCulling
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ec094bd654ac5450486758c4809f1f12, type: 2}
@@ -35185,33 +35189,9 @@ Prefab:
       propertyPath: m_Name
       value: Player (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 5070286, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
-      propertyPath: m_GravityScale
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5070286, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
-      propertyPath: m_Mass
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 11431500, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11466286, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
-      propertyPath: Controller
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11466286, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
-      propertyPath: level
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 11466286, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
       propertyPath: playerNum
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 109012, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
-      propertyPath: m_IsActive
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
@@ -55924,30 +55904,6 @@ Prefab:
       propertyPath: m_Name
       value: Player (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 5070286, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
-      propertyPath: m_GravityScale
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5070286, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
-      propertyPath: m_Mass
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 11431500, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11466286, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
-      propertyPath: Controller
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11466286, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
-      propertyPath: level
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11466286, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
-      propertyPath: playerNum
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
   m_IsPrefabParent: 0
@@ -58337,33 +58293,9 @@ Prefab:
       propertyPath: m_Name
       value: Player (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 5070286, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
-      propertyPath: m_GravityScale
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5070286, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
-      propertyPath: m_Mass
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 11431500, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11466286, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
-      propertyPath: Controller
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11466286, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
-      propertyPath: level
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 109012, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 11466286, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}
       propertyPath: playerNum
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bcf22739e0bc2d488f1fae003ebed29, type: 2}

@@ -30,4 +30,8 @@ public class ShieldAbility : IAbility {
 
     }
     
+    public override bool CanCast(){
+        return lastCast + cooldown <= Time.time;
+    }
+    
 }
