@@ -403,6 +403,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  footSteps: {fileID: 19861954}
   Blood: 0
   playerMaterials:
   - {fileID: 2100000, guid: a0bcec8f52ff04dad91ca78304af10f1, type: 2}
@@ -2130,6 +2131,10 @@ Prefab:
       propertyPath: groundCrumblePrefab
       value: 
       objectReference: {fileID: 101552, guid: a5715c29c932648d1b42805bee0c3d3e, type: 2}
+    - target: {fileID: 0}
+      propertyPath: footSteps
+      value: 
+      objectReference: {fileID: 19861954}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 109012}

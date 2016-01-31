@@ -73,6 +73,7 @@ public class ScreenWrapObject : MonoBehaviour {
         right.isTrigger = main.isTrigger;
         left.isTrigger  = main.isTrigger;
         
+
     }
     
     void Update(){
@@ -94,8 +95,20 @@ public class ScreenWrapObject : MonoBehaviour {
             pos.Set(
                 pos.x,
                 -viewSize.y / 2 + (pos.y + viewSize.y / 2) % viewSize.y);
+
+
+        pos += (Vector2)Camera.main.transform.position;
+
+        if ((Vector2)transform.position != pos)
+        {
+            if(GetComponent<Player>() != null)
+                GetComponent<Player>().footSteps.Stop();
+
+            transform.position = pos;
             
-        transform.position = pos;
+            if(GetComponent<Player>() != null)
+                GetComponent<Player>().footSteps.Play();
+        }
     }
     
     

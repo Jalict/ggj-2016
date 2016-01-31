@@ -58,9 +58,11 @@ public class Player : MonoBehaviour {
     public RuntimeAnimatorController[] animationControllers;
     public RuntimeAnimatorController[] spellAnimationControllers;
 
+    public ParticleSystem footSteps;
 
-	//Blood For Ritual
-	public int Blood = 0;
+
+    //Blood For Ritual
+    public int Blood = 0;
     bool doingRitual;
     bool atAltar;
     AltarSprite Altar;
