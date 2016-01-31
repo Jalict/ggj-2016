@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.IO;
+using System;
 
 using XInputDotNetPure;
 
@@ -7,8 +9,7 @@ public class MenuManager : MonoBehaviour {
 	public SpriteRenderer[] hangmanSprites;
 	public Material[] playerMats;
 	public ParticleSystem[] playerParticles;
-
-	private bool[] isJoined;	
+	
 	private Color[] playerColours;
 
 	// Use this for initialization
@@ -21,7 +22,7 @@ public class MenuManager : MonoBehaviour {
 			playerParticles [i].gameObject.SetActive (false);
 		}
 
-		isJoined = new bool[playerMats.Length];
+		GameManager.Instance.isJoined = new bool[playerMats.Length];
 	}
 	
 	// Update is called once per frame
@@ -41,11 +42,11 @@ public class MenuManager : MonoBehaviour {
 	}
 
 	void PlayerPressedA(int i) {
-		isJoined [i] = !isJoined [i];
+		GameManager.Instance.isJoined [i] = !GameManager.Instance.isJoined [i];
 
-		hangmanSprites [i].color = isJoined[i] ? playerMats[i].color : Color.white;
+		hangmanSprites [i].color = GameManager.Instance.isJoined [i] ? playerMats[i].color : Color.white;
 
-		if (isJoined[i]) {
+		if (GameManager.Instance.isJoined [i]) {
 			playerParticles [i].gameObject.SetActive (true);
 		} else {
 			playerParticles [i].gameObject.SetActive (false);

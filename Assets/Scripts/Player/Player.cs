@@ -74,7 +74,7 @@ public class Player : MonoBehaviour {
     public Material[] playerMaterials;
 
     void Awake(){
-        gameObject.GetComponent<SpriteRenderer>().material = playerMaterials[playerNum % 4];
+        
         
     }
 
@@ -91,6 +91,8 @@ public class Player : MonoBehaviour {
         altarWaitTime = 2.0f;
 
         fireAbility.spellAnimationControllers = spellAnimationControllers[playerNum % 4];
+
+        gameObject.GetComponent<SpriteRenderer>().material = playerMaterials[playerNum % 4];
     }
 
 	// Update is called once per frame

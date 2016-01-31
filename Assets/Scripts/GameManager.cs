@@ -9,9 +9,13 @@ public class GameManager : MonoBehaviour {
 
     public Transform[] spawnPoints;
 	public GameObject spiritPrefab;
+	public GameObject playerPrefab;
 
     public Text timer;
     private float timeLeft = 300;
+
+    public bool[] isJoined;
+    private bool gameStarted = false;
 
     public static bool isActive { 
 		get { 
@@ -43,6 +47,7 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+		DontDestroyOnLoad(gameObject);
 	   if(spawnPoints.Length == 0)
             Debug.LogError("GameManager has no spawnpoints set!");
     }
@@ -52,6 +57,12 @@ public class GameManager : MonoBehaviour {
 		if(timeLeft > 0)
 		timeLeft -= Time.deltaTime;
 		timer.text = "Time remaining: " + (int)timeLeft;
+
+		if(Time.realtimeSinceStartup > 10.0f && gameStarted == false) {
+			Application.LoadLevel (1);			
+			gameStarted = true;
+			StartCoroutine(waitSpawning());
+		}
 	}
 
     public void RespawnPlayer(Player player, float t = 0){
@@ -79,7 +90,27 @@ public class GameManager : MonoBehaviour {
 		player.transform.position = spawnPosition;
 
         RespawnPlayer(player);
-        player.gameObject.SetActive(true);
-       
+        player.gameObject.SetActive(true);       
+    }
+    public void SpawnPlayer(int i){
+    	Vector3 spawnPosition = spawnPoints [i].position;
+
+    	GameObject obj = Instantiate(playerPrefab, spawnPosition, Quaternion.identity) as GameObject;
+    	obj.GetComponent<Player> ().playerNum = i;
+        
+            //TODO: add logic to cleverly spawn the player
+			          
+            CameraShake.Instance.start(.1f, .2f);
+    }
+
+    IEnumerator waitSpawning() {
+    	yield return new WaitForSeconds(0.5f);
+    	for(int i = 0; i < 4; i++){
+			if(isJoined[i]){
+					SpawnPlayer(i);
+			}
+		}	
     }
 }
+
+
