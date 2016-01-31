@@ -57,7 +57,6 @@ public class Player : MonoBehaviour {
 
     public BoxCollider2D box2D;
 
-    private ScreenWrapObject sWO;
 
 	//Blood For Ritual
 	public int Blood = 0;
@@ -72,7 +71,6 @@ public class Player : MonoBehaviour {
     public Material[] playerMaterials;
 
     void Awake(){
-    	sWO = GetComponent<ScreenWrapObject>();
     	box2D = GetComponent<BoxCollider2D>();
         gameObject.GetComponent<SpriteRenderer>().material = playerMaterials[playerNum % 4];
         
@@ -418,11 +416,11 @@ public class Player : MonoBehaviour {
        switch(level){
             case 0:
                 {
-                    speed = 8000;
-                    jumpSpeed = 100000;
+                    speed = 7000;
+                    jumpSpeed = 80000;
                     maxSpeed = 12f;
-                    maxAirSpeed = 8f;
-                    maxJumpSpeed = 25;
+                    maxAirSpeed = 10f;
+                    maxJumpSpeed = 28;
 
                     health = 2;
                     maxHealth = 2;
@@ -445,11 +443,11 @@ public class Player : MonoBehaviour {
                 break;
             case 1:
                 {
-                    speed = 8000;
-                    jumpSpeed = 100000;
+                    speed = 7000;
+                    jumpSpeed = 80000;
                     maxSpeed = 12f;
-                    maxAirSpeed = 8f;
-                    maxJumpSpeed = 25;
+                    maxAirSpeed = 10f;
+                    maxJumpSpeed = 28;
 
                     health = 4;
                     maxHealth = 4;
@@ -479,18 +477,15 @@ public class Player : MonoBehaviour {
                     transform.localScale = new Vector3(0.75f,0.75f,1);
                     box2D.size = new Vector2(2.8f, 3f);
                     box2D.offset = new Vector3(0,0);
-
-                    //re-wrapping
-                    sWO.ScreenWrapAdjust();
                 }
                 break;
             case 2:
                 {
-                    speed = 8000;
-                    jumpSpeed = 100000;
+                    speed = 7000;
+                    jumpSpeed = 80000;
                     maxSpeed = 12f;
-                    maxAirSpeed = 8f;
-                    maxJumpSpeed = 25;
+                    maxAirSpeed = 10f;
+                    maxJumpSpeed = 28;
                     
                     health = 5;
                     maxHealth = 5;
@@ -499,11 +494,11 @@ public class Player : MonoBehaviour {
                 break;
             case 3:
                 {
-                    speed = 8000;
-                    jumpSpeed = 100000;
+                    speed = 7000;
+                    jumpSpeed = 80000;
                     maxSpeed = 12f;
-                    maxAirSpeed = 8f;
-                    maxJumpSpeed = 25;
+                    maxAirSpeed = 10f;
+                    maxJumpSpeed = 28;
 
                     health = 10;
                     maxHealth = 10;
