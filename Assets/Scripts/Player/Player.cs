@@ -282,19 +282,20 @@ public class Player : MonoBehaviour {
         
         CameraShake.Instance.start(.2f, .2f);
         Altar.ChangeSprite(2);
-		doingRitual = false;
+        doingRitual = false;
 	}
 
 	public void RitualSuccess(){
 		Debug.Log("YOU SUCCEEDED THE RITUAL");
 		//TODO - Graphic feedback
 		//TODO - Transform
+        
         SetToLevel(++level);
         vibration = 0;
 		GamePad.SetVibration(playerIndex, vibration, vibration);
         
         this.Blood = 0;
-        
+        Altar.ChangeSprite(2);
         CameraShake.Instance.start(.5f, .5f);
 		doingRitual = false;
 	}
@@ -562,6 +563,7 @@ public class Player : MonoBehaviour {
     		if(Altar == null){
     			Altar = col.gameObject.GetComponent<Altar>().altarSprite;
     			Altar.spriteRend.enabled = true;
+                Altar.ChangeSprite(2);
     		}
     	}
     }
