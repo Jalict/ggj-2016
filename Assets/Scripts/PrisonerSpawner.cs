@@ -28,7 +28,8 @@ public class PrisonerSpawner : MonoBehaviour {
 	void Update () {
 	   if(numPrisoners < maxPrisoners && nextSpawn < Time.time){
     	   for (int i = 0; i < numSpawnedPerSpawn; i++)
-                SpawnPrisoner();
+                if(numPrisoners < maxPrisoners)
+                    SpawnPrisoner();
         }
 	}
     

@@ -199,7 +199,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 109012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.670006, y: -11.911, z: 0}
+  m_LocalPosition: {x: 18.7, y: -8.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 459986}
@@ -243,10 +243,10 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 109012}
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.8
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 10
+  m_GravityScale: 9
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -380,7 +380,7 @@ MonoBehaviour:
   groundCrumblePrefab: {fileID: 101552, guid: a5715c29c932648d1b42805bee0c3d3e, type: 2}
   onGround: 0
   bloodSpatterPrefab: {fileID: 185500, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
-  level: 1
+  level: 0
   Controller: 0
   speed: 10
   jumpSpeed: 300
