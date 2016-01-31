@@ -378,7 +378,7 @@ public class Player : MonoBehaviour {
        switch(level){
             case 0:
                 {
-                    speed = 6000;
+                    speed = 8000;
                     jumpSpeed = 80000;
                     maxSpeed = 12f;
                     maxAirSpeed = 8f;
@@ -405,7 +405,7 @@ public class Player : MonoBehaviour {
                 break;
             case 1:
                 {
-                    speed = 6000;
+                    speed = 8000;
                     jumpSpeed = 80000;
                     maxSpeed = 12f;
                     maxAirSpeed = 8f;
@@ -431,7 +431,7 @@ public class Player : MonoBehaviour {
                 break;
             case 2:
                 {
-                    speed = 6000;
+                    speed = 8000;
                     jumpSpeed = 80000;
                     maxSpeed = 12f;
                     maxAirSpeed = 8f;
@@ -444,7 +444,7 @@ public class Player : MonoBehaviour {
                 break;
             case 3:
                 {
-                    speed = 6000;
+                    speed = 8000;
                     jumpSpeed = 80000;
                     maxSpeed = 12f;
                     maxAirSpeed = 8f;
