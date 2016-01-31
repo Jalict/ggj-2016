@@ -44,6 +44,7 @@ public class Player : MonoBehaviour {
     public int playerNum;
     public PlayerIndex playerIndex; // DO NOT TOUCH
 	private GamePadState state;
+public float vibration = 0;
 
     public float health = 2;
     public float maxHealth = 2;
@@ -53,6 +54,8 @@ public class Player : MonoBehaviour {
     public RuntimeAnimatorController[] animationControllers;
     public RuntimeAnimatorController[] spellAnimationControllers;
 
+//Blood For Ritual
+public int Blood = 0;
     bool doingRitual;
     bool atAltar;
     AltarSprite Altar;
@@ -216,6 +219,9 @@ public class Player : MonoBehaviour {
     }
     
     public void KilledPlayer(Player player){
+    	this.Blood +=10;
+    	if(this.Blood > 100)
+    	this.Blood = 100;
     }  
     public void KilledPrisoner(Prisoner prisoner){
         SetToLevel(1);
@@ -230,6 +236,8 @@ public class Player : MonoBehaviour {
 		Debug.Log("YOU FAILED THE RITUAL");
 		//TODO - Graphic feedback
 		//TODO - Some drawback?
+		vibration = 0;
+		GamePad.SetVibration(playerIndex, vibration, vibration);
         
         CameraShake.Instance.start(.2f, .2f);
 		doingRitual = false;
@@ -240,6 +248,10 @@ public class Player : MonoBehaviour {
 		//TODO - Graphic feedback
 		//TODO - Transform
         SetToLevel(++level);
+        vibration = 0;
+		GamePad.SetVibration(playerIndex, vibration, vibration);
+        
+        this.Blood = 0;
         
         CameraShake.Instance.start(.5f, .5f);
 		doingRitual = false;
@@ -247,7 +259,7 @@ public class Player : MonoBehaviour {
 
 	IEnumerator Ritual(int seqLength){
 		doingRitual = true;
-		
+		GamePad.SetVibration(playerIndex,0.2f,0.2f);
 		string[] keys = new string[4] {"Xbox"+playerIndex+"_AButton", "Xbox"+playerIndex+"_XButton", "Xbox"+playerIndex+"_YButton", "Xbox"+playerIndex+"_BButton"};
 		int randNum = Random.Range(0, keys.Length);
 
@@ -261,8 +273,11 @@ public class Player : MonoBehaviour {
 			//TODO - Graphic feedback for button press
 			while(true){
 				if(Input.GetButtonDown(keys[0])){
-					if(randNum == 0)
+					if(randNum == 0){
+					vibration += 0.2f;
+					GamePad.SetVibration(playerIndex, vibration, vibration);
 						break;
+					}
 					else{
 						RitualFail();
 						ritualFail = true;
@@ -271,8 +286,11 @@ public class Player : MonoBehaviour {
 				}
 
 				if(Input.GetButtonDown(keys[1])){
-					if(randNum == 1)
+					if(randNum == 1){
+						vibration += 0.2f;
+					GamePad.SetVibration(playerIndex, vibration, vibration);
 						break;
+					}
 					else{
 						RitualFail();
 						ritualFail = true;
@@ -281,8 +299,11 @@ public class Player : MonoBehaviour {
 				}
 			
 				if(Input.GetButtonDown(keys[2])){
-					if(randNum == 2)
+					if(randNum == 2){
+						vibration += 0.2f;
+						GamePad.SetVibration(playerIndex, vibration, vibration);
 						break;
+					}
 					else{
 						RitualFail();
 						ritualFail = true;
@@ -291,8 +312,11 @@ public class Player : MonoBehaviour {
 				}
 
 				if(Input.GetButtonDown(keys[3])){
-					if(randNum == 3)
+					if(randNum == 3){
+						vibration += 0.2f;
+					GamePad.SetVibration(playerIndex, vibration, vibration);
 						break;
+					}
 					else{
 						RitualFail();
 						ritualFail = true;
@@ -358,6 +382,7 @@ public class Player : MonoBehaviour {
     ///<summary>When Player gets damaged</summary>
     ///<param>damage</param>
     ///<return>whether or not the player died from the hit</return>
+    //make subroutine instance for vibration
     public bool OnHit(float damage){
         health -= damage;
         if(health <= 0){
