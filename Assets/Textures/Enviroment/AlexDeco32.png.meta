@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a9847d7b1f3d44bb897b06954e4226fa
-timeCreated: 1454240500
+timeCreated: 1454241097
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -20,7 +20,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: 0.25
+    heightScale: .25
     normalMapFilter: 0
   isReadable: 1
   grayScaleToAlpha: 0
@@ -29,7 +29,7 @@ TextureImporter:
   cubemapConvolutionSteps: 7
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: 4
+  textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
     filterMode: 0
@@ -45,9 +45,9 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 32
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
@@ -63,13 +63,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -13, y: 15}
-        - {x: -16, y: -4}
-        - {x: -16, y: -16}
-        - {x: 15, y: -16}
-        - {x: 15, y: 10}
-        - {x: 9, y: 15}
     - name: AlexDeco32_1
       rect:
         serializedVersion: 2
@@ -80,16 +73,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 2, y: 6}
-        - {x: -4, y: 6}
-        - {x: -16, y: 0}
-        - {x: -16, y: -8}
-        - {x: -13, y: -16}
-        - {x: 10, y: -16}
-        - {x: 14, y: -15}
-        - {x: 16, y: -5}
-        - {x: 16, y: -2}
     - name: AlexDeco32_2
       rect:
         serializedVersion: 2
@@ -100,13 +83,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -10, y: 16}
-        - {x: -12, y: 12}
-        - {x: -12, y: -14}
-        - {x: 14, y: -14}
-        - {x: 14, y: 16}
-    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

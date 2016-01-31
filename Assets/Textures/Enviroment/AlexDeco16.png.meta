@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 1fa94ac7113fb47f5b536158f00f4411
-timeCreated: 1454240500
+timeCreated: 1454241097
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -23,16 +23,16 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: 0.25
+    heightScale: .25
     normalMapFilter: 0
-  isReadable: 1
+  isReadable: 0
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
   cubemapConvolutionSteps: 7
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: 4
+  textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
     filterMode: 0
@@ -48,7 +48,7 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 16
   alphaIsTransparency: 1
@@ -66,7 +66,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: AlexDeco16_1
       rect:
         serializedVersion: 2
@@ -77,7 +76,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: AlexDeco16_2
       rect:
         serializedVersion: 2
@@ -88,7 +86,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: AlexDeco16_3
       rect:
         serializedVersion: 2
@@ -99,7 +96,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: AlexDeco16_4
       rect:
         serializedVersion: 2
@@ -110,7 +106,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: AlexDeco16_5
       rect:
         serializedVersion: 2
@@ -121,8 +116,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 
