@@ -2,6 +2,9 @@ using UnityEngine;
 using System.Collections;
 
 public class Projectile : MonoBehaviour {
+	public AudioClip[] castClip;
+	public AudioClip hitClip;
+	private AudioSource audSource;
 
     public Vector2 direction;
     public float speed;
@@ -20,6 +23,9 @@ public class Projectile : MonoBehaviour {
     void Start(){
         animator = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
+		audSource = GetComponent<AudioSource> ();
+
+		audSource.PlayOneShot (castClip [Random.Range (0, castClip.Length)]);
     }
     
     void Update(){
@@ -70,6 +76,7 @@ public class Projectile : MonoBehaviour {
         body.isKinematic = true;
 
         animator.SetTrigger("Hit");
+		audSource.PlayOneShot (hitClip);
         Destroy(this.gameObject,.2f);
     }
     
