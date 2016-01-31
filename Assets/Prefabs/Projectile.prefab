@@ -127,7 +127,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -168,14 +168,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   castClip:
-  - {fileID: 8300000, guid: 66ef706b1f0fc4f629fd874d74c61339, type: 3}
-  - {fileID: 8300000, guid: ff3a662114dfe4888babf0bb56a3d35b, type: 3}
-  - {fileID: 8300000, guid: a7d0d5f92416d49e1b13db79500cd4e1, type: 3}
-  - {fileID: 8300000, guid: cc2f304656c9344749b69396ac2bdef8, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   hitClip: {fileID: 8300000, guid: dfa3eb120fef9429dba459b46c3c07d0, type: 3}
   direction: {x: 0, y: 0}
   speed: 0
-  maxSpeed: 10000
   damage: 1
   sender: {fileID: 0}
   isFinished: 0
@@ -289,6 +288,10 @@ Prefab:
       propertyPath: hitClip
       value: 
       objectReference: {fileID: 8300000, guid: dfa3eb120fef9429dba459b46c3c07d0, type: 3}
+    - target: {fileID: 0}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 122996}

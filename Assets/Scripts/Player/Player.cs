@@ -9,6 +9,9 @@ public class Player : MonoBehaviour {
 	public GameObject rayPoint1;
 	public GameObject rayPoint2;
 
+	public GameObject sideRayPoint1;
+	public GameObject sideRayPoint2;
+
 	public bool onGround;
 
 
@@ -145,7 +148,7 @@ public class Player : MonoBehaviour {
                     rightTriggerAbility.Cast();
 			}
 
-			if(Mathf.Abs(Input.GetAxis("Xbox"+playerIndex+"_X_Axis_Left")) > 0.25f)				
+			if(Mathf.Abs(Input.GetAxis("Xbox"+playerIndex+"_X_Axis_Left")) > 0.25f && !MidAirCollideCheck())				
 				velocity.x = speed * Input.GetAxis("Xbox"+playerIndex+"_X_Axis_Left");
 
 			if (Input.GetButton("Xbox"+playerIndex+"_AButton") && lastJumpTime + jumpCooldown < Time.time && OnGround())
@@ -317,10 +320,26 @@ public class Player : MonoBehaviour {
 		body.AddForce(velocity * Time.deltaTime, ForceMode2D.Force);
 	}
 
+	public bool MidAirCollideCheck(){
+		if(!OnGround()){
+			RaycastHit2D hit = Physics2D.Raycast(sideRayPoint1.transform.position, Vector3.left, 1.5f);
+			if (hit.collider != null && hit.collider.gameObject.CompareTag("Ground"))
+			{
+				Debug.Log("GROUND FOUND");
+				return true;
+			}
+
+			RaycastHit2D hit2 = Physics2D.Raycast(sideRayPoint2.transform.position, Vector3.left, 1.5f);
+			if (hit2.collider != null && hit2.collider.gameObject.CompareTag("Ground"))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public bool OnGround()
 	{
-		//TODO
 		RaycastHit2D hit = Physics2D.Raycast(rayPoint1.transform.position, Vector3.down, 0.2f);
 		if (hit.collider != null && hit.collider.gameObject.CompareTag("Ground"))
 		{
