@@ -45,7 +45,7 @@ public class Player : MonoBehaviour {
     public int playerNum;
     public PlayerIndex playerIndex; // DO NOT TOUCH
 	private GamePadState state;
-public float vibration = 0;
+	public float vibration = 0;
 
     public float health = 2;
     public float maxHealth = 2;
@@ -55,8 +55,10 @@ public float vibration = 0;
     public RuntimeAnimatorController[] animationControllers;
     public RuntimeAnimatorController[] spellAnimationControllers;
 
-//Blood For Ritual
-public int Blood = 0;
+    public BoxCollider2D box2D;
+
+	//Blood For Ritual
+	public int Blood = 0;
     bool doingRitual;
     bool atAltar;
     AltarSprite Altar;
@@ -68,6 +70,7 @@ public int Blood = 0;
     public Material[] playerMaterials;
 
     void Awake(){
+    	box2D = GetComponent<BoxCollider2D>();
         gameObject.GetComponent<SpriteRenderer>().material = playerMaterials[playerNum % 4];
         
     }
@@ -185,10 +188,16 @@ public int Blood = 0;
         Vector3 v = body.velocity;
 
 
-        if(body.velocity.x < -0.01)
-            transform.localScale = new Vector3(-1,1,1);        
-        else if(body.velocity.x > 0.01)
-            transform.localScale = new Vector3(1,1,1);
+        if(body.velocity.x < -0.01){
+        	Vector3 temp = transform.localScale;
+        	temp.x = Mathf.Abs(temp.x)*-1;
+            transform.localScale = temp;        
+        }
+        else if(body.velocity.x > 0.01){
+        	Vector3 temp = transform.localScale;
+        	temp.x = Mathf.Abs(temp.x);
+            transform.localScale = temp;
+        }
 
         if (Mathf.Abs(v.x) > maxSpeed && onGround){
         	Vector2 temp = v;
@@ -275,8 +284,8 @@ public int Blood = 0;
 			while(true){
 				if(Input.GetButtonDown(keys[0])){
 					if(randNum == 0){
-					vibration += 0.2f;
-					GamePad.SetVibration(playerIndex, vibration, vibration);
+						vibration += 0.2f;
+						GamePad.SetVibration(playerIndex, vibration, vibration);
 						break;
 					}
 					else{
@@ -289,7 +298,7 @@ public int Blood = 0;
 				if(Input.GetButtonDown(keys[1])){
 					if(randNum == 1){
 						vibration += 0.2f;
-					GamePad.SetVibration(playerIndex, vibration, vibration);
+						GamePad.SetVibration(playerIndex, vibration, vibration);
 						break;
 					}
 					else{
@@ -315,7 +324,7 @@ public int Blood = 0;
 				if(Input.GetButtonDown(keys[3])){
 					if(randNum == 3){
 						vibration += 0.2f;
-					GamePad.SetVibration(playerIndex, vibration, vibration);
+						GamePad.SetVibration(playerIndex, vibration, vibration);
 						break;
 					}
 					else{
@@ -350,21 +359,18 @@ public int Blood = 0;
 			RaycastHit2D hit = Physics2D.Raycast(sideRayPoint1.transform.position, Vector3.left, 1.5f);
 			if (hit.collider != null && hit.collider.gameObject.CompareTag("Ground"))
 			{
-				Debug.Log("GROUND FOUND");
 				return true;
 			}
 
 			RaycastHit2D hit2 = Physics2D.Raycast(sideRayPoint2.transform.position, Vector3.left, 1.5f);
 			if (hit2.collider != null && hit2.collider.gameObject.CompareTag("Ground"))
 			{
-				Debug.Log("GROUND FOUND");
 				return true;
 			}
 
 			RaycastHit2D hit3 = Physics2D.Raycast(sideRayPoint3.transform.position, Vector3.left, 1.5f);
 			if (hit3.collider != null && hit3.collider.gameObject.CompareTag("Ground"))
 			{
-				Debug.Log("GROUND FOUND");
 				return true;
 			}
 		}
@@ -413,7 +419,7 @@ public int Blood = 0;
             case 0:
                 {
                     speed = 8000;
-                    jumpSpeed = 80000;
+                    jumpSpeed = 100000;
                     maxSpeed = 12f;
                     maxAirSpeed = 8f;
                     maxJumpSpeed = 25;
@@ -440,7 +446,7 @@ public int Blood = 0;
             case 1:
                 {
                     speed = 8000;
-                    jumpSpeed = 80000;
+                    jumpSpeed = 100000;
                     maxSpeed = 12f;
                     maxAirSpeed = 8f;
                     maxJumpSpeed = 25;
@@ -460,13 +466,25 @@ public int Blood = 0;
 
                     leftTriggerAbility = shieldAbility;
                     animController.runtimeAnimatorController = animationControllers[1];
-                    
+
+                    //resetting raypoint positions
+                    rayPoint1.transform.position = new Vector2(transform.position.x + 0.82f, transform.position.y + -1.75f);
+					rayPoint2.transform.position = new Vector2(transform.position.x + -0.56f, transform.position.y + -1.75f);
+
+					sideRayPoint1.transform.position = new Vector2(transform.position.x + -1.83f, transform.position.y + -1.4f);
+					sideRayPoint2.transform.position = new Vector2(transform.position.x + -1.83f, transform.position.y + 0);
+					sideRayPoint3.transform.position = new Vector2(transform.position.x + -1.83f, transform.position.y + 1.56f);
+
+                    //resizing boxcollider and character
+                    transform.localScale = new Vector3(0.75f,0.75f,1);
+                    box2D.size = new Vector2(2.8f, 3f);
+                    box2D.offset = new Vector3(0,0);
                 }
                 break;
             case 2:
                 {
                     speed = 8000;
-                    jumpSpeed = 80000;
+                    jumpSpeed = 100000;
                     maxSpeed = 12f;
                     maxAirSpeed = 8f;
                     maxJumpSpeed = 25;
@@ -479,7 +497,7 @@ public int Blood = 0;
             case 3:
                 {
                     speed = 8000;
-                    jumpSpeed = 80000;
+                    jumpSpeed = 100000;
                     maxSpeed = 12f;
                     maxAirSpeed = 8f;
                     maxJumpSpeed = 25;
@@ -502,7 +520,7 @@ public int Blood = 0;
     		atAltar = true;
 
     		if(Altar == null){
-    			Altar = col.gameObject.GetComponent<AltarSprite>();
+    			Altar = col.gameObject.GetComponent<Altar>().altarSprite;
     			Altar.spriteRend.enabled = true;
     		}
     	}

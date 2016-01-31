@@ -13,9 +13,9 @@ GameObject:
   - 114: {fileID: 11418844}
   - 114: {fileID: 11437366}
   - 114: {fileID: 11431500}
-  - 58: {fileID: 5814298}
   - 212: {fileID: 21291224}
   - 95: {fileID: 9593576}
+  - 61: {fileID: 6186946}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -117,7 +117,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 176836}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.506, y: -0.751, z: 0}
+  m_LocalPosition: {x: 0.506, y: -0.086, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 482984}
@@ -153,7 +153,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 109012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.670006, y: -11.911, z: 0}
+  m_LocalPosition: {x: 3.52, y: -8.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 459986}
@@ -192,8 +192,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &5814298
-CircleCollider2D:
+--- !u!61 &6186946
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -203,9 +203,9 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.07074118, y: -0.053055763}
   serializedVersion: 2
-  m_Radius: 0.83334255
+  m_Size: {x: 1.0096197, y: 1.5873399}
 --- !u!95 &9593576
 Animator:
   serializedVersion: 3
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383580b550b1347bf808c51e8a10d8ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderType: 0
+  colliderType: 1
   main: {fileID: 0}
   above: {fileID: 0}
   below: {fileID: 0}
@@ -301,6 +301,7 @@ MonoBehaviour:
   jumpCooldown: 0.5
   playerNum: 0
   playerIndex: 0
+  vibration: 0
   health: 10
   maxHealth: 10
   regenHealth: 0
@@ -312,6 +313,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  Blood: 0
   playerMaterials:
   - {fileID: 2100000, guid: a0bcec8f52ff04dad91ca78304af10f1, type: 2}
   - {fileID: 2100000, guid: e1ee300503db6493eaa698dda58a665a, type: 2}
