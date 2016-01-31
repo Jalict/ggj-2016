@@ -36,6 +36,7 @@ public class Projectile : MonoBehaviour {
     }
     
     void OnTriggerEnter2D(Collider2D collider){
+        if(isFinished)return;
         if(collider.gameObject.tag == "Player"){
             //Check if shield is active
 
@@ -72,6 +73,7 @@ public class Projectile : MonoBehaviour {
                 sender.KilledPrisoner(collider.GetComponent<Prisoner>());
             }
         }
+        isFinished = true;
         body.isKinematic = true;
         Destroy(this.gameObject,.2f);
     }
