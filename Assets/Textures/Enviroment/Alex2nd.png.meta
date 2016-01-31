@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: a9847d7b1f3d44bb897b06954e4226fa
-timeCreated: 1454240500
+guid: bf650ecbb0f0649508b01cca621f8818
+timeCreated: 1454240524
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: AlexDeco32_0
-    21300002: AlexDeco32_1
-    21300004: AlexDeco32_2
+    21300000: Alex2nd_0
+    21300002: Alex2nd_1
+    21300004: Alex2nd_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: 0
-    aniso: 16
+    aniso: -1
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -47,65 +47,45 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: AlexDeco32_0
+    - name: Alex2nd_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -13, y: 15}
-        - {x: -16, y: -4}
-        - {x: -16, y: -16}
-        - {x: 15, y: -16}
-        - {x: 15, y: 10}
-        - {x: 9, y: 15}
-    - name: AlexDeco32_1
+      outline: []
+    - name: Alex2nd_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Alex2nd_2
       rect:
         serializedVersion: 2
         x: 32
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 2, y: 6}
-        - {x: -4, y: 6}
-        - {x: -16, y: 0}
-        - {x: -16, y: -8}
-        - {x: -13, y: -16}
-        - {x: 10, y: -16}
-        - {x: 14, y: -15}
-        - {x: 16, y: -5}
-        - {x: 16, y: -2}
-    - name: AlexDeco32_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -10, y: 16}
-        - {x: -12, y: 12}
-        - {x: -12, y: -14}
-        - {x: 14, y: -14}
-        - {x: 14, y: 16}
+      outline: []
     outline: []
   spritePackingTag: 
   userData: 
