@@ -76,7 +76,9 @@ public class Projectile : MonoBehaviour {
         body.isKinematic = true;
 
         animator.SetTrigger("Hit");
-		audSource.PlayOneShot (hitClip);
+		audSource.clip = hitClip;
+		audSource.volume = 0.6f;
+		audSource.Play ();
         Destroy(this.gameObject,.2f);
     }
     
