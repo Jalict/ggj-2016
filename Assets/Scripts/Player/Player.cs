@@ -5,6 +5,8 @@ using XInputDotNetPure;
 [RequireComponent(typeof (Rigidbody2D))]
 
 public class Player : MonoBehaviour {
+	public AudioClip[] monsterSound;
+
 	//raypoint positions
 	public GameObject rayPoint1;
 	public GameObject rayPoint2;
@@ -511,6 +513,8 @@ public class Player : MonoBehaviour {
                     wrapObj.SetColliderSize(new Vector2(1.5f, 2f));
                     wrapObj.InitializeCollliders();
 
+				GetComponent<AudioSource>().clip = monsterSound[Random.Range(0, monsterSound.Length)];
+				GetComponent<AudioSource> ().Play ();
                 }
                 break;
             case 2:
