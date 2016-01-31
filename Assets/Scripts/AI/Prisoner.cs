@@ -7,9 +7,10 @@ public class Prisoner : MonoBehaviour { //PURIPURI BLACK ANGEL STYLE!
 	private Vector3 velocity;
 	
 	Vector3 chainPoint;
-	public GameObject chainEnd;
+    public PrisonerSpawner spawner;
+    public GameObject chainEnd;
 	public float chainLength;
-	public float moveSpeed;
+	public float moveSpeed = 100;
 	public float maxSpeed;
 	public float health;
 	int random;
@@ -37,19 +38,13 @@ public class Prisoner : MonoBehaviour { //PURIPURI BLACK ANGEL STYLE!
         animator = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
 
-/*    moveSpeed = 100;
-	chainPoint = chainEnd.transform.position;
-	chainLength = 10;
-
-	confusion = 0.5f;
-	tired = 0.5f;
-	restless = 0.5f;
-	decisionFrequency = 3;
-*/
-
 		decisionTime = Time.time + decisionFrequency;
 		isMoving = false;
-		velocity = Vector3.left;
+        
+		float r = (Random.Range(0, 2) * 2 - 1f);
+        velocity = r * Vector3.left;
+        
+        transform.localScale = new Vector3(r, 1, 1);
 	}
 	
 	// Update is called once per frame
@@ -103,9 +98,9 @@ public class Prisoner : MonoBehaviour { //PURIPURI BLACK ANGEL STYLE!
 
         animator.SetFloat("abs_vel_x",Mathf.Abs(body.velocity.x));
         
-        if(body.velocity.x < 0.1f)
+        if(body.velocity.x < -0.1f)
             transform.localScale = new Vector3(-1, 1, 1);
-        else
+        else if (body.velocity.x > 0.1f)
             transform.localScale = new Vector3(1, 1, 1);
     }
  
@@ -125,18 +120,14 @@ public class Prisoner : MonoBehaviour { //PURIPURI BLACK ANGEL STYLE!
     }
 
 	public void Die(){
-		//play death thing here
-		//give blood to player
-		Object.Destroy(this.gameObject);
+        //play death thing here
+        //give blood to player
+        spawner.PrisonerDied();
+        Object.Destroy(this.gameObject);
 	}
 
 	public bool CalculateChance(float chance){
-		float random = Random.Range(0f, 1f);
-
-		if(chance > random)
-			return true;
-		else
-			return false;
+		return chance > Random.Range(0f, 1f);
 	}
 
 	public void Move(){
