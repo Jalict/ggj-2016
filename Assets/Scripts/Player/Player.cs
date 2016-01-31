@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
     public GameObject groundCrumblePrefab;
 
     public bool onGround;
+    private bool isShooting = false;
 
 
     public GameObject bloodSpatterPrefab;
@@ -64,6 +65,7 @@ public class Player : MonoBehaviour {
 
     //Blood For Ritual
     public int Blood = 0;
+    public int BloodGoal = 100;
     bool doingRitual;
     bool atAltar;
     AltarSprite Altar;
@@ -153,23 +155,25 @@ public class Player : MonoBehaviour {
             }
             if ((int)Input.GetAxis("Xbox"+playerIndex+"_RightTrigger") == 1)
 			{
-                if(rightTriggerAbility != null)
-                    rightTriggerAbility.Cast();
+				isShooting = true;
+                
 			}
+	if(isShooting && (int)Input.GetAxis("Xbox"+playerIndex + "_RightTrigger") ==0){
+		if(rightTriggerAbility != null)
+                    rightTriggerAbility.Cast();
+                isShooting = false;
+	}
 
 			if(Mathf.Abs(Input.GetAxis("Xbox"+playerIndex+"_X_Axis_Left")) > 0.25f && !MidAirCollideCheck())				
 				velocity.x = speed * Input.GetAxis("Xbox"+playerIndex+"_X_Axis_Left");
 
-			if (Input.GetButton("Xbox"+playerIndex+"_AButton") && lastJumpTime + jumpCooldown < Time.time && OnGround())
+			if (Input.GetButton("Xbox"+playerIndex+"_YButton") && lastJumpTime + jumpCooldown < Time.time && OnGround())
 			{
-				if((atAltar && altarTimeStamp > Time.time) || !atAltar){
 					velocity = Vector2.up * jumpSpeed;
-
-                    lastJumpTime = Time.time;
-                }
+					lastJumpTime = Time.time;
 			}
 
-			if(atAltar){
+			if(atAltar && this.Blood >= BloodGoal && this.level ==0){
 				if(altarTimeStamp < Time.time){
 					if(Input.GetButtonDown("Xbox"+playerIndex+"_AButton"))
 						StartCoroutine(Ritual(4));
@@ -248,11 +252,19 @@ public class Player : MonoBehaviour {
     
     public void KilledPlayer(Player player){
     	this.Blood +=10;
-    	if(this.Blood > 100)
+    	if(this.Blood > 100){
     	this.Blood = 100;
+    	if(this.level == 0)
+    		GamePad.SetVibration(playerIndex,0.2f,0);
+    	}
     }  
     public void KilledPrisoner(Prisoner prisoner){
-        SetToLevel(1);
+        this.Blood += 5;
+        	if(this.Blood > 100){
+    	this.Blood = 100;
+    	if(this.level == 0)
+    		GamePad.SetVibration(playerIndex,0.2f,0);
+    	}
     }
     
     public void Respawn(float time = 0){
