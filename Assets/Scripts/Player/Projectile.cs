@@ -12,9 +12,13 @@ public class Projectile : MonoBehaviour {
 
     private Rigidbody2D body;
 
-//Setters
+    private Animator animator;
+    public bool isFinished;
+
+    //Setters
 
     void Start(){
+        animator = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
     }
     
@@ -54,6 +58,7 @@ public class Projectile : MonoBehaviour {
             if(player.OnHit(damage)){
                 sender.KilledPlayer(player);
             }
+            
         }
 
         if(collider.gameObject.tag == "Prisoner"){
@@ -62,8 +67,10 @@ public class Projectile : MonoBehaviour {
                 sender.KilledPrisoner(collider.GetComponent<Prisoner>());
             }
         }
-        
-        Destroy(this.gameObject);
+        body.isKinematic = true;
+
+        animator.SetTrigger("Hit");
+        Destroy(this.gameObject,.2f);
     }
     
     void OnTriggerStawy2D(Collider2D collider){

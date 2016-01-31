@@ -71,8 +71,6 @@ public class Prisoner : MonoBehaviour { //PURIPURI BLACK ANGEL STYLE!
 				movingBackToChain = false;
 			}
 
-            Debug.Log(Vector3.Distance(transform.position, chainPoint));
-
             if(decisionTime < Time.time && !movingBackToChain){ //Count untill next roll
 				//Roll for chance of turning
 				if(CalculateChance(confusion)){
