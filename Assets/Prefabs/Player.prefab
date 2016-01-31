@@ -155,6 +155,7 @@ MonoBehaviour:
   damage: 1
   projectileSpeed: 10000
   projectile_prefab: {fileID: 122996, guid: f1169ca4a15904250913beaabc4fa9b5, type: 2}
+  spellAnimationControllers: []
 --- !u!114 &11431500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -206,13 +207,21 @@ MonoBehaviour:
   Controller: 1
   speed: 10
   jumpSpeed: 300
+  maxJumpSpeed: 10
   maxSpeed: 10
+  maxAirSpeed: 10
   lastJumpTime: 0
   jumpCooldown: 0.5
   playerNum: 2
+  playerIndex: 0
   health: 10
   maxHealth: 10
   regenHealth: 0
+  spellAnimationControllers:
+  - {fileID: 9100000, guid: 55eacd19d55b14ecf9a728bc481bde77, type: 2}
+  - {fileID: 9100000, guid: ad11ec21a50a246fa83d69a3f7a737a7, type: 2}
+  - {fileID: 9100000, guid: 6e993a91b2b274c2f804e2dd986b345b, type: 2}
+  - {fileID: 9100000, guid: be418d8b96bcc41c084b3e951eff67d7, type: 2}
 --- !u!212 &21291224
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -251,6 +260,10 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: spellAnimationControllers.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
@@ -258,6 +271,22 @@ Prefab:
       propertyPath: bloodSpatterPrefab
       value: 
       objectReference: {fileID: 185500, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellAnimationControllers.Array.data[0]
+      value: 
+      objectReference: {fileID: 9100000, guid: 55eacd19d55b14ecf9a728bc481bde77, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellAnimationControllers.Array.data[1]
+      value: 
+      objectReference: {fileID: 9100000, guid: ad11ec21a50a246fa83d69a3f7a737a7, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellAnimationControllers.Array.data[2]
+      value: 
+      objectReference: {fileID: 9100000, guid: 6e993a91b2b274c2f804e2dd986b345b, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellAnimationControllers.Array.data[3]
+      value: 
+      objectReference: {fileID: 9100000, guid: be418d8b96bcc41c084b3e951eff67d7, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 109012}

@@ -47,6 +47,7 @@ public class Player : MonoBehaviour {
     public float regenHealth = .1f;
 
 	private Animator animController;
+    public RuntimeAnimatorController[] spellAnimationControllers;
 
     bool doingRitual;
     bool atAltar;
@@ -70,7 +71,9 @@ public class Player : MonoBehaviour {
 
 
 		animController = GetComponent<Animator> ();
-	}
+
+        fireAbility.spellAnimationControllers = spellAnimationControllers[playerNum];
+    }
 
 	// Update is called once per frame
 	void Update()

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEditor.Animations;
 using System.Collections;
 using XInputDotNetPure;
 
@@ -16,7 +17,10 @@ public class FireAbility : IAbility {
     private Player playerRef;
     
     public GameObject projectile_prefab;
-    
+
+    [HideInInspector]
+    public RuntimeAnimatorController spellAnimationControllers;
+
     public override bool Cast(){
        if (lastCast + cooldown <= Time.time)
        {
@@ -30,6 +34,9 @@ public class FireAbility : IAbility {
             projectile.speed = projectileSpeed;
             projectile.sender = owner;
             projectile.damage = damage;
+
+            obj.GetComponent<Animator>().runtimeAnimatorController = spellAnimationControllers;
+
             CameraShake.Instance.start(.1f, .2f);
 
             ScreenWrap.IgnoreCollisions(gameObject, obj);
