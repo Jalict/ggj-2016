@@ -41,6 +41,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prisonerPrefabs:
   - {fileID: 147378, guid: 7d8037324c6224038808f120d9e7e641, type: 2}
+  - {fileID: 198448, guid: fce04668837874640b2d036178b8f8ee, type: 2}
+  - {fileID: 137752, guid: 21d0f45d965a54ad3bd47dcb7704cc7b, type: 2}
   maxPrisoners: 10
   initialPrisoners: 5
   spawnInterval: 5
@@ -52,7 +54,19 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: prisonerPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: prisonerPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 198448, guid: fce04668837874640b2d036178b8f8ee, type: 2}
+    - target: {fileID: 0}
+      propertyPath: prisonerPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 137752, guid: 21d0f45d965a54ad3bd47dcb7704cc7b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 113572}
