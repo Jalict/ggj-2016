@@ -34,17 +34,27 @@ public class ScreenWrapObject : MonoBehaviour {
             below = gameObject.AddComponent<CircleCollider2D>();
             right = gameObject.AddComponent<CircleCollider2D>();
             left = gameObject.AddComponent<CircleCollider2D>();
+            
+            ((CircleCollider2D)above).radius = ((CircleCollider2D)main).radius;
+            ((CircleCollider2D)below).radius = ((CircleCollider2D)main).radius;
+            ((CircleCollider2D)right).radius = ((CircleCollider2D)main).radius;
+            ((CircleCollider2D)left).radius  = ((CircleCollider2D)main).radius;
+            
         }else{
             above = gameObject.AddComponent<BoxCollider2D>();
             below = gameObject.AddComponent<BoxCollider2D>();
             right = gameObject.AddComponent<BoxCollider2D>();
             left = gameObject.AddComponent<BoxCollider2D>();
+            
+            ((BoxCollider2D)above).size = ((BoxCollider2D)main).size;
+            ((BoxCollider2D)below).size = ((BoxCollider2D)main).size;
+            ((BoxCollider2D)right).size = ((BoxCollider2D)main).size;
+            ((BoxCollider2D)left).size  = ((BoxCollider2D)main).size;
         }
         viewSize = ScreenWrap.GetSize();
         
         below.offset = new Vector2(0, viewSize.y);
         above.offset = new Vector2(0, -viewSize.y);
-        
         right.offset = new Vector2(viewSize.x,0);        
         left.offset = new Vector2(-viewSize.x,0);
         
