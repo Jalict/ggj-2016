@@ -78,6 +78,7 @@ public class Player : MonoBehaviour {
 
     void Awake(){
         gameObject.GetComponent<SpriteRenderer>().material = playerMaterials[playerNum % 4];
+		footSteps.startColor = playerMaterials [playerNum].color * 0.75f;
         
     }
 
