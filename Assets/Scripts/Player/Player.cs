@@ -57,6 +57,8 @@ public class Player : MonoBehaviour {
 
     public BoxCollider2D box2D;
 
+    private ScreenWrapObject sWO;
+
 	//Blood For Ritual
 	public int Blood = 0;
     bool doingRitual;
@@ -70,6 +72,7 @@ public class Player : MonoBehaviour {
     public Material[] playerMaterials;
 
     void Awake(){
+    	sWO = GetComponent<ScreenWrapObject>();
     	box2D = GetComponent<BoxCollider2D>();
         gameObject.GetComponent<SpriteRenderer>().material = playerMaterials[playerNum % 4];
         
@@ -86,9 +89,6 @@ public class Player : MonoBehaviour {
 		velocity = new Vector3(0,0,0);
         SetToLevel(level);
         altarWaitTime = 2.0f;
-
-
-
 
         fireAbility.spellAnimationControllers = spellAnimationControllers[playerNum % 4];
     }
@@ -479,6 +479,9 @@ public class Player : MonoBehaviour {
                     transform.localScale = new Vector3(0.75f,0.75f,1);
                     box2D.size = new Vector2(2.8f, 3f);
                     box2D.offset = new Vector3(0,0);
+
+                    //re-wrapping
+                    sWO.ScreenWrapAdjust();
                 }
                 break;
             case 2:

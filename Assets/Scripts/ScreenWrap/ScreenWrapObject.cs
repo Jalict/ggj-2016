@@ -27,7 +27,7 @@ public class ScreenWrapObject : MonoBehaviour {
     // Use this for initialization
     void Start () {
         main = GetComponent<Collider2D>();
-        
+
         if (colliderType == ColliderType.Circle)
         {
             above = gameObject.AddComponent<CircleCollider2D>();
@@ -63,7 +63,36 @@ public class ScreenWrapObject : MonoBehaviour {
         below.isTrigger = main.isTrigger;
         right.isTrigger = main.isTrigger;
         left.isTrigger  = main.isTrigger;
+        
 
+    }
+
+    public void ScreenWrapAdjust(){
+        if (colliderType == ColliderType.Circle)
+        {   
+            ((CircleCollider2D)above).radius = ((CircleCollider2D)main).radius;
+            ((CircleCollider2D)below).radius = ((CircleCollider2D)main).radius;
+            ((CircleCollider2D)right).radius = ((CircleCollider2D)main).radius;
+            ((CircleCollider2D)left).radius  = ((CircleCollider2D)main).radius;
+            
+        }else{
+            ((BoxCollider2D)above).size = ((BoxCollider2D)main).size;
+            ((BoxCollider2D)below).size = ((BoxCollider2D)main).size;
+            ((BoxCollider2D)right).size = ((BoxCollider2D)main).size;
+            ((BoxCollider2D)left).size  = ((BoxCollider2D)main).size;
+        }
+        viewSize = ScreenWrap.GetSize();
+        
+        below.offset = new Vector2(0, viewSize.y);
+        above.offset = new Vector2(0, -viewSize.y);
+        right.offset = new Vector2(viewSize.x,0);        
+        left.offset = new Vector2(-viewSize.x,0);
+        
+    
+        above.isTrigger = main.isTrigger;
+        below.isTrigger = main.isTrigger;
+        right.isTrigger = main.isTrigger;
+        left.isTrigger  = main.isTrigger;
     }
     
     void Update(){
