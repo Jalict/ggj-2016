@@ -49,6 +49,7 @@ public class Prisoner : MonoBehaviour { //PURIPURI BLACK ANGEL STYLE!
         
 		float r = (Random.Range(0, 2) * 2 - 1f);
         velocity = r * Vector3.left;
+        chainPoint = spawner.transform.position;
         
         transform.localScale = new Vector3(r, 1, 1);
 	}
