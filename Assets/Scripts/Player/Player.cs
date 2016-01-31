@@ -57,8 +57,14 @@ public class Player : MonoBehaviour {
 
     private Rigidbody2D body;
 
-	// Use this for initialization
-	void Start () {
+    public Material[] playerMaterials;
+
+    void Awake(){
+        gameObject.GetComponent<SpriteRenderer>().material = playerMaterials[playerNum % 4];
+        
+    }
+
+    void Start () {
 		playerIndex = (PlayerIndex)playerNum;
         fireAbility = GetComponent<FireAbility>();
         shieldAbility = GetComponent<ShieldAbility>();
@@ -69,10 +75,11 @@ public class Player : MonoBehaviour {
         SetToLevel(level);
         altarWaitTime = 2.0f;
 
-
 		animController = GetComponent<Animator> ();
 
-        fireAbility.spellAnimationControllers = spellAnimationControllers[playerNum];
+
+
+        fireAbility.spellAnimationControllers = spellAnimationControllers[playerNum % 4];
     }
 
 	// Update is called once per frame
