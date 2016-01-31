@@ -496,7 +496,7 @@ public class Player : MonoBehaviour {
                     tentacleAbility.height = 1;
                     tentacleAbility.attackSpeed = 1.5f;
 
-                    rightTriggerAbility = tentacleAbility;
+//                    rightTriggerAbility = tentacleAbility;
 
                     shieldAbility.cooldown = .5f;
                     shieldAbility.activeTime = .5f;
@@ -505,16 +505,16 @@ public class Player : MonoBehaviour {
                     animController.runtimeAnimatorController = animationControllers[1];
 
                     //resetting raypoint positions
-                    rayPoint1.transform.position = new Vector2(transform.position.x + 1.22f, transform.position.y + -1.75f);
-					rayPoint2.transform.position = new Vector2(transform.position.x + -1.26f, transform.position.y + -1.75f);
+                    rayPoint1.transform.position = new Vector2(transform.position.x -0.223f, transform.position.y + -1.162f);
+					rayPoint2.transform.position = new Vector2(transform.position.x + 0.477f, transform.position.y + -1.126f);
 
-					sideRayPoint1.transform.position = new Vector2(transform.position.x + -1.83f, transform.position.y + -1.4f);
-					sideRayPoint2.transform.position = new Vector2(transform.position.x + -1.83f, transform.position.y + 0);
-					sideRayPoint3.transform.position = new Vector2(transform.position.x + -1.83f, transform.position.y + 1.56f);
+					sideRayPoint2.transform.position = new Vector2(transform.position.x + 0.993f, transform.position.y + 0);
+					sideRayPoint3.transform.position = new Vector2(transform.position.x + 0.993f, transform.position.y + 0.741f);
+					sideRayPoint1.transform.position = new Vector2(transform.position.x + 0.993f, transform.position.y -0.741f);
 
                     ScreenWrapObject wrapObj = GetComponent<ScreenWrapObject>();
                     wrapObj.SetColliderOffset(new Vector2(0f,0f));
-                    wrapObj.SetColliderSize(new Vector2(2.8f, 3f));
+                    wrapObj.SetColliderSize(new Vector2(1.5f, 2f));
                     wrapObj.InitializeCollliders();
 
                 }

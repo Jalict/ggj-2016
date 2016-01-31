@@ -33,8 +33,7 @@ GameObject:
   - 212: {fileID: 21291224}
   - 95: {fileID: 9593576}
   - 61: {fileID: 6186946}
-  - 61: {fileID: 6103594}
-  - 61: {fileID: 6129994}
+  - 114: {fileID: 11475262}
   m_Layer: 14
   m_Name: Player
   m_TagString: Player
@@ -163,7 +162,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192156}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.4, y: 2, z: 0}
+  m_LocalPosition: {x: 0.6, y: 1.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 482984}
@@ -199,7 +198,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 109012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.7, y: -8.15, z: 0}
+  m_LocalPosition: {x: 3.52, y: -8.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 459986}
@@ -252,34 +251,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &6103594
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 109012}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: -0.0698967, y: -0.037636757}
-  serializedVersion: 2
-  m_Size: {x: 1.0859991, y: 1.5806329}
---- !u!61 &6129994
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 109012}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: -0.0698967, y: -0.037636757}
-  serializedVersion: 2
-  m_Size: {x: 1.0859991, y: 1.5806329}
 --- !u!61 &6186946
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -381,7 +352,7 @@ MonoBehaviour:
   onGround: 0
   bloodSpatterPrefab: {fileID: 185500, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
   level: 0
-  Controller: 0
+  Controller: 1
   speed: 10
   jumpSpeed: 300
   maxJumpSpeed: 10
@@ -389,7 +360,7 @@ MonoBehaviour:
   maxAirSpeed: 10
   lastJumpTime: 0
   jumpCooldown: 0.5
-  playerNum: 0
+  playerNum: 1
   playerIndex: 0
   vibration: 0
   health: 10
@@ -410,6 +381,26 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e1ee300503db6493eaa698dda58a665a, type: 2}
   - {fileID: 2100000, guid: 96763b745fe62469c8ed25fe2082b32f, type: 2}
   - {fileID: 2100000, guid: 4cd284ed7a22946b48cd0fcb44840b94, type: 2}
+--- !u!114 &11475262
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 109012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6852c83ab7c58d448a832bd305844b78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 0}
+  tentaclePrefab: {fileID: 175228, guid: 1861fe417f03bee4ab3377ec2db8e0a3, type: 2}
+  cooldown: 1
+  duration: 0.8
+  damage: 1
+  attackSpeed: 0
+  width: 0
+  height: 0
+  projectileSpeed: 1
 --- !u!198 &19861954
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -2135,6 +2126,14 @@ Prefab:
       propertyPath: footSteps
       value: 
       objectReference: {fileID: 19861954}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.y
+      value: 1.35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 109012}

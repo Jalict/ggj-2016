@@ -36,6 +36,8 @@ public class Projectile : MonoBehaviour {
     }
     
     void OnTriggerEnter2D(Collider2D collider){
+        if(isFinished)
+            return;
         if(collider.gameObject.tag == "Player"){
             //Check if shield is active
 
@@ -78,6 +80,7 @@ public class Projectile : MonoBehaviour {
 		audSource.clip = hitClip;
 		audSource.volume = 0.6f;
 		audSource.Play ();
+        isFinished = true;
         Destroy(this.gameObject,.2f);
     }
     
