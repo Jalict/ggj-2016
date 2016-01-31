@@ -164,7 +164,7 @@ public class Player : MonoBehaviour {
                 isShooting = false;
 	}
 
-			if(Mathf.Abs(Input.GetAxis("Xbox"+playerIndex+"_X_Axis_Left")) > 0.25f && !MidAirCollideCheck())				
+			if(Mathf.Abs(Input.GetAxis("Xbox"+playerIndex+"_X_Axis_Left")) > 0.25f && !MidAirCollideCheck() && !isShooting)				
 				velocity.x = speed * Input.GetAxis("Xbox"+playerIndex+"_X_Axis_Left");
 
 			if (Input.GetButton("Xbox"+playerIndex+"_YButton") && lastJumpTime + jumpCooldown < Time.time && OnGround())
@@ -259,7 +259,7 @@ public class Player : MonoBehaviour {
     	}
     }  
     public void KilledPrisoner(Prisoner prisoner){
-        this.Blood += 5;
+        this.Blood += 100;
         	if(this.Blood > 100){
     	this.Blood = 100;
     	if(this.level == 0)
