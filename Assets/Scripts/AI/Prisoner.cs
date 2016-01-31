@@ -4,6 +4,11 @@ using System.Collections;
 [RequireComponent(typeof (Rigidbody2D))]
 
 public class Prisoner : MonoBehaviour { //PURIPURI BLACK ANGEL STYLE!
+	public AudioClip[] prisonerHurt;
+	public GameObject bloodsplatPrefab;
+
+	private AudioSource audSource;
+
 	private Vector3 velocity;
 	
 	Vector3 chainPoint;
@@ -37,6 +42,7 @@ public class Prisoner : MonoBehaviour { //PURIPURI BLACK ANGEL STYLE!
 	void Start () {
         animator = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
+		audSource = GetComponent<AudioSource> ();
 
 		decisionTime = Time.time + decisionFrequency;
 		isMoving = false;
@@ -108,6 +114,8 @@ public class Prisoner : MonoBehaviour { //PURIPURI BLACK ANGEL STYLE!
     ///<param>damage</param>
     ///<return>whether or not the player died from the hit</return>
     public bool OnHit(float damage){
+		audSource.PlayOneShot (prisonerHurt [Random.Range (0, prisonerHurt.Length)]);
+
         health -= damage;
         if(health <= 0){
             Die();
@@ -116,6 +124,8 @@ public class Prisoner : MonoBehaviour { //PURIPURI BLACK ANGEL STYLE!
         
         CameraShake.Instance.start(.2f, .5f);
 
+
+
         return false;
     }
 
@@ -123,6 +133,7 @@ public class Prisoner : MonoBehaviour { //PURIPURI BLACK ANGEL STYLE!
         //play death thing here
         //give blood to player
         spawner.PrisonerDied();
+		Instantiate (bloodsplatPrefab, transform.position, Quaternion.identity);
         Object.Destroy(this.gameObject);
 	}
 
