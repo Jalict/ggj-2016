@@ -62,6 +62,21 @@ GameObject:
   m_Component:
   - 4: {fileID: 496266}
   m_Layer: 0
+  m_Name: SideRayPoint3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &176836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 444204}
+  m_Layer: 0
   m_Name: SideRayPoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,11 +105,23 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 125282}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.106, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0.192, y: -0.909, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 482984}
   m_RootOrder: 1
+--- !u!4 &444204
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 176836}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.506, y: -0.751, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 482984}
+  m_RootOrder: 2
 --- !u!4 &459986
 Transform:
   m_ObjectHideFlags: 1
@@ -102,7 +129,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 153492}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.107, y: -0.498, z: 0}
+  m_LocalPosition: {x: -0.365, y: -0.917, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 482984}
@@ -114,7 +141,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 196434}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.489, y: 0.467, z: 0}
+  m_LocalPosition: {x: 0.489, y: 0.532, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 482984}
@@ -131,8 +158,9 @@ Transform:
   m_Children:
   - {fileID: 459986}
   - {fileID: 423718}
-  - {fileID: 496266}
+  - {fileID: 444204}
   - {fileID: 460318}
+  - {fileID: 496266}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &496266
@@ -142,11 +170,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 165516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.506, y: -0.46, z: 0}
+  m_LocalPosition: {x: 0.5060005, y: -0.7510004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 482984}
-  m_RootOrder: 2
+  m_RootOrder: 4
 --- !u!50 &5070286
 Rigidbody2D:
   serializedVersion: 2
@@ -177,7 +205,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.83334255
 --- !u!95 &9593576
 Animator:
   serializedVersion: 3
@@ -258,7 +286,8 @@ MonoBehaviour:
   rayPoint1: {fileID: 153492}
   rayPoint2: {fileID: 125282}
   sideRayPoint1: {fileID: 196434}
-  sideRayPoint2: {fileID: 165516}
+  sideRayPoint2: {fileID: 176836}
+  sideRayPoint3: {fileID: 165516}
   onGround: 0
   bloodSpatterPrefab: {fileID: 185500, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
   level: 0

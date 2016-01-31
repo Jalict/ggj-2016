@@ -11,6 +11,7 @@ public class Player : MonoBehaviour {
 
 	public GameObject sideRayPoint1;
 	public GameObject sideRayPoint2;
+	public GameObject sideRayPoint3;
 
 	public bool onGround;
 
@@ -356,6 +357,14 @@ public int Blood = 0;
 			RaycastHit2D hit2 = Physics2D.Raycast(sideRayPoint2.transform.position, Vector3.left, 1.5f);
 			if (hit2.collider != null && hit2.collider.gameObject.CompareTag("Ground"))
 			{
+				Debug.Log("GROUND FOUND");
+				return true;
+			}
+
+			RaycastHit2D hit3 = Physics2D.Raycast(sideRayPoint3.transform.position, Vector3.left, 1.5f);
+			if (hit3.collider != null && hit3.collider.gameObject.CompareTag("Ground"))
+			{
+				Debug.Log("GROUND FOUND");
 				return true;
 			}
 		}
