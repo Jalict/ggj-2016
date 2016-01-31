@@ -281,6 +281,7 @@ public class Player : MonoBehaviour {
 		GamePad.SetVibration(playerIndex, vibration, vibration);
         
         CameraShake.Instance.start(.2f, .2f);
+        Altar.ChangeSprite(2);
 		doingRitual = false;
 	}
 
