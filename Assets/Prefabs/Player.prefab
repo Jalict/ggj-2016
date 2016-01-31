@@ -16,7 +16,7 @@ GameObject:
   - 212: {fileID: 21291224}
   - 95: {fileID: 9593576}
   - 61: {fileID: 6186946}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 423718}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: RayPoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 459986}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: RayPoint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 496266}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: SideRayPoint3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 444204}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: SideRayPoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 460318}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: SideRayPoint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 109012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.52, y: -8.31, z: 0}
+  m_LocalPosition: {x: -1.4438187, y: 0.507, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 459986}
@@ -291,7 +291,7 @@ MonoBehaviour:
   onGround: 0
   bloodSpatterPrefab: {fileID: 185500, guid: 8d4a5e0cbe1d64bf2ab6146f0ee0d319, type: 2}
   level: 0
-  Controller: 1
+  Controller: 0
   speed: 10
   jumpSpeed: 300
   maxJumpSpeed: 10

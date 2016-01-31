@@ -24,9 +24,9 @@ public class ScreenWrapObject : MonoBehaviour {
 
     private Vector2 viewSize;
 
-    // Use this for initialization
-    void Start () {
+    void Awake(){
         main = GetComponent<Collider2D>();
+
 
         if (colliderType == ColliderType.Circle)
         {
@@ -34,42 +34,22 @@ public class ScreenWrapObject : MonoBehaviour {
             below = gameObject.AddComponent<CircleCollider2D>();
             right = gameObject.AddComponent<CircleCollider2D>();
             left = gameObject.AddComponent<CircleCollider2D>();
-            
-            ((CircleCollider2D)above).radius = ((CircleCollider2D)main).radius;
-            ((CircleCollider2D)below).radius = ((CircleCollider2D)main).radius;
-            ((CircleCollider2D)right).radius = ((CircleCollider2D)main).radius;
-            ((CircleCollider2D)left).radius  = ((CircleCollider2D)main).radius;
-            
         }else{
             above = gameObject.AddComponent<BoxCollider2D>();
             below = gameObject.AddComponent<BoxCollider2D>();
             right = gameObject.AddComponent<BoxCollider2D>();
             left = gameObject.AddComponent<BoxCollider2D>();
-            
-            ((BoxCollider2D)above).size = ((BoxCollider2D)main).size;
-            ((BoxCollider2D)below).size = ((BoxCollider2D)main).size;
-            ((BoxCollider2D)right).size = ((BoxCollider2D)main).size;
-            ((BoxCollider2D)left).size  = ((BoxCollider2D)main).size;
         }
-        viewSize = ScreenWrap.GetSize();
-        
-        below.offset = new Vector2(0, viewSize.y);
-        above.offset = new Vector2(0, -viewSize.y);
-        right.offset = new Vector2(viewSize.x,0);        
-        left.offset = new Vector2(-viewSize.x,0);
-        
-    
-        above.isTrigger = main.isTrigger;
-        below.isTrigger = main.isTrigger;
-        right.isTrigger = main.isTrigger;
-        left.isTrigger  = main.isTrigger;
-        
-
     }
 
-    public void ScreenWrapAdjust(){
+    // Use this for initialization
+    void Start () {
+        InitializeCollliders();
+    }
+
+    public void InitializeCollliders(){
         if (colliderType == ColliderType.Circle)
-        {   
+        {
             ((CircleCollider2D)above).radius = ((CircleCollider2D)main).radius;
             ((CircleCollider2D)below).radius = ((CircleCollider2D)main).radius;
             ((CircleCollider2D)right).radius = ((CircleCollider2D)main).radius;
@@ -83,41 +63,52 @@ public class ScreenWrapObject : MonoBehaviour {
         }
         viewSize = ScreenWrap.GetSize();
         
-        below.offset = new Vector2(0, viewSize.y);
-        above.offset = new Vector2(0, -viewSize.y);
-        right.offset = new Vector2(viewSize.x,0);        
-        left.offset = new Vector2(-viewSize.x,0);
-        
+        below.offset = new Vector2(0 + main.offset.x, viewSize.y + main.offset.y);
+        above.offset = new Vector2(0 + main.offset.x, -viewSize.y + main.offset.y);
+        right.offset = new Vector2(viewSize.x + main.offset.x,0 + main.offset.y);        
+        left.offset = new Vector2(-viewSize.x + main.offset.x,0 + main.offset.y);
     
         above.isTrigger = main.isTrigger;
         below.isTrigger = main.isTrigger;
         right.isTrigger = main.isTrigger;
         left.isTrigger  = main.isTrigger;
+        
     }
     
     void Update(){
-        Vector2 newPos = transform.position;
-        if(transform.position.x < -viewSize.x/2)  
-            newPos.Set(
-                viewSize.x / 2 - Mathf.Abs(transform.position.x - viewSize.x / 2) % viewSize.x,
-                transform.position.y);        
-        else if(transform.position.x > viewSize.x/2)
-            newPos.Set(
-                -viewSize.x / 2 + (transform.position.x + viewSize.x / 2) % viewSize.x,
-                transform.position.y);      
+        Vector2 pos = transform.position - Camera.main.transform.position;
+        if(pos.x < -viewSize.x/2)  
+            pos.Set(
+                viewSize.x / 2 - Mathf.Abs(pos.x - viewSize.x / 2) % viewSize.x,
+                pos.y);        
+        else if(pos.x > viewSize.x/2)
+            pos.Set(
+                -viewSize.x / 2 + (pos.x + viewSize.x / 2) % viewSize.x,
+                pos.y);      
             
-        if(transform.position.y < -viewSize.y/2)
-            newPos.Set(
-                transform.position.x,
-                viewSize.y / 2 - Mathf.Abs(transform.position.y - viewSize.y / 2) % viewSize.y);         
-        else if(transform.position.y > viewSize.y/2)
-            newPos.Set(
-                transform.position.x,
-                -viewSize.y / 2 + (transform.position.y + viewSize.y / 2) % viewSize.y);
+        if(pos.y < -viewSize.y/2)
+            pos.Set(
+                pos.x,
+                viewSize.y / 2 - Mathf.Abs(pos.y - viewSize.y / 2) % viewSize.y);         
+        else if(pos.y > viewSize.y/2)
+            pos.Set(
+                pos.x,
+                -viewSize.y / 2 + (pos.y + viewSize.y / 2) % viewSize.y);
             
-        transform.position = newPos;
+        transform.position = pos;
     }
     
+    
+    public void SetColliderSize(Vector2 v){
+        if (colliderType == ColliderType.Circle)
+            ((CircleCollider2D)main).radius = v.x;        
+        else
+            ((BoxCollider2D)main).size = v;
+    }
+    
+    public void SetColliderOffset(Vector2 v){
+        main.offset = v;
+    }
     
     
 }

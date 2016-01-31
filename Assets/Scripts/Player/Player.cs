@@ -55,8 +55,6 @@ public class Player : MonoBehaviour {
     public RuntimeAnimatorController[] animationControllers;
     public RuntimeAnimatorController[] spellAnimationControllers;
 
-    public BoxCollider2D box2D;
-
 
 	//Blood For Ritual
 	public int Blood = 0;
@@ -71,7 +69,6 @@ public class Player : MonoBehaviour {
     public Material[] playerMaterials;
 
     void Awake(){
-    	box2D = GetComponent<BoxCollider2D>();
         gameObject.GetComponent<SpriteRenderer>().material = playerMaterials[playerNum % 4];
         
     }
@@ -439,6 +436,10 @@ public class Player : MonoBehaviour {
 
                     animController.runtimeAnimatorController = animationControllers[0];
 
+                    ScreenWrapObject wrapObj = GetComponent<ScreenWrapObject>();
+                    wrapObj.SetColliderSize(new Vector2(1.00962f, 1.58734f));
+                    wrapObj.SetColliderOffset(new Vector2(-0.07074118f, -0.05305576f));
+                    wrapObj.InitializeCollliders();
                 }
                 break;
             case 1:
@@ -473,10 +474,11 @@ public class Player : MonoBehaviour {
 					sideRayPoint2.transform.position = new Vector2(transform.position.x + -1.83f, transform.position.y + 0);
 					sideRayPoint3.transform.position = new Vector2(transform.position.x + -1.83f, transform.position.y + 1.56f);
 
-                    //resizing boxcollider and character
-                    transform.localScale = new Vector3(0.75f,0.75f,1);
-                    box2D.size = new Vector2(2.8f, 3f);
-                    box2D.offset = new Vector3(0,0);
+                    ScreenWrapObject wrapObj = GetComponent<ScreenWrapObject>();
+                    wrapObj.SetColliderOffset(new Vector2(0f,0f));
+                    wrapObj.SetColliderSize(new Vector2(2.8f, 3f));
+                    wrapObj.InitializeCollliders();
+
                 }
                 break;
             case 2:
