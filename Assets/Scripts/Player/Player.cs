@@ -175,10 +175,7 @@ public class Player : MonoBehaviour {
 				
 			}
 		}
-		Debug.DrawLine(transform.position, new Vector3(transform.position.x+(float)Input.GetAxis("Xbox" + playerIndex + "_Look_X"),transform.position.y-
-                                                               (float)Input.GetAxis("Xbox" + playerIndex + "_Look_Y"), 0), Color.red);
-        //Debug.Log((float)Input.GetAxis("Xbox" + playerIndex + "_Look_Y") + " , " + (float)Input.GetAxis("Xbox" + playerIndex + "_Look_X") + "," + 0);
-
+		
         Move();
       
 		animController.SetFloat ("abs_velocity_x", Mathf.Abs(body.velocity.x));
@@ -224,8 +221,11 @@ public class Player : MonoBehaviour {
     
     public void Die(){
         CameraShake.Instance.start(.5f, 1f);
+        GamePad.SetVibration(playerIndex,0,0);
+        SetToLevel(0);
+        doingRitual = false;
+        this.Blood = 0;
         Respawn(3);
-        
         Instantiate(bloodSpatterPrefab, transform.position, bloodSpatterPrefab.transform.rotation);
     }
     
@@ -453,11 +453,11 @@ public class Player : MonoBehaviour {
                     maxAirSpeed = 10f;
                     maxJumpSpeed = 28;
 
-                    health = 2;
-                    maxHealth = 2;
+                    health = 5;
+                    maxHealth = 5;
                     regenHealth = .1f;
 
-                    fireAbility.cooldown = 1;
+                    fireAbility.cooldown = 0.2f;
                     fireAbility.damage = 1;
                     fireAbility.projectileSpeed = 2000;
 
@@ -491,8 +491,8 @@ public class Player : MonoBehaviour {
                     maxAirSpeed = 10f;
                     maxJumpSpeed = 28;
 
-                    health = 4;
-                    maxHealth = 4;
+                    health = 10;
+                    maxHealth = 10;
                     regenHealth = 0f;
 
                     tentacleAbility.cooldown = 1;
